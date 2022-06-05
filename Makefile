@@ -11,6 +11,22 @@ vim_session:
 
 ######################################################################
 
+## Upgrade 2022 Jun 05 (Sun)
+## https://itsfoss.com/upgrade-ubuntu-version/
+
+update:
+	sudo apt update
+
+dist-upgrade: 
+	sudo apt dist-upgrade
+
+## sudo apt install update-manager-core
+
+## sudo do-release-upgrade
+
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
