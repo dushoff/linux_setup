@@ -14,18 +14,25 @@ vim_session:
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
+release:
+	lsb_release -a
+
 update:
 	sudo apt update
 
-dist-upgrade: 
+dist-upgrade: update
 	sudo apt dist-upgrade
 
-## sudo apt install update-manager-core
+release-upgrade: update update-manager-core.apt
+	sudo do-release-upgrade
 
-## sudo do-release-upgrade
-
+## Ubuntu 22.04 There is no development version of an LTS available.
+## Wait a couple of months
 
 ######################################################################
+
+%.apt:
+	apt-get install -y $* && touch $@
 
 ### Makestuff
 
