@@ -31,6 +31,7 @@ release-upgrade: update update-manager-core.apt
 
 ######################################################################
 
+Ignore += *.apt
 %.apt:
 	apt-get install -y $* && touch $@
 
