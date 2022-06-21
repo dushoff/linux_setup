@@ -39,6 +39,7 @@ release-upgrade: update update-manager-core.apt
 
 chrome.manual: dropstuff/chrome.deb.rmk chrome.debinstall
 
+Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
