@@ -27,7 +27,23 @@ release-upgrade: update update-manager-core.apt
 	sudo do-release-upgrade
 
 ## Ubuntu 22.04 There is no development version of an LTS available.
-## Wait a couple of months
+## late July? Or try the weird laptop first?
+
+######################################################################
+
+## Use a resource directory for debs, bins, etc.
+
+######################################################################
+
+## manual chrome updates
+
+chrome.manual: dropstuff/chrome.deb.rmk chrome.debinstall
+
+dropstuff/chrome.deb: | dropstuff
+	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+%.debinstall: dropstuff/%.deb
+	sudo gdebi $<
 
 ######################################################################
 
