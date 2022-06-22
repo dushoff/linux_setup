@@ -1,6 +1,6 @@
 ## This is linux_setup
 
-current: target
+current: random
 -include target.mk
 Ignore = target.mk
 
@@ -45,6 +45,12 @@ dropstuff/chrome.deb: | dropstuff
 
 %.debinstall: dropstuff/%.deb
 	sudo gdebi $<
+
+######################################################################
+
+## Randomly adding stuff
+
+random: pdftk-java.apt
 
 ######################################################################
 
