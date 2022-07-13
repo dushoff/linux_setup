@@ -1,4 +1,4 @@
-## This is linux_setup
+## This is linux_setup; a 2022 attempt to make my linux setup makier
 
 current: random
 -include target.mk
@@ -50,7 +50,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff
 
-random: pdftk-java.apt
+random: pdftk-java.apt docker.apt
 
 ######################################################################
 
