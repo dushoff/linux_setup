@@ -11,6 +11,12 @@ vim_session:
 
 ######################################################################
 
+## This doesn't work to ensure we are super because Makefile is always up-to-date
+Makefile:
+	touch /bin/usr
+
+######################################################################
+
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
@@ -50,13 +56,20 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff
 
-random: pdftk-java.apt docker.apt
+random: pdftk-java.apt docker.apt gcalcli.apt
+
+## Don't make this; use command from password file
+## https://github.com/insanum/gcalcli
+gcalcli.start:
+	gcalcli --client-id=XXXXXX.apps.googleusercontent.com --client-secret=XXXXXX list
 
 ######################################################################
 
 Ignore += *.apt
 %.apt:
-	apt-get install -y $* && touch $@
+	sudo apt-get install -y $* && touch $@
+
+######################################################################
 
 ### Makestuff
 
