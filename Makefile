@@ -1,5 +1,7 @@
 ## This is linux_setup; a 2022 attempt to make my linux setup makier
 
+## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
+
 current: random
 -include target.mk
 Ignore = target.mk
@@ -26,10 +28,16 @@ release:
 update:
 	sudo apt update
 
-dist-upgrade: update
+upgrade: update
+	sudo apt upgrade
+
+dist-upgrade: upgrade
 	sudo apt dist-upgrade
 
-release-upgrade: update update-manager-core.apt
+manage: update-manager-core.apt
+	sudo update-manager -d
+
+release-upgrade: dist-upgrade manage
 	sudo do-release-upgrade
 
 ## Ubuntu 22.04 There is no development version of an LTS available.
