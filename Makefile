@@ -65,9 +65,23 @@ gcalcli.start:
 
 ######################################################################
 
+## Working on docker setup
+## snap vs install vs deb download
+## install is probably best, but I just did snap on Te
+
+## DON'T make this as root; it needs to know who you are
+docker.groups:
+	sudo usermod -aG docker ${USER} && newgrp docker
+
+######################################################################
+
 Ignore += *.apt
 %.apt:
 	sudo apt-get install -y $* && touch $@
+
+Ignore += *.snap
+%.snap:
+	sudo snap install $* && touch $@
 
 ######################################################################
 
