@@ -1,5 +1,7 @@
 ## This is linux_setup; a 2022 attempt to make my linux setup makier
 
+## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
+
 current: random
 -include target.mk
 Ignore = target.mk
@@ -12,6 +14,7 @@ vim_session:
 ######################################################################
 
 ## This doesn't work to ensure we are super because Makefile is always up-to-date
+## Therefore, I added a whole bunch of sudo instead ... confused
 Makefile:
 	touch /bin/usr
 
@@ -20,20 +23,33 @@ Makefile:
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
+## Trying again late July
+
 release:
 	lsb_release -a
 
 update:
 	sudo apt update
 
-dist-upgrade: update
+upgrade: update
+	sudo apt upgrade
+
+dist-upgrade: upgrade
 	sudo apt dist-upgrade
 
-release-upgrade: update update-manager-core.apt
+manage: update-manager-core.apt
+	sudo update-manager -d
+
+release-upgrade: dist-upgrade manage
 	sudo do-release-upgrade
 
-## Ubuntu 22.04 There is no development version of an LTS available.
-## late July? Or try the weird laptop first?
+releaseR:
+	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+	$(MAKE) upgrade
+
+R ?= /usr/bin/R
+updateR: 
+	 echo 'update.packages(repos = "$(REPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla > $@
 
 ######################################################################
 
