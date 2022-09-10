@@ -29,13 +29,14 @@ release:
 	lsb_release -a
 
 update:
-	sudo apt update
+	sudo apt-get update
 
 upgrade: update
-	sudo apt upgrade
+	sudo apt-get upgrade
 
+## apt-get untested
 dist-upgrade: upgrade
-	sudo apt dist-upgrade
+	sudo apt-get dist-upgrade
 
 manage: update-manager-core.apt
 	sudo update-manager -d
@@ -56,6 +57,8 @@ updateR:
 ## Use a resource directory for debs, bins, etc.
 
 ######################################################################
+
+## Sound recorder
 
 ## manual chrome updates
 
@@ -81,9 +84,31 @@ gcalcli.start:
 
 ######################################################################
 
+audio-recorder.apt: audio-recorder.pparepo
+
+## 2022 Sep 10 (Sat) clean, don't install, after upgrade
+totem.apt:
+totem.clean: 
+	$(RMR) ~/.cache/gstreamer-1.0
+
+restrict: ubuntu-restricted-extras.aptrec ubuntu-restricted-addons.aptrec
+
+## There is also bad, and ugly (worse) !
+gstream: gstreamer1.0-plugins-good.apt gstreamer1.0-plugins-base.apt
+
+######################################################################
+
 Ignore += *.apt
 %.apt:
 	sudo apt-get install -y $* && touch $@
+
+%.aptrec: 
+	sudo apt-get install --install-recommends  $* && touch $@
+
+## Absolutely making this up! 2022 Sep 10 (Sat)
+Ignore += *.pparepo
+%.pparepo:
+	sudo add-apt-repository ppa:$*/ppa
 
 ######################################################################
 
