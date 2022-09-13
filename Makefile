@@ -84,6 +84,15 @@ gcalcli.start:
 
 ######################################################################
 
+## git setup; not clear if this works at machine or directory level!
+gitmerge:
+	git config pull.rebase false
+
+######################################################################
+ 
+
+######################################################################
+
 audio-recorder.apt: audio-recorder.pparepo
 
 ## 2022 Sep 10 (Sat) clean, don't install, after upgrade
