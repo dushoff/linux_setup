@@ -13,6 +13,8 @@ vim_session:
 
 ######################################################################
 
+Ignore += dump.txt
+
 ## This doesn't work to ensure we are super because Makefile is always up-to-date
 ## Therefore, I added a whole bunch of sudo instead ... confused
 Makefile:
@@ -104,6 +106,13 @@ restrict: ubuntu-restricted-extras.aptrec ubuntu-restricted-addons.aptrec
 
 ## There is also bad, and ugly (worse) !
 gstream: gstreamer1.0-plugins-good.apt gstreamer1.0-plugins-base.apt
+## Working on docker setup
+## snap vs install vs deb download
+## install is probably best, but I just did snap on Te
+
+## DON'T make this as root; it needs to know who you are
+docker.groups:
+	sudo usermod -aG docker ${USER} && newgrp docker
 
 ######################################################################
 
@@ -111,6 +120,7 @@ Ignore += *.apt
 %.apt:
 	sudo apt-get install -y $* && touch $@
 
+Ignore += *.aptrec
 %.aptrec: 
 	sudo apt-get install --install-recommends  $* && touch $@
 
@@ -118,6 +128,10 @@ Ignore += *.apt
 Ignore += *.pparepo
 %.pparepo:
 	sudo add-apt-repository ppa:$*/ppa
+
+Ignore += *.snap
+%.snap:
+	sudo snap install $* && touch $@
 
 ######################################################################
 
