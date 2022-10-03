@@ -29,13 +29,13 @@ release:
 	lsb_release -a
 
 update:
-	sudo apt update
+	sudo apt-get update
 
 upgrade: update
-	sudo apt upgrade
+	sudo apt-get upgrade
 
 dist-upgrade: upgrade
-	sudo apt dist-upgrade
+	sudo apt-get dist-upgrade
 
 manage: update-manager-core.apt
 	sudo update-manager -d
@@ -43,6 +43,7 @@ manage: update-manager-core.apt
 release-upgrade: dist-upgrade manage
 	sudo do-release-upgrade
 
+## Do this instead of of updateR?
 releaseR:
 	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 	$(MAKE) upgrade
@@ -50,6 +51,10 @@ releaseR:
 R ?= /usr/bin/R
 updateR: 
 	 echo 'update.packages(repos = "$(REPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla > $@
+
+######################################################################
+
+## ImageMagick stuff (read|write) /etc.../[Pp]olicy?
 
 ######################################################################
 
