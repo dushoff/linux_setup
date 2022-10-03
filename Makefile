@@ -13,6 +13,8 @@ vim_session:
 
 ######################################################################
 
+Ignore += dump.txt
+
 ## This doesn't work to ensure we are super because Makefile is always up-to-date
 ## Therefore, I added a whole bunch of sudo instead ... confused
 Makefile:
@@ -34,6 +36,7 @@ update:
 upgrade: update
 	sudo apt-get upgrade
 
+## apt-get untested
 dist-upgrade: upgrade
 	sudo apt-get dist-upgrade
 
@@ -62,6 +65,8 @@ updateR:
 
 ######################################################################
 
+## Sound recorder
+
 ## manual chrome updates
 
 chrome.manual: dropstuff/chrome.deb.rmk chrome.debinstall
@@ -86,6 +91,26 @@ gcalcli.start:
 
 ######################################################################
 
+## git setup; not clear if this works at machine or directory level!
+gitmerge:
+	git config pull.rebase false
+
+######################################################################
+ 
+
+######################################################################
+
+audio-recorder.apt: audio-recorder.pparepo
+
+## 2022 Sep 10 (Sat) clean, don't install, after upgrade
+totem.apt:
+totem.clean: 
+	$(RMR) ~/.cache/gstreamer-1.0
+
+restrict: ubuntu-restricted-extras.aptrec ubuntu-restricted-addons.aptrec
+
+## There is also bad, and ugly (worse) !
+gstream: gstreamer1.0-plugins-good.apt gstreamer1.0-plugins-base.apt
 ## Working on docker setup
 ## snap vs install vs deb download
 ## install is probably best, but I just did snap on Te
@@ -99,6 +124,15 @@ docker.groups:
 Ignore += *.apt
 %.apt:
 	sudo apt-get install -y $* && touch $@
+
+Ignore += *.aptrec
+%.aptrec: 
+	sudo apt-get install --install-recommends  $* && touch $@
+
+## Absolutely making this up! 2022 Sep 10 (Sat)
+Ignore += *.pparepo
+%.pparepo:
+	sudo add-apt-repository ppa:$*/ppa
 
 Ignore += *.snap
 %.snap:
