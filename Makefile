@@ -57,23 +57,21 @@ r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/crana
 	sudo apt update
 
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
-	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | tee -a $@
+	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
 /etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc Makefile
 	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" > $@
 
 ######################################################################
 
-## rutter is deprecated?
-## Do this instead of of updateR?
-releaseR:
-	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-	$(MAKE) upgrade
+R ?= /usr/bin/R
+RREPO ?= http://lib.stat.cmu.edu/R/CRAN
+
+updateR: 
+	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla > $@
 
 ######################################################################
 
-R ?= /usr/bin/R
-updateR: 
-	 echo 'update.packages(repos = "$(REPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla > $@
+## R set up; set site-library to be world-writable to avoid different library paths. leave library alone (for core stuff)
 
 ######################################################################
 
