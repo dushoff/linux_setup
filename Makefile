@@ -2,6 +2,8 @@
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
 
+ubu = `lsb_release -cs`
+
 current: random
 -include target.mk
 Ignore = target.mk
@@ -46,10 +48,28 @@ manage: update-manager-core.apt
 release-upgrade: dist-upgrade manage
 	sudo do-release-upgrade
 
+######################################################################
+
+## r2u new hotness 2022 Oct 03 (Mon)
+## https://github.com/eddelbuettel/r2u
+
+r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
+	sudo apt update
+
+/etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
+	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | tee -a $@
+/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc
+	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" > $@
+
+######################################################################
+
+## rutter is deprecated?
 ## Do this instead of of updateR?
 releaseR:
 	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 	$(MAKE) upgrade
+
+######################################################################
 
 R ?= /usr/bin/R
 updateR: 
