@@ -67,7 +67,7 @@ R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
 
 updateR: 
-	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla > $@
+	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
 
 ######################################################################
 
@@ -75,7 +75,7 @@ updateR:
 
 ######################################################################
 
-## ImageMagick stuff (read|write) /etc.../[Pp]olicy?
+## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
 
 ######################################################################
 
@@ -114,7 +114,10 @@ gitmerge:
 	git config pull.rebase false
 
 ######################################################################
- 
+
+## Things added since 2022 Oct 05 (Wed)
+
+newapt: gnome-screenshot.apt
 
 ######################################################################
 
