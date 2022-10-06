@@ -73,6 +73,10 @@ updateR:
 
 ## R set up; set site-library to be world-writable to avoid different library paths. leave library alone (for core stuff)
 
+Rlibcombine:
+	sudo chmod a+w /usr/lib/R/site-library
+	mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+
 ######################################################################
 
 ## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
