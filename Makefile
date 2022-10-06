@@ -117,7 +117,7 @@ gitmerge:
 
 ## Things added since 2022 Oct 05 (Wed)
 
-newapt: gnome-screenshot.apt
+newapt: gnome-screenshot.apt libjs-mathjax.apt
 
 ######################################################################
 
