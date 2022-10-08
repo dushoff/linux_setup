@@ -63,21 +63,26 @@ r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/crana
 
 ######################################################################
 
-## rutter is deprecated?
-## Do this instead of of updateR?
-releaseR:
-	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-	$(MAKE) upgrade
-
-######################################################################
-
 R ?= /usr/bin/R
+RREPO ?= http://lib.stat.cmu.edu/R/CRAN
+
 updateR: 
-	 echo 'update.packages(repos = "$(REPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla > $@
+	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
 
 ######################################################################
 
-## ImageMagick stuff (read|write) /etc.../[Pp]olicy?
+## R set up; set site-library to be world-writable to avoid different library paths. leave library alone (for core stuff)
+
+## /usr/local/lib/R should not exist; it can confuse CMD INSTALL
+
+Rlibcombine:
+	- sudo rmdir /usr/local/lib/R/site-library
+	sudo chmod a+w /usr/lib/R/site-library
+	mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+
+######################################################################
+
+## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
 
 ######################################################################
 
@@ -116,7 +121,10 @@ gitmerge:
 	git config pull.rebase false
 
 ######################################################################
- 
+
+## Things added since 2022 Oct 05 (Wed)
+
+newapt: gnome-screenshot.apt libjs-mathjax.apt
 
 ######################################################################
 
