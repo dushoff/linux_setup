@@ -17,13 +17,6 @@ vim_session:
 
 Ignore += dump.txt
 
-## This doesn't work to ensure we are super because Makefile is always up-to-date
-## Therefore, I added a whole bunch of sudo instead ... confused
-Makefile:
-	touch /bin/usr
-
-######################################################################
-
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
@@ -162,6 +155,12 @@ Ignore += *.pparepo
 %.pparepo:
 	sudo add-apt-repository ppa:$*/ppa
 
+%.npm: npm.apt
+	sudo npm install -g $*
+
+
+## Avoid? 2022 Oct 23 (Sun)
+## Is this what made the fiVe glitchy?
 Ignore += *.snap
 %.snap:
 	sudo snap install $* && touch $@
