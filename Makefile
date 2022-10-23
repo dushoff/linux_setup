@@ -17,6 +17,70 @@ vim_session:
 
 Ignore += dump.txt
 
+######################################################################
+
+## New install 2022 Oct 22 (Sat)
+## Freshening fiVe
+
+## Start with git.apt, make.apt, screen.apt
+## Clone dushoff/tech and make 
+## linux_config and linux_setup
+## make relink from linux_config
+
+# Terminal
+# * disable F10 (global) and F11 (shortcuts)
+# * fonts (tango dark 22 for V; solarized light 22 for Te)
+
+## tcsh.apt:
+
+blocal.ubuntu:
+	cd ~ && ln -fs .blocal.ubuntu ~/.blocal
+
+## make a fake dropstuff to install before Dropbox
+## Not fully tested
+## DropResource = .
+Ignore += linux_setup
+chrome.manual:
+## del dropstuff ##
+
+## Run chrome and give it some time to register the extensions and find the passwords
+
+## Run this in a separate terminal
+startDropbox: nautilus-dropbox.apt
+	dropbox start -i
+## ls ~/Dropbox
+
+## Get a new github token and put it in dump.txt
+## Configure github
+github.user:
+	git config --global user.email "dushoff@mcmaster.ca"
+	git config --global user.name "Jonathan Dushoff"
+	git config --global pull.rebase false
+
+ignore.config:
+
+## make ~/screens 
+## cd ~ && gcd screens
+
+## make pullall a few times
+## make use_ssh in the Bicko directory if that's still a thing
+
+# xdotool.apt:
+
+## make main.load from linux_config
+
+textaid: coffeescript.npm text-aid-too.npm
+
+## Reboot
+
+## Sync and start real session
+
+## Remember to page-ify things (DAIDD pages, notebook?)
+
+## imagemagick-6.q16.apt:
+
+######################################################################
+
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
@@ -87,7 +151,7 @@ Rlibcombine:
 
 ## manual chrome updates
 
-chrome.manual: dropstuff/chrome.deb.rmk chrome.debinstall
+chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
 
 Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
@@ -108,10 +172,6 @@ gcalcli.start:
 	gcalcli --client-id=XXXXXX.apps.googleusercontent.com --client-secret=XXXXXX list
 
 ######################################################################
-
-## git setup; not clear if this works at machine or directory level!
-gitmerge:
-	git config --global pull.rebase false
 
 ######################################################################
 
@@ -143,6 +203,7 @@ docker.groups:
 ######################################################################
 
 Ignore += *.apt
+.PRECIOUS: %.apt
 %.apt:
 	sudo apt-get install -y $* && touch $@
 
@@ -157,7 +218,6 @@ Ignore += *.pparepo
 
 %.npm: npm.apt
 	sudo npm install -g $*
-
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
