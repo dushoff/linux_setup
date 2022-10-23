@@ -111,7 +111,7 @@ gcalcli.start:
 
 ## git setup; not clear if this works at machine or directory level!
 gitmerge:
-	git config pull.rebase false
+	git config --global pull.rebase false
 
 ######################################################################
 
