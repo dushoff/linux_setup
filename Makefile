@@ -1,5 +1,3 @@
-## r-base : Depends: r-recommended (= 4.1.2-1ubuntu2) but it is not installable
-## This is linux_setup; a 2022 attempt to make my linux setup makier
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
 
