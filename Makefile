@@ -1,3 +1,4 @@
+## r-base : Depends: r-recommended (= 4.1.2-1ubuntu2) but it is not installable
 ## This is linux_setup; a 2022 attempt to make my linux setup makier
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
@@ -31,7 +32,8 @@ Ignore += dump.txt
 # * disable F10 (global) and F11 (shortcuts)
 # * fonts (tango dark 22 for V; solarized light 22 for Te)
 
-## tcsh.apt:
+tcsh: tcsh.apt
+	touch ~/.laliases
 
 blocal.ubuntu:
 	cd ~ && ln -fs .blocal.ubuntu ~/.blocal
@@ -77,7 +79,9 @@ textaid: coffeescript.npm text-aid-too.npm
 
 ## Remember to page-ify things (DAIDD pages, notebook?)
 
-## imagemagick-6.q16.apt:
+## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
+magick: imagemagick-6.q16.apt
+	sudo gvim /etc/Im*/policy.xml
 
 ######################################################################
 
@@ -107,18 +111,35 @@ release-upgrade: dist-upgrade manage
 
 ######################################################################
 
+rproject.add:
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
+	touch $@
+	sudo apt update
+
+rprog: rproject.add r-base-core.apt r-base-dev.apt
+
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
 
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
-	sudo apt update
+	sudo apt-get update
 
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
 /etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc
-	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" > $@
+	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" | sudo tee -a $@
 
 ######################################################################
+
+%.cran: r-cran-%.apt
+	$(move)
+
+rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran tmb.source vgam.cran asymptor.cran rticles.cran
+
+######################################################################
+
+## r updates and paths
 
 R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
@@ -139,9 +160,13 @@ Rlibcombine:
 
 ######################################################################
 
-## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
+## Tex
+
+texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt
 
 ######################################################################
+
+## pandoc [[investigate]]
 
 ## Use a resource directory for debs, bins, etc.
 
