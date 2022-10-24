@@ -132,6 +132,7 @@ r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/crana
 
 ######################################################################
 
+Ignore += *.cran
 %.cran: r-cran-%.apt
 	$(move)
 
