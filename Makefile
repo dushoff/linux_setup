@@ -83,6 +83,13 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+## Extras 2022 Oct 26 (Wed)
+
+jekyll.gem: bundler.gem ruby-bundler.apt
+ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
+
+######################################################################
+
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
@@ -245,6 +252,14 @@ Ignore += *.pparepo
 
 %.npm: npm.apt
 	sudo npm install -g $*
+
+## Not understanding yet. This is not working because it wants a local installation of ruby as well
+%.ugem:
+	gem install --user-install $*
+
+%.gem:
+	sudo gem install $*
+	touch $@
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
