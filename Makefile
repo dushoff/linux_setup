@@ -253,7 +253,7 @@ Ignore += *.pparepo
 %.npm: npm.apt
 	sudo npm install -g $*
 
-Ignore += %.gem
+Ignore += *.gem
 %.gem:
 	sudo gem install $*
 	touch $@
