@@ -253,13 +253,14 @@ Ignore += *.pparepo
 %.npm: npm.apt
 	sudo npm install -g $*
 
-## Not understanding yet. This is not working because it wants a local installation of ruby as well
-%.ugem:
-	gem install --user-install $*
-
+Ignore += %.gem
 %.gem:
 	sudo gem install $*
 	touch $@
+
+## This does not work; I think it wants a local installation of ruby
+%.ugem:
+	gem install --user-install $*
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
