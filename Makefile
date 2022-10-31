@@ -158,7 +158,7 @@ updateR:
 Rlibcombine:
 	- sudo rmdir /usr/local/lib/R/site-library
 	sudo chmod a+w /usr/lib/R/site-library
-	mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+	- mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
 
 ######################################################################
 
