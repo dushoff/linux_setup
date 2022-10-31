@@ -1,5 +1,3 @@
-## r-base : Depends: r-recommended (= 4.1.2-1ubuntu2) but it is not installable
-## This is linux_setup; a 2022 attempt to make my linux setup makier
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
 
@@ -85,6 +83,13 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+## Extras 2022 Oct 26 (Wed)
+
+jekyll.gem: bundler.gem ruby-bundler.apt
+ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
+
+######################################################################
+
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
@@ -138,6 +143,8 @@ Ignore += *.cran
 	$(move)
 
 rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
+
+rcurrent: rmarkdown.cran sn.cran kdensity.cran
 
 ######################################################################
 
@@ -245,6 +252,15 @@ Ignore += *.pparepo
 
 %.npm: npm.apt
 	sudo npm install -g $*
+
+Ignore += *.gem
+%.gem:
+	sudo gem install $*
+	touch $@
+
+## This does not work; I think it wants a local installation of ruby
+%.ugem:
+	gem install --user-install $*
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
