@@ -88,6 +88,9 @@ magick: imagemagick-6.q16.apt
 jekyll.gem: bundler.gem ruby-bundler.apt
 ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
+latexdiff.apt:
+rename.apt:
+
 ######################################################################
 
 ## Upgrade 2022 Jun 05 (Sun)
