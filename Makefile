@@ -88,8 +88,7 @@ magick: imagemagick-6.q16.apt
 jekyll.gem: bundler.gem ruby-bundler.apt
 ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
-latexdiff.apt:
-rename.apt:
+utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt
 
 ######################################################################
 
