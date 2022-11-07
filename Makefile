@@ -140,16 +140,6 @@ r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/crana
 
 ######################################################################
 
-Ignore += *.cran
-%.cran: r-cran-%.apt
-	$(move)
-
-rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
-
-rcurrent: rmarkdown.cran sn.cran kdensity.cran
-
-######################################################################
-
 ## r updates and paths
 
 R ?= /usr/bin/R
@@ -170,6 +160,34 @@ Rlibcombine:
 	- mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
 
 ######################################################################
+
+Ignore += *.cran
+%.cran:
+	apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
+
+## Hand-downcased; move around or check or something
+## Started just editing here
+oldrdefault: bbmle.cran bsts.cran Cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
+oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
+
+dataviz: GGally.cran
+
+## r from source
+## Default: dependencies=c("Depends", "Imports", "LinkingTo")
+Ignore += *.rsource
+%.rsource:
+	 $(rsource_r)
+rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## R dependencies
+
+## bugfix, or something 2022 Nov 06 (Sun) (email with park from Jan)
+tikzDevice.rsource: cairo.cran
+
+######################################################################
+
 
 ## Tex
 
@@ -202,18 +220,13 @@ dropstuff/chrome.deb: | dropstuff
 
 random: pdftk-java.apt docker.apt gcalcli.apt
 
-## Don't make this; use command from password file
-## https://github.com/insanum/gcalcli
-gcalcli.start:
-	gcalcli --client-id=XXXXXX.apps.googleusercontent.com --client-secret=XXXXXX list
-
-######################################################################
-
 ######################################################################
 
 ## Things added since 2022 Oct 05 (Wed)
 
 newapt: gnome-screenshot.apt libjs-mathjax.apt
+
+## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
 
 ######################################################################
 
