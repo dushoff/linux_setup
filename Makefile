@@ -90,6 +90,13 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
 utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt
 
+## vpn
+
+# vpn alias should already exist (use it for location guidance)
+# Download latest tgz from internet
+# go to vpn subdirectory (where license is) and sudo ./vpn_install<tab>
+# Run vpn and type (first time) connect to sslvpn.mcmaster.ca
+
 ######################################################################
 
 ## Upgrade 2022 Jun 05 (Sun)
