@@ -162,9 +162,10 @@ updateR:
 ## /usr/local/lib/R should not exist; it can confuse CMD INSTALL
 
 Rlibcombine:
-	- sudo rmdir /usr/local/lib/R/site-library
+	- sudo chmod a+w /usr/local/lib/R/site-library
 	sudo chmod a+w /usr/lib/R/site-library
 	- mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+	@echo Combined!
 
 ######################################################################
 
@@ -178,6 +179,8 @@ oldrdefault: bbmle.cran bsts.cran Cairo.cran caret.cran cowplot.cran date.cran d
 oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
 
 dataviz: GGally.cran
+
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
 
 ## r from source
 ## Default: dependencies=c("Depends", "Imports", "LinkingTo")
