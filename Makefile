@@ -182,6 +182,7 @@ oldrdefault: bbmle.cran bsts.cran Cairo.cran caret.cran cowplot.cran date.cran d
 oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
 
 dataviz: GGally.cran
+varpred: brms.cran rstanarm.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
 
