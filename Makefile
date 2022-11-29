@@ -181,6 +181,7 @@ Ignore += *.cran
 oldrdefault: bbmle.cran bsts.cran Cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
 
+rubella: ggpmisc.cran
 dataviz: GGally.cran
 varpred: brms.cran rstanarm.cran
 
