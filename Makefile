@@ -183,7 +183,7 @@ oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
 
 rubella: ggpmisc.cran
 dataviz: GGally.cran
-varpred: brms.cran rstanarm.cran
+varpred: brms.cran rstanarm.cran patchwork.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
 
