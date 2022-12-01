@@ -231,9 +231,9 @@ dropstuff/chrome.deb: | dropstuff
 
 ######################################################################
 
-## Randomly adding stuff
+## Randomly adding stuff 
 
-random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt
 
 ######################################################################
 
