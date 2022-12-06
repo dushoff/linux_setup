@@ -203,7 +203,6 @@ tikzDevice.rsource: cairo.cran
 
 ######################################################################
 
-
 ## Tex
 
 texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt
@@ -217,6 +216,34 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 ######################################################################
 
 ## Sound recorder
+
+## kazam under random works OK, but only when display magnification is set to 1
+
+######################################################################
+
+## pdf PDF viewer
+## evince is the default, but cannot open certain docs
+
+## This acts really weird on the weird doc
+gv.apt:
+
+## This looks similar to evince
+zathura.apt:
+
+## wine and snap! Help!! Surprisingly bad even given expectation
+acrordrdc.snap:
+
+/home/dushoff/Downloads/adobe.deb:
+	wget -O $@ ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
+
+acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
+
+acroread.deb: /home/dushoff/Downloads/adobe.deb acroread_prereqs
+
+%.deb:
+	sudo dpkg -i $< > $@
+
+######################################################################
 
 ## manual chrome updates
 
@@ -274,6 +301,14 @@ Ignore += *.apt
 Ignore += *.aptrec
 %.aptrec: 
 	sudo apt-get install --install-recommends  $* && touch $@
+
+Ignore += i386.config
+i386.config:
+	sudo dpkg --add-architecture i386
+	touch $@
+
+%.i386: i386.config
+	sudo apt-get install -y $*:i386 && touch $@
 
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
