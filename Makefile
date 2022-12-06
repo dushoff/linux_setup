@@ -240,6 +240,7 @@ acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.
 
 acroread.deb: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 
+Ignore += *.deb
 %.deb:
 	sudo dpkg -i $< > $@
 
@@ -307,6 +308,7 @@ i386.config:
 	sudo dpkg --add-architecture i386
 	touch $@
 
+Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
 
