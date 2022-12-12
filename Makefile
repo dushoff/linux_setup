@@ -83,6 +83,22 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+## Extras 2022 Oct 26 (Wed)
+
+jekyll.gem: bundler.gem ruby-bundler.apt
+ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
+
+utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt
+
+## vpn
+
+# vpn alias should already exist (use it for location guidance)
+# Download latest tgz from internet
+# go to vpn subdirectory (where license is) and sudo ./vpn_install<tab>
+# Run vpn and type (first time) connect to sslvpn.mcmaster.ca
+
+######################################################################
+
 ## Upgrade 2022 Jun 05 (Sun)
 ## https://itsfoss.com/upgrade-ubuntu-version/
 
@@ -140,9 +156,6 @@ rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devt
 rubella: kdensity.cran
 
 ######################################################################
-
-######################################################################
-
 ## r updates and paths
 
 R ?= /usr/bin/R
@@ -156,11 +169,46 @@ updateR:
 ## R set up; set site-library to be world-writable to avoid different library paths. leave library alone (for core stuff)
 
 ## /usr/local/lib/R should not exist; it can confuse CMD INSTALL
+## Why did it come back??? if it did 2022 Nov 16 (Wed)
+## deleting from fiVe
+## - sudo chmod a+w /usr/local/lib/R/site-library
+## sudo rm -fr /usr/local/lib/R ##
 
 Rlibcombine:
-	- sudo rmdir /usr/local/lib/R/site-library
 	sudo chmod a+w /usr/lib/R/site-library
-	mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+	- mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+	@echo Combined!
+
+######################################################################
+
+Ignore += *.cran
+%.cran:
+	apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
+
+## Hand-downcased; move around or check or something
+## Started just editing here
+oldrdefault: bbmle.cran bsts.cran Cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
+oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
+
+rubella: ggpmisc.cran
+dataviz: GGally.cran
+varpred: brms.cran rstanarm.cran patchwork.cran
+
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
+
+## r from source
+## Default: dependencies=c("Depends", "Imports", "LinkingTo")
+Ignore += *.rsource
+%.rsource:
+	 $(rsource_r)
+rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## R dependencies
+
+## bugfix, or something 2022 Nov 06 (Sun) (email with park from Jan)
+tikzDevice.rsource: cairo.cran
 
 ######################################################################
 
@@ -178,6 +226,35 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ## Sound recorder
 
+## kazam under random works OK, but only when display magnification is set to 1
+
+######################################################################
+
+## pdf PDF viewer
+## evince is the default, but cannot open certain docs
+
+## This acts really weird on the weird doc
+gv.apt:
+
+## This looks similar to evince
+zathura.apt:
+
+## wine and snap! Help!! Surprisingly bad even given expectation
+acrordrdc.snap:
+
+/home/dushoff/Downloads/adobe.deb:
+	wget -O $@ ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
+
+acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
+
+acroread.deb: /home/dushoff/Downloads/adobe.deb acroread_prereqs
+
+Ignore += *.deb
+%.deb:
+	sudo dpkg -i $< > $@
+
+######################################################################
+
 ## manual chrome updates
 
 chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
@@ -191,22 +268,17 @@ dropstuff/chrome.deb: | dropstuff
 
 ######################################################################
 
-## Randomly adding stuff
+## Randomly adding stuff 
 
-random: pdftk-java.apt docker.apt gcalcli.apt
-
-## Don't make this; use command from password file
-## https://github.com/insanum/gcalcli
-gcalcli.start:
-	gcalcli --client-id=XXXXXX.apps.googleusercontent.com --client-secret=XXXXXX list
-
-######################################################################
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt
 
 ######################################################################
 
 ## Things added since 2022 Oct 05 (Wed)
 
-newapt: gnome-screenshot.apt libjs-mathjax.apt
+newapt: gnome-screenshot.apt libjs-mathjax.apt audio-recorder.apt maxima.apt
+
+## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
 
 ######################################################################
 
@@ -240,6 +312,15 @@ Ignore += *.aptrec
 %.aptrec: 
 	sudo apt-get install --install-recommends  $* && touch $@
 
+Ignore += i386.config
+i386.config:
+	sudo dpkg --add-architecture i386
+	touch $@
+
+Ignore += *.i386
+%.i386: i386.config
+	sudo apt-get install -y $*:i386 && touch $@
+
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
 %.pparepo:
@@ -247,6 +328,15 @@ Ignore += *.pparepo
 
 %.npm: npm.apt
 	sudo npm install -g $*
+
+Ignore += *.gem
+%.gem:
+	sudo gem install $*
+	touch $@
+
+## This does not work; I think it wants a local installation of ruby
+%.ugem:
+	gem install --user-install $*
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
