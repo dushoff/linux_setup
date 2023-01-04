@@ -1,9 +1,14 @@
 
+## Please install all available updates for your release before upgrading.
+
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
+
+## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
+## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
 ubu = `lsb_release -cs`
 
-current: random
+current: target
 -include target.mk
 Ignore = target.mk
 
