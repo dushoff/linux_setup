@@ -160,6 +160,8 @@ rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devt
 
 rubella: kdensity.cran
 
+current: EpiEstim.cran
+
 ######################################################################
 ## r updates and paths
 
