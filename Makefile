@@ -1,4 +1,3 @@
-
 ## Please install all available updates for your release before upgrading.
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
@@ -161,6 +160,9 @@ rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devt
 rubella: kdensity.cran
 
 current: EpiEstim.cran
+agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
+
+DESeq2.bioconductor: RCurl.cran
 
 ######################################################################
 ## r updates and paths
@@ -182,7 +184,7 @@ updateR:
 ## sudo rm -fr /usr/local/lib/R ##
 
 Rlibcombine:
-	sudo chmod a+w /usr/lib/R/site-library
+	sudo chmod -R a+wrX /usr/lib/R/site-library
 	- mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
 	@echo Combined!
 
@@ -216,6 +218,14 @@ rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla &
 
 ## bugfix, or something 2022 Nov 06 (Sun) (email with park from Jan)
 tikzDevice.rsource: cairo.cran
+
+######################################################################
+
+## bioconductor
+
+Ignore += *.bioconductor
+%.bioconductor: BiocManager.cran
+	echo 'BiocManager::install("$*")' | $(R) --vanilla > $@
 
 ######################################################################
 
