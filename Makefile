@@ -205,6 +205,8 @@ varpred: brms.cran rstanarm.cran patchwork.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
 
+bolton: varhandle.cran MLmetrics.cran
+
 ## r from source
 ## Default: dependencies=c("Depends", "Imports", "LinkingTo")
 Ignore += *.rsource
