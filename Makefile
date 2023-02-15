@@ -287,7 +287,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ######################################################################
 
-## Randomly adding stuff 
+## Randomly adding stuff (when?)
 
 random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt pip.apt python-is-python3.apt
 
@@ -295,9 +295,13 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt pip.apt
 
 ## Things added since 2022 Oct 05 (Wed)
 
-newapt: gnome-screenshot.apt libjs-mathjax.apt audio-recorder.apt maxima.apt
+newapt: gnome-screenshot.apt libjs-mathjax.apt audio-recorder.apt maxima.apt cups-pdf.apt
 
 ## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
+
+######################################################################
+
+# lpr print to file
 
 ######################################################################
 
