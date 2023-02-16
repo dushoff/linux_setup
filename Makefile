@@ -164,6 +164,8 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 
 DESeq2.bioconductor: RCurl.cran
 
+rabies: ggforce.cran
+
 ######################################################################
 ## r updates and paths
 
