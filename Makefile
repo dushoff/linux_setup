@@ -159,7 +159,7 @@ rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devt
 
 rubella: kdensity.cran
 
-current: EpiEstim.cran
+current: EpiEstim.cran ordinal.cran
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 DESeq2.bioconductor: RCurl.cran
