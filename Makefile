@@ -166,6 +166,8 @@ DESeq2.bioconductor: RCurl.cran
 
 rabies: ggforce.cran
 
+dataviz: huxtable.cran
+
 ######################################################################
 ## r updates and paths
 
