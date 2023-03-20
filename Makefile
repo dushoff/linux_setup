@@ -121,7 +121,7 @@ upgrade: update
 dist-upgrade: upgrade
 	sudo apt-get dist-upgrade
 
-manage: update-manager-core.apt
+manage: update-manager.apt update-manager-core.apt
 	sudo update-manager -d
 
 release-upgrade: dist-upgrade manage
