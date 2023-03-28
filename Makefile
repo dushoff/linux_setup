@@ -151,24 +151,6 @@ r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/crana
 
 ######################################################################
 
-Ignore += *.cran
-%.cran: r-cran-%.apt
-	$(move)
-
-rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
-
-rubella: kdensity.cran
-
-current: EpiEstim.cran ordinal.cran furrr.cran
-agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
-
-DESeq2.bioconductor: RCurl.cran
-
-rabies: ggforce.cran
-
-dataviz: huxtable.cran
-
-######################################################################
 ## r updates and paths
 
 R ?= /usr/bin/R
@@ -176,8 +158,6 @@ RREPO ?= http://lib.stat.cmu.edu/R/CRAN
 
 updateR: 
 	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
-
-######################################################################
 
 ## R set up; set site-library to be world-writable to avoid different library paths. leave library alone (for core stuff)
 
@@ -198,13 +178,18 @@ Ignore += *.cran
 %.cran:
 	apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
 
-## Hand-downcased; move around or check or something
-## Started just editing here
-oldrdefault: bbmle.cran bsts.cran Cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
-oldrcurrent: rmarkdown.cran sn.cran kdensity.cran
+rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 
-rubella: ggpmisc.cran
-dataviz: GGally.cran
+rubella: kdensity.cran ggpmisc.cran
+
+current: EpiEstim.cran ordinal.cran furrr.cran
+agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
+
+DESeq2.bioconductor: RCurl.cran
+
+rabies: ggforce.cran
+
+dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
@@ -235,9 +220,71 @@ Ignore += *.bioconductor
 
 ######################################################################
 
+## rgithub
+
+
+Ignore += *.rgit
+
+oor.rgit: gituser=canmod
+macpan2.rgit: gituser=canmod
+
+gforce = FALSE
+%.rgit: | remotes.cran
+	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | $(R) --vanilla && touch $@
+
+glmnetpostsurv.rgit: gituser=cygubicko
+satpred.rgit: gituser=cygubicko
+satpred.rgit: gforce=TRUE
+satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
+
+mp2: oor.rgit macpan2.rgit
+
+datadrivencv.rgit: gituser=nstrayer
+
+systemfonts.rgit: gituser=r-lib
+
+d3scatter.rgit: gituser=jcheng5
+
+shellpipes.rgit: gituser=dushoff
+
+rRlinks.rgit: gituser=mac-theobio
+
+ungeviz.rgit: gituser=wilkelab
+colorblindr.rgit: gituser=clauswilke
+
+streamgraph.rgit: gituser=hrbrmstr
+
+cividis.rgit: gituser=marcosci
+
+ggpubfigs.rgit: gituser=JLSteenwyk
+
+ggstance.rgit: gituser=lionel-
+
+######################################################################
+
+ggplotFL.source: REPO = http://flr-project.org/R
+
+######################################################################
+## Work on modularizing
+
+# Bolker packages
+broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit: gituser=bbolker
+
+knitr.rgit: gituser=yihui
+
+rmarkdown.rgit: gituser=rstudio
+
+######################################################################
+
+## There is apparently no elegant way to do this
+ici3d-pkg.rgit: gituser=ICI3D
+ici3d-pkg.rgit: gforce=TRUE
+
+######################################################################
+
 ## Tex
 
-texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt
+texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt latex-cjk-all.apt
 
 ######################################################################
 
