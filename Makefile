@@ -159,18 +159,15 @@ RREPO ?= http://lib.stat.cmu.edu/R/CRAN
 updateR: 
 	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
 
-## R set up; set site-library to be world-writable to avoid different library paths. leave library alone (for core stuff)
 
-## /usr/local/lib/R should not exist; it can confuse CMD INSTALL
-## Why did it come back??? if it did 2022 Nov 16 (Wed)
-## deleting from fiVe
-## - sudo chmod a+w /usr/local/lib/R/site-library
-## sudo rm -fr /usr/local/lib/R ##
-
+## R set up; move everything to a single, world-writable site-library. leave library alone (for core stuff)
+## the local/ version seems to keep coming back. I guess we keep merging it?
 Rlibcombine:
 	sudo chmod -R a+wrX /usr/lib/R/site-library
-	- mv /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+	sudo chmod -R a+wrX /usr/local/lib/R/site-library
+	- mv /usr/local/lib/R/site-library/* /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
 	@echo Combined!
+	sudo rm -fr  /usr/local/lib/R/site-library
 
 ######################################################################
 
