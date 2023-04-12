@@ -164,10 +164,10 @@ updateR:
 ## the local/ version seems to keep coming back. I guess we keep merging it?
 Rlibcombine:
 	sudo chmod -R a+wrX /usr/lib/R/site-library
-	sudo chmod -R a+wrX /usr/local/lib/R/site-library
+	- sudo chmod -R a+wrX /usr/local/lib/R/site-library
 	- mv /usr/local/lib/R/site-library/* /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
+	ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
 	@echo Combined!
-	sudo rm -fr  /usr/local/lib/R/site-library
 
 ######################################################################
 
