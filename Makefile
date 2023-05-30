@@ -115,7 +115,7 @@ update:
 	sudo apt-get update
 
 upgrade: update
-	sudo apt-get upgrade
+	sudo apt-get -y upgrade
 
 ## apt-get untested
 dist-upgrade: upgrade
