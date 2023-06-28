@@ -138,6 +138,8 @@ rproject.add:
 
 rprog: rproject.add r-base-core.apt r-base-dev.apt
 
+## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
+
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
 
