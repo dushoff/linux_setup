@@ -220,7 +220,6 @@ Ignore += *.bioconductor
 
 ## rgithub
 
-
 Ignore += *.rgit
 
 oor.rgit: gituser=canmod
@@ -394,6 +393,10 @@ i386.config:
 Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
+
+
+## sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
+
 
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
