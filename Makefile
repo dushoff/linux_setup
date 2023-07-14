@@ -129,6 +129,8 @@ release-upgrade: dist-upgrade manage
 
 ######################################################################
 
+## Rutter ppa etc. seems superseded.
+## https://cloud.r-project.org/bin/linux/ubuntu/#install-r
 Ignore += rproject.add
 rproject.add:
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
@@ -394,8 +396,6 @@ Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
 
-
-## sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
 
 
 ## Absolutely making this up! 2022 Sep 10 (Sat)
