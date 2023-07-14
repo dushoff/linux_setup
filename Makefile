@@ -261,7 +261,7 @@ ggstance.rgit: gituser=lionel-
 
 ######################################################################
 
-ggplotFL.source: REPO = http://flr-project.org/R
+ggplotFL.rsource: REPO = http://flr-project.org/R
 
 ######################################################################
 ## Work on modularizing
