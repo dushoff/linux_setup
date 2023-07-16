@@ -35,12 +35,15 @@ Ignore += dump.txt
 # * disable F10 (general) and F11 (shortcuts, use backsapce)
 # * fonts (tango dark 22 for V; solarized light 22 for Te)
 
-## install git, make, screen, gdebi
+## install git, make, screen, gdebi vim-gtk
 ## Use gdebi to install chrome (currently the only good way to connect with git).
+
+## fn-esc to toggle function-key row
 
 ## Clone dushoff/tech and make 
 ## linux_config and linux_setup
 ## make relink from linux_config
+## Make a tiny screen; don't try to make a regular screen
 
 tcsh: tcsh.apt
 	touch ~/.laliases
@@ -48,14 +51,7 @@ tcsh: tcsh.apt
 blocal.ubuntu:
 	cd ~ && ln -fs .blocal.ubuntu ~/.blocal
 
-## make a fake dropstuff to install before Dropbox
-## Not fully tested
-## DropResource = .
 Ignore += linux_setup
-chrome.manual:
-## del dropstuff ##
-
-## Run chrome and give it some time to register the extensions and find the passwords
 
 ## Run this in a separate terminal
 startDropbox: nautilus-dropbox.apt
@@ -71,9 +67,11 @@ github.user:
 
 ignore.config:
 
-## make ~/screens 
-## cd ~ && gcd screens
+~/screens:
+	ls screens || git clone https://github.com/dushoff/screens
+	mv screens ~
 
+## Do an hstore loop until credentials are saved
 ## make pullall a few times
 ## make use_ssh in the Bicko directory if that's still a thing
 
@@ -84,6 +82,9 @@ ignore.config:
 textaid: coffeescript.npm text-aid-too.npm
 
 ## Reboot
+
+newscreens: 
+	git clone 
 
 ## Sync and start real session
 
