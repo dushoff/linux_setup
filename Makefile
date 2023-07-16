@@ -27,15 +27,20 @@ Ignore += dump.txt
 
 ## siX 2023 Jul 16 (Sun)
 ## secure boot password: txRP0_113
+## secure boot password: txRPO_113 ????
+## Add third party but not update automatically
+## update and reboot
 
-## Start with git.apt, make.apt, screen.apt
+# Terminal
+# * disable F10 (general) and F11 (shortcuts, use backsapce)
+# * fonts (tango dark 22 for V; solarized light 22 for Te)
+
+## install git, make, screen, gdebi
+## Use gdebi to install chrome (currently the only good way to connect with git).
+
 ## Clone dushoff/tech and make 
 ## linux_config and linux_setup
 ## make relink from linux_config
-
-# Terminal
-# * disable F10 (global) and F11 (shortcuts)
-# * fonts (tango dark 22 for V; solarized light 22 for Te)
 
 tcsh: tcsh.apt
 	touch ~/.laliases
