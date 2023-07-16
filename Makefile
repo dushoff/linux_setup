@@ -132,6 +132,8 @@ release-upgrade: dist-upgrade manage
 
 ######################################################################
 
+## Rutter ppa etc. seems superseded.
+## https://cloud.r-project.org/bin/linux/ubuntu/#install-r
 Ignore += rproject.add
 rproject.add:
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
@@ -223,7 +225,6 @@ Ignore += *.bioconductor
 
 ## rgithub
 
-
 Ignore += *.rgit
 
 oor.rgit: gituser=canmod
@@ -263,7 +264,7 @@ ggstance.rgit: gituser=lionel-
 
 ######################################################################
 
-ggplotFL.source: REPO = http://flr-project.org/R
+ggplotFL.rsource: REPO = http://flr-project.org/R
 
 ######################################################################
 ## Work on modularizing
@@ -397,6 +398,8 @@ i386.config:
 Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
+
+
 
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
