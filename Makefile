@@ -25,6 +25,9 @@ Ignore += dump.txt
 ## New install 2022 Oct 22 (Sat)
 ## Freshening fiVe
 
+## siX 2023 Jul 16 (Sun)
+## secure boot password: txRP0_113
+
 ## Start with git.apt, make.apt, screen.apt
 ## Clone dushoff/tech and make 
 ## linux_config and linux_setup
