@@ -43,7 +43,7 @@ Ignore += dump.txt
 ## Clone dushoff/tech and make 
 ## linux_config and linux_setup
 ## make relink from linux_config
-## Make a tiny screen; don't try to make a regular screen
+## Make a tiny screen with these two manually
 
 tcsh: tcsh.apt
 	touch ~/.laliases
