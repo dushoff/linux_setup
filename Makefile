@@ -405,8 +405,6 @@ Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
 
-
-
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
 %.pparepo:
@@ -429,6 +427,14 @@ Ignore += *.gem
 Ignore += *.snap
 %.snap:
 	sudo snap install $* && touch $@
+
+######################################################################
+
+## Chromecast
+
+chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
+
+## https://extensions.gnome.org/extension/1544/cast-to-tv/
 
 ######################################################################
 
