@@ -185,13 +185,14 @@ Rlibcombine:
 
 Ignore += *.cran
 %.cran:
-	apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
+	sudo apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
 
 rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 
 rubella: kdensity.cran ggpmisc.cran
 
 current: EpiEstim.cran ordinal.cran furrr.cran rethinking.cran
+
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 DESeq2.bioconductor: RCurl.cran
@@ -211,6 +212,13 @@ Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## Rethinking
+
+rethinking@slim.rgit: gituser=rmcelreath
+rethinking@slim.rgit: coda.cran mvtnorm.cran loo.cran dagitty.cran
 
 ######################################################################
 
