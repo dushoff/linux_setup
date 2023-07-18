@@ -206,7 +206,8 @@ rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devt
 
 rubella: kdensity.cran ggpmisc.cran
 
-current: EpiEstim.cran ordinal.cran furrr.cran
+current: EpiEstim.cran ordinal.cran furrr.cran rethinking.cran
+
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 DESeq2.bioconductor: RCurl.cran
@@ -226,6 +227,13 @@ Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## Rethinking
+
+rethinking@slim.rgit: gituser=rmcelreath
+rethinking@slim.rgit: coda.cran mvtnorm.cran loo.cran dagitty.cran
 
 ######################################################################
 
@@ -420,8 +428,6 @@ Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
 
-
-
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
 %.pparepo:
@@ -444,6 +450,14 @@ Ignore += *.gem
 Ignore += *.snap
 %.snap:
 	sudo snap install $* && touch $@
+
+######################################################################
+
+## Chromecast
+
+chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
+
+## https://extensions.gnome.org/extension/1544/cast-to-tv/
 
 ######################################################################
 
