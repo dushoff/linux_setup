@@ -25,14 +25,25 @@ Ignore += dump.txt
 ## New install 2022 Oct 22 (Sat)
 ## Freshening fiVe
 
-## Start with git.apt, make.apt, screen.apt
+## siX 2023 Jul 16 (Sun)
+## secure boot password: txRP0_113
+## secure boot password: txRPO_113 ????
+## Add third party but not update automatically
+## update and reboot
+
+# Terminal
+# * disable F10 (general) and F11 (shortcuts, use backsapce)
+# * fonts (tango dark 22 for V; solarized light 22 for Te)
+
+## install git, make, screen, gdebi vim-gtk
+## Use gdebi to install chrome (currently the only good way to connect with git).
+
+## fn-esc to toggle function-key row
+
 ## Clone dushoff/tech and make 
 ## linux_config and linux_setup
 ## make relink from linux_config
-
-# Terminal
-# * disable F10 (global) and F11 (shortcuts)
-# * fonts (tango dark 22 for V; solarized light 22 for Te)
+## Make a tiny screen with these two manually
 
 tcsh: tcsh.apt
 	touch ~/.laliases
@@ -40,14 +51,7 @@ tcsh: tcsh.apt
 blocal.ubuntu:
 	cd ~ && ln -fs .blocal.ubuntu ~/.blocal
 
-## make a fake dropstuff to install before Dropbox
-## Not fully tested
-## DropResource = .
 Ignore += linux_setup
-chrome.manual:
-## del dropstuff ##
-
-## Run chrome and give it some time to register the extensions and find the passwords
 
 ## Run this in a separate terminal
 startDropbox: nautilus-dropbox.apt
@@ -63,9 +67,11 @@ github.user:
 
 ignore.config:
 
-## make ~/screens 
-## cd ~ && gcd screens
+~/screens:
+	ls screens || git clone https://github.com/dushoff/screens
+	mv screens ~
 
+## Do an hstore loop until credentials are saved
 ## make pullall a few times
 ## make use_ssh in the Bicko directory if that's still a thing
 
@@ -76,6 +82,9 @@ ignore.config:
 textaid: coffeescript.npm text-aid-too.npm
 
 ## Reboot
+
+newscreens: 
+	git clone 
 
 ## Sync and start real session
 
@@ -396,8 +405,6 @@ Ignore += *.i386
 %.i386: i386.config
 	sudo apt-get install -y $*:i386 && touch $@
 
-
-
 ## Absolutely making this up! 2022 Sep 10 (Sat)
 Ignore += *.pparepo
 %.pparepo:
@@ -420,6 +427,14 @@ Ignore += *.gem
 Ignore += *.snap
 %.snap:
 	sudo snap install $* && touch $@
+
+######################################################################
+
+## Chromecast
+
+chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
+
+## https://extensions.gnome.org/extension/1544/cast-to-tv/
 
 ######################################################################
 
