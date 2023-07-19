@@ -319,7 +319,17 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ######################################################################
 
-## pandoc [[investigate]]
+## pandoc [[investigpandoc-citeproc.apt ate]]
+## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
+pandoc: pandoc.apt python3-pip.apt
+python3-pip.apt: python-is-python3.apt 
+
+%.pip: python3-pip.apt
+	sudo pip install $*
+
+## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
+
+######################################################################
 
 ## Use a resource directory for debs, bins, etc.
 
@@ -371,7 +381,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff (when?)
 
-random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt pip.apt python-is-python3.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt
 
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
 
