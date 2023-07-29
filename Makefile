@@ -5,6 +5,7 @@
 ## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
 ## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
+## lsb_release -cs
 ubu = `lsb_release -cs`
 
 current: target
@@ -81,11 +82,6 @@ ignore.config:
 
 textaid: coffeescript.npm text-aid-too.npm
 
-## Reboot
-
-newscreens: 
-	git clone 
-
 ## Sync and start real session
 
 ## Remember to page-ify things (DAIDD pages, notebook?)
@@ -103,12 +99,22 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
 utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
 
+## fastmouse
+## xkbset.apt:
+
 ## vpn
 
 # vpn alias should already exist (use it for location guidance)
 # Download latest tgz from internet
 # go to vpn subdirectory (where license is) and sudo ./vpn_install<tab>
 # Run vpn and type (first time) connect to sslvpn.mcmaster.ca
+
+######################################################################
+
+### 2023 Jul 16 (Sun)
+
+weird_packages:
+	sudo apt remove gjs gnome-remote-desktop libgjs0g
 
 ######################################################################
 
@@ -125,6 +131,7 @@ update:
 
 upgrade: update
 	sudo apt-get -y upgrade
+	sudo apt autoremove
 
 ## apt-get untested
 dist-upgrade: upgrade
@@ -136,13 +143,18 @@ manage: update-manager.apt update-manager-core.apt
 release-upgrade: dist-upgrade manage
 	sudo do-release-upgrade
 
+release.all:
+	sudo sed -i 's/Prompt=lts/Prompt=normal/g' /etc/update-manager/release-upgrades
+
+## /etc/update-manager/release-upgrades
+
 ######################################################################
 
 ## Rutter ppa etc. seems superseded.
 ## https://cloud.r-project.org/bin/linux/ubuntu/#install-r
 Ignore += rproject.add
 rproject.add:
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
 	touch $@
 	sudo apt update
@@ -150,6 +162,9 @@ rproject.add:
 rprog: rproject.add r-base-core.apt r-base-dev.apt
 
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
+## sudo gdebi ~/Downloads/rst*.deb ##
+rstudio.deb:
+	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
@@ -185,13 +200,14 @@ Rlibcombine:
 
 Ignore += *.cran
 %.cran:
-	apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
+	sudo apt-get install -y ` echo r-cran-$* | tr '[:upper:]' '[:lower:]' ` && touch $@
 
 rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 
 rubella: kdensity.cran ggpmisc.cran
 
-current: EpiEstim.cran ordinal.cran furrr.cran
+current: EpiEstim.cran ordinal.cran furrr.cran rethinking.cran
+
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 DESeq2.bioconductor: RCurl.cran
@@ -211,6 +227,13 @@ Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## Rethinking
+
+rethinking@slim.rgit: gituser=rmcelreath
+rethinking@slim.rgit: coda.cran mvtnorm.cran loo.cran dagitty.cran
 
 ######################################################################
 
@@ -296,7 +319,17 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ######################################################################
 
-## pandoc [[investigate]]
+## pandoc [[investigpandoc-citeproc.apt ate]]
+## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
+pandoc: pandoc.apt python3-pip.apt
+python3-pip.apt: python-is-python3.apt 
+
+%.pip: python3-pip.apt
+	sudo pip install $*
+
+## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
+
+######################################################################
 
 ## Use a resource directory for debs, bins, etc.
 
@@ -359,7 +392,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff (when?)
 
-random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt pip.apt python-is-python3.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt
 
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
 
