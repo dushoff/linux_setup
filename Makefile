@@ -317,8 +317,19 @@ gv.apt:
 ## This looks similar to evince
 zathura.apt:
 
+######################################################################
+
+## Avoid? 2022 Oct 23 (Sun)
+## Is this what made the fiVe glitchy?
+Ignore += *.snap
+%.snap:
+	sudo snap install $* && touch $@
+
 ## wine and snap! Help!! Surprisingly bad even given expectation
+## see also adobe below -- but for how much longer?
 acrordrdc.snap:
+
+######################################################################
 
 /home/dushoff/Downloads/adobe.deb:
 	wget -O $@ ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
@@ -421,12 +432,6 @@ Ignore += *.gem
 ## This does not work; I think it wants a local installation of ruby
 %.ugem:
 	gem install --user-install $*
-
-## Avoid? 2022 Oct 23 (Sun)
-## Is this what made the fiVe glitchy?
-Ignore += *.snap
-%.snap:
-	sudo snap install $* && touch $@
 
 ######################################################################
 
