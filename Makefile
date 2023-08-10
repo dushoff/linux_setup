@@ -5,7 +5,7 @@
 ## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
 ## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
-## lsb_release -cs
+## lsb_release -cs ##
 ubu = `lsb_release -cs`
 
 current: target
