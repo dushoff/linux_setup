@@ -151,6 +151,7 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 
+
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
 
@@ -212,6 +213,17 @@ Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## Stan hacking from Ben 2023 Aug 11 (Fri)
+
+## Didn't work, but maybe go back to it
+cmdStan.Rout: cmdStan.R
+	$(pipeR)
+
+## install_github until the weird flag thing is fixed
+cmdstanr.rgit: gituser=stan-dev
 
 ######################################################################
 
@@ -344,10 +356,13 @@ Ignore += *.deb
 ## manual chrome updates
 
 chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
+## rstudio.debinstall:
 
 Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+## dropstuff/rstudio.deb
 
 %.debinstall: dropstuff/%.deb
 	sudo gdebi $<
@@ -461,7 +476,7 @@ makestuff/%.stamp:
 
 -include makestuff/os.mk
 
-## -include makestuff/pipeR.mk
+-include makestuff/pipeR.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
