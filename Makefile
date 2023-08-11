@@ -234,12 +234,13 @@ rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla &
 ## Stan hacking from Ben 2023 Aug 11 (Fri)
 
 ## Didn't work, but maybe go back to it
-Sources += cmdStan.R
-cmdStan.Rout: cmdStan.R
-	$(pipeR)
 
 ## install_github until the weird flag thing is fixed
 cmdstanr.rgit: gituser=stan-dev
+
+Sources += cmdstan.R
+cmdstan.Rout: cmdstan.R cmdstanr.rgit
+	$(pipeR)
 
 ######################################################################
 
