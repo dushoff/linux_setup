@@ -227,7 +227,7 @@ bolton: varhandle.cran MLmetrics.cran
 Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
-rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.source
 
 ######################################################################
 
@@ -236,8 +236,10 @@ rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla &
 ## Didn't work, but maybe go back to it
 
 ## install_github until the weird flag thing is fixed
+## this is not currently helping, but I can't be bothered to find the standard way
 cmdstanr.rgit: gituser=stan-dev
 
+## Use cmdstanr to install cmdstan
 Sources += cmdstan.R
 cmdstan.Rout: cmdstan.R cmdstanr.rgit
 	$(pipeR)
@@ -275,7 +277,7 @@ macpan2.rgit: gituser=canmod
 
 gforce = FALSE
 %.rgit: | remotes.cran
-	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | $(R) --vanilla && touch $@
+	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
