@@ -227,7 +227,7 @@ bolton: varhandle.cran MLmetrics.cran
 Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
-rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.source
+rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.rsource
 
 ######################################################################
 
