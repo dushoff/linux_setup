@@ -353,6 +353,7 @@ python3-pip.apt: python-is-python3.apt
 
 ## Sound recorder
 
+## With screen capture
 ## kazam under random works OK, but only when display magnification is set to 1
 
 ######################################################################
