@@ -5,7 +5,7 @@
 ## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
 ## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
-## lsb_release -cs
+## lsb_release -cs ##
 ubu = `lsb_release -cs`
 
 current: target
@@ -166,6 +166,7 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
+
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
 
@@ -227,6 +228,19 @@ Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+
+######################################################################
+
+## Stan hacking from Ben 2023 Aug 11 (Fri)
+
+## Didn't work, but maybe go back to it
+
+## install_github until the weird flag thing is fixed
+cmdstanr.rgit: gituser=stan-dev
+
+Sources += cmdstan.R
+cmdstan.Rout: cmdstan.R cmdstanr.rgit
+	$(pipeR)
 
 ######################################################################
 
@@ -381,10 +395,13 @@ Ignore += *.deb
 ## manual chrome updates
 
 chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
+## rstudio.debinstall:
 
 Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+## dropstuff/rstudio.deb
 
 %.debinstall: dropstuff/%.deb
 	sudo gdebi $<
@@ -492,7 +509,7 @@ makestuff/%.stamp:
 
 -include makestuff/os.mk
 
-## -include makestuff/pipeR.mk
+-include makestuff/pipeR.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
