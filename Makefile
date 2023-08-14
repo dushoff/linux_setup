@@ -418,6 +418,12 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gd
 
 ######################################################################
 
+## Fonts
+
+## Interactive: sudo apt install msttcorefonts
+
+######################################################################
+
 ## Things added since 2022 Oct 05 (Wed)
 
 newapt: gnome-screenshot.apt libjs-mathjax.apt audio-recorder.apt maxima.apt cups-pdf.apt
