@@ -173,9 +173,12 @@ rstudio.deb:
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
 	sudo apt-get update
 
+Ignore += ubuntu_version
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
-/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc
+
+## This did not work with an intermediate upgrade (non- LTS ubu)
+/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc ubuntu_version
 	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" | sudo tee -a $@
 
 ######################################################################
