@@ -173,9 +173,12 @@ rstudio.deb:
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
 	sudo apt-get update
 
+Ignore += ubuntu_version
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
-/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc
+
+## This did not work with an intermediate upgrade (non- LTS ubu)
+/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc ubuntu_version
 	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" | sudo tee -a $@
 
 ######################################################################
@@ -218,7 +221,7 @@ rabies: ggforce.cran
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 
-macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
 bolton: varhandle.cran MLmetrics.cran
 
@@ -227,7 +230,7 @@ bolton: varhandle.cran MLmetrics.cran
 Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
-rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.source
+rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.rsource
 
 ######################################################################
 
@@ -236,8 +239,10 @@ rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla &
 ## Didn't work, but maybe go back to it
 
 ## install_github until the weird flag thing is fixed
+## this is not currently helping, but I can't be bothered to find the standard way
 cmdstanr.rgit: gituser=stan-dev
 
+## Use cmdstanr to install cmdstan
 Sources += cmdstan.R
 cmdstan.Rout: cmdstan.R cmdstanr.rgit
 	$(pipeR)
@@ -275,7 +280,7 @@ macpan2.rgit: gituser=canmod
 
 gforce = FALSE
 %.rgit: | remotes.cran
-	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | $(R) --vanilla && touch $@
+	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
@@ -351,6 +356,7 @@ python3-pip.apt: python-is-python3.apt
 
 ## Sound recorder
 
+## With screen capture
 ## kazam under random works OK, but only when display magnification is set to 1
 
 ######################################################################
@@ -412,6 +418,12 @@ dropstuff/chrome.deb: | dropstuff
 random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt
 
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
+
+######################################################################
+
+## Fonts
+
+## Interactive: sudo apt install msttcorefonts
 
 ######################################################################
 
