@@ -8,7 +8,7 @@
 ## lsb_release -cs ##
 ubu = `lsb_release -cs`
 
-current: target
+current: upgrade
 -include target.mk
 Ignore = target.mk
 
