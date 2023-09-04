@@ -8,6 +8,9 @@
 ## lsb_release -cs ##
 ubu = `lsb_release -cs`
 
+## long-term
+ubul = jammy
+
 current: target
 -include target.mk
 Ignore = target.mk
@@ -504,6 +507,22 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 ## https://extensions.gnome.org/extension/1544/cast-to-tv/
 
 ######################################################################
+
+## Seafile
+
+/usr/share/keyrings/seafile-keyring.asc:
+	sudo wget -O $@ https://linux-clients.seafile.com/seafile.asc
+
+## This tee command seems bizarre JD 2023 Sep 03 (Sun)
+/etc/apt/sources.list.d/seafile.list: /usr/share/keyrings/seafile-keyring.asc
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
+	$(MAKE) update || (sudo $(RM) $@ && false)
+
+seafile-gui.apt: /etc/apt/sources.list.d/seafile.list
+seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
+
+######################################################################
+
 
 ### Makestuff
 
