@@ -11,7 +11,7 @@ ubu = `lsb_release -cs`
 ## long-term
 ubul = jammy
 
-current: target
+current: upgrade
 -include target.mk
 Ignore = target.mk
 
