@@ -86,7 +86,7 @@ textaid: coffeescript.npm text-aid-too.npm
 
 ## Remember to page-ify things (DAIDD pages, notebook?)
 
-## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
+## Change ghostscript none to (read|write) /etc/ImageMagick-6/policy.xml
 magick: imagemagick-6.q16.apt
 	sudo gvim /etc/Im*/policy.xml
 
