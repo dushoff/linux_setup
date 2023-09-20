@@ -207,7 +207,7 @@ rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devt
 
 rubella: kdensity.cran ggpmisc.cran
 
-current: EpiEstim.cran ordinal.cran furrr.cran rethinking.cran
+currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
