@@ -8,7 +8,10 @@
 ## lsb_release -cs ##
 ubu = `lsb_release -cs`
 
-current: target
+## long-term
+ubul = jammy
+
+current: upgrade
 -include target.mk
 Ignore = target.mk
 
@@ -86,7 +89,7 @@ textaid: coffeescript.npm text-aid-too.npm
 
 ## Remember to page-ify things (DAIDD pages, notebook?)
 
-## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
+## Change ghostscript none to (read|write) /etc/ImageMagick-6/policy.xml
 magick: imagemagick-6.q16.apt
 	sudo gvim /etc/Im*/policy.xml
 
@@ -166,16 +169,18 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
-
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
 
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
 	sudo apt-get update
 
+Ignore += ubuntu_version
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
-/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc
+
+## This did not work with an intermediate upgrade (non- LTS ubu)
+/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc ubuntu_version
 	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" | sudo tee -a $@
 
 ######################################################################
@@ -218,7 +223,7 @@ rabies: ggforce.cran
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 
-macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
 bolton: varhandle.cran MLmetrics.cran
 
@@ -501,6 +506,23 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 ## https://extensions.gnome.org/extension/1544/cast-to-tv/
 
 ######################################################################
+
+## Seafile
+
+/usr/share/keyrings/seafile-keyring.asc:
+	sudo wget -O $@ https://linux-clients.seafile.com/seafile.asc
+
+## This tee command seems bizarre JD 2023 Sep 03 (Sun)
+/etc/apt/sources.list.d/seafile.list: /usr/share/keyrings/seafile-keyring.asc
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
+	$(MAKE) update || (sudo $(RM) $@ && false)
+
+seafile-gui.apt: seafile-cli.apt
+
+seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
+
+######################################################################
+
 
 ### Makestuff
 
