@@ -289,6 +289,8 @@ satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
+epigrowthfit.rgit: gituser=davidearn
+
 mp2: oor.rgit macpan2.rgit
 
 datadrivencv.rgit: gituser=nstrayer
