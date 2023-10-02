@@ -225,6 +225,8 @@ varpred: brms.cran rstanarm.cran patchwork.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
+undergraduate: ape.cran
+
 bolton: varhandle.cran MLmetrics.cran
 
 ## r from source
