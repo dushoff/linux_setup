@@ -175,7 +175,7 @@ rstudio.deb:
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
 	sudo apt-get update
 
-Ignore += ubuntu_version
+Ignore += ubuntu_version wget-log
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
 
@@ -290,6 +290,8 @@ glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
+
+epigrowthfit.rgit: gituser=davidearn
 
 mp2: oor.rgit macpan2.rgit
 
