@@ -222,6 +222,7 @@ rabies: ggforce.cran
 
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
+qmee: mlmRev.cran DHARMa.cran equatiomatic.cran MCMCglmm.cran coin.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
