@@ -389,6 +389,8 @@ Ignore += *.snap
 ## see also adobe below -- but for how much longer?
 acrordrdc.snap:
 
+## julia.snap: some sort of tech issue here; install from tar
+
 ######################################################################
 
 /home/dushoff/Downloads/adobe.deb:
