@@ -532,6 +532,16 @@ seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
 
 ######################################################################
 
+## Sphinx dictation (disaster)
+
+/home/dushoff/ve_pocketsphinx: python3.10-venv.apt
+	python3 -m venv $@
+
+pocketsphinx.install: /home/dushoff/ve_pocketsphinx
+	. $</bin/activate
+	cd $< && pip install .
+
+######################################################################
 
 ### Makestuff
 
