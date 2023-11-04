@@ -89,7 +89,7 @@ textaid: coffeescript.npm text-aid-too.npm
 
 ## Remember to page-ify things (DAIDD pages, notebook?)
 
-## Change ghostscript to (read|write) /etc/ImageMagick-6/policy.xml
+## Change ghostscript none to (read|write) /etc/ImageMagick-6/policy.xml
 magick: imagemagick-6.q16.apt
 	sudo gvim /etc/Im*/policy.xml
 
@@ -175,7 +175,7 @@ rstudio.deb:
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
 	sudo apt-get update
 
-Ignore += ubuntu_version
+Ignore += ubuntu_version wget-log
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
 
@@ -214,9 +214,11 @@ bio1: ape.cran
 
 rubella: kdensity.cran ggpmisc.cran
 
-current: EpiEstim.cran ordinal.cran furrr.cran rethinking.cran
+currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
+
+roswell: RTMB.cran
 
 DESeq2.bioconductor: RCurl.cran
 
@@ -224,8 +226,11 @@ rabies: ggforce.cran
 
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
+qmee: mlmRev.cran DHARMa.cran equatiomatic.cran MCMCglmm.cran coin.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
+
+undergraduate: ape.cran
 
 bolton: varhandle.cran MLmetrics.cran
 
@@ -290,6 +295,8 @@ glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
+
+epigrowthfit.rgit: gituser=davidearn
 
 mp2: oor.rgit macpan2.rgit
 
@@ -386,6 +393,8 @@ Ignore += *.snap
 ## see also adobe below -- but for how much longer?
 acrordrdc.snap:
 
+## julia.snap: some sort of tech issue here; install from tar
+
 ######################################################################
 
 /home/dushoff/Downloads/adobe.deb:
@@ -433,7 +442,9 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gd
 
 ## Things added since 2022 Oct 05 (Wed)
 
-newapt: gnome-screenshot.apt libjs-mathjax.apt audio-recorder.apt maxima.apt cups-pdf.apt
+newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt cups-pdf.apt
+
+thishaschanged: audio-recorder.apt 
 
 ## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
 
@@ -519,12 +530,24 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
 	$(MAKE) update || (sudo $(RM) $@ && false)
 
+Ignore += wget-log
+
 seafile-gui.apt: seafile-cli.apt
 
 seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
 
 ######################################################################
 
+## Sphinx dictation (disaster)
+
+/home/dushoff/ve_pocketsphinx: python3.10-venv.apt
+	python3 -m venv $@
+
+pocketsphinx.install: /home/dushoff/ve_pocketsphinx
+	. $</bin/activate
+	cd $< && pip install .
+
+######################################################################
 
 ### Makestuff
 
