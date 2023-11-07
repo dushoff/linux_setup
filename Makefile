@@ -444,9 +444,9 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gd
 
 newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt cups-pdf.apt
 
-thishaschanged: audio-recorder.apt 
-
 ## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
+
+thishaschanged: audio-recorder.apt 
 
 ######################################################################
 
