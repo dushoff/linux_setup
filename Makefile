@@ -286,10 +286,11 @@ Ignore += *.rgit
 
 oor.rgit: gituser=canmod
 macpan2.rgit: gituser=canmod
+macpan2.rgit: gbranch=@refactorcpp
 
 gforce = FALSE
 %.rgit: | remotes.cran
-	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | sudo $(R) --vanilla && touch $@
+	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
