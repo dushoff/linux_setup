@@ -522,11 +522,13 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 ######################################################################
 
 ## Seafile
+## REMOVED from siX in upgrade attempt
 
 /usr/share/keyrings/seafile-keyring.asc:
 	sudo wget -O $@ https://linux-clients.seafile.com/seafile.asc
 
 ## This tee command seems bizarre JD 2023 Sep 03 (Sun)
+## sudo rm /etc/apt/sources.list.d/seafile.list /usr/share/keyrings/seafile-keyring.asc ##
 /etc/apt/sources.list.d/seafile.list: /usr/share/keyrings/seafile-keyring.asc
 	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
 	$(MAKE) update || (sudo $(RM) $@ && false)
@@ -536,6 +538,7 @@ Ignore += wget-log
 seafile-gui.apt: seafile-cli.apt
 
 seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
+
 
 ######################################################################
 
