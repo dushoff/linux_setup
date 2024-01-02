@@ -286,10 +286,11 @@ Ignore += *.rgit
 
 oor.rgit: gituser=canmod
 macpan2.rgit: gituser=canmod
+macpan2.rgit: gbranch=@refactorcpp
 
 gforce = FALSE
 %.rgit: | remotes.cran
-	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | sudo $(R) --vanilla && touch $@
+	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
@@ -448,9 +449,9 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gd
 
 newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt cups-pdf.apt
 
-thishaschanged: audio-recorder.apt 
-
 ## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
+
+thishaschanged: audio-recorder.apt 
 
 ######################################################################
 
@@ -525,11 +526,13 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 ######################################################################
 
 ## Seafile
+## REMOVED from siX in upgrade attempt
 
 /usr/share/keyrings/seafile-keyring.asc:
 	sudo wget -O $@ https://linux-clients.seafile.com/seafile.asc
 
 ## This tee command seems bizarre JD 2023 Sep 03 (Sun)
+## sudo rm /etc/apt/sources.list.d/seafile.list /usr/share/keyrings/seafile-keyring.asc ##
 /etc/apt/sources.list.d/seafile.list: /usr/share/keyrings/seafile-keyring.asc
 	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
 	$(MAKE) update || (sudo $(RM) $@ && false)
@@ -539,6 +542,7 @@ Ignore += wget-log
 seafile-gui.apt: seafile-cli.apt
 
 seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
+
 
 ######################################################################
 
