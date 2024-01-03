@@ -298,6 +298,7 @@ satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
 epigrowthfit.rgit: gituser=davidearn
+epigrowthfit.rgit: gforce=TRUE
 
 mp2: oor.rgit macpan2.rgit
 
