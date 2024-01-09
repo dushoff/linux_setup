@@ -170,8 +170,9 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
+## apt-get not tested
 pandoc.deb:
-	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt install -y '{}'
+	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
