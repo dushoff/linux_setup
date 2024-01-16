@@ -158,7 +158,8 @@ release.all:
 Ignore += rproject.add
 rproject.add:
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
+	## sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
+	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/"
 	touch $@
 	sudo apt update
 
@@ -169,8 +170,9 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
+## apt-get not tested
 pandoc.deb:
-	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt install -y '{}'
+	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
@@ -229,7 +231,7 @@ rabies: ggforce.cran
 
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: mlmRev.cran DHARMa.cran equatiomatic.cran MCMCglmm.cran coin.cran dotwhisker.cran lmPerm.cran
+qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
