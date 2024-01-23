@@ -158,7 +158,8 @@ release.all:
 Ignore += rproject.add
 rproject.add:
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
+	## sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
+	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/"
 	touch $@
 	sudo apt update
 
@@ -168,6 +169,10 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 ## sudo gdebi ~/Downloads/rst*.deb ##
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
+
+## apt-get not tested
+pandoc.deb:
+	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
@@ -210,11 +215,15 @@ Ignore += *.cran
 
 rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 
+bio1: ape.cran
+
 rubella: kdensity.cran ggpmisc.cran
 
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
+
+roswell: RTMB.cran
 
 DESeq2.bioconductor: RCurl.cran
 
@@ -222,7 +231,8 @@ rabies: ggforce.cran
 
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: mlmRev.cran DHARMa.cran equatiomatic.cran MCMCglmm.cran coin.cran
+qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource
+qmee_students: unmarked.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
@@ -282,10 +292,11 @@ Ignore += *.rgit
 
 oor.rgit: gituser=canmod
 macpan2.rgit: gituser=canmod
+macpan2.rgit: gbranch=@refactorcpp
 
 gforce = FALSE
 %.rgit: | remotes.cran
-	echo 'library(remotes); install_github("$(gituser)/$*", force=$(gforce))' | sudo $(R) --vanilla && touch $@
+	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
@@ -293,6 +304,7 @@ satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
 epigrowthfit.rgit: gituser=davidearn
+epigrowthfit.rgit: gforce=TRUE
 
 mp2: oor.rgit macpan2.rgit
 
@@ -381,6 +393,10 @@ zathura.apt:
 
 ######################################################################
 
+## Does okular allow us to get around some adobe reader problems?
+
+## okular.apt:
+
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
 Ignore += *.snap
@@ -390,6 +406,8 @@ Ignore += *.snap
 ## wine and snap! Help!! Surprisingly bad even given expectation
 ## see also adobe below -- but for how much longer?
 acrordrdc.snap:
+
+## julia.snap: some sort of tech issue here; install from tar
 
 ######################################################################
 
@@ -415,6 +433,9 @@ Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
+## xdg-settings get default-web-browser 
+## xdg-settings set default-web-browser google-chrome.desktop ##
+
 ## dropstuff/rstudio.deb
 
 %.debinstall: dropstuff/%.deb
@@ -438,9 +459,11 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gd
 
 ## Things added since 2022 Oct 05 (Wed)
 
-newapt: gnome-screenshot.apt libjs-mathjax.apt audio-recorder.apt maxima.apt cups-pdf.apt
+newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt cups-pdf.apt
 
 ## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
+
+thishaschanged: audio-recorder.apt 
 
 ######################################################################
 
@@ -515,11 +538,13 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 ######################################################################
 
 ## Seafile
+## REMOVED from siX in upgrade attempt
 
 /usr/share/keyrings/seafile-keyring.asc:
 	sudo wget -O $@ https://linux-clients.seafile.com/seafile.asc
 
 ## This tee command seems bizarre JD 2023 Sep 03 (Sun)
+## sudo rm /etc/apt/sources.list.d/seafile.list /usr/share/keyrings/seafile-keyring.asc ##
 /etc/apt/sources.list.d/seafile.list: /usr/share/keyrings/seafile-keyring.asc
 	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
 	$(MAKE) update || (sudo $(RM) $@ && false)
@@ -530,8 +555,19 @@ seafile-gui.apt: seafile-cli.apt
 
 seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
 
+
 ######################################################################
 
+## Sphinx dictation (disaster)
+
+/home/dushoff/ve_pocketsphinx: python3.10-venv.apt
+	python3 -m venv $@
+
+pocketsphinx.install: /home/dushoff/ve_pocketsphinx
+	. $</bin/activate
+	cd $< && pip install .
+
+######################################################################
 
 ### Makestuff
 
