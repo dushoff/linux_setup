@@ -174,8 +174,9 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
+## apt-get not tested
 pandoc.deb:
-	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt install -y '{}'
+	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
@@ -235,6 +236,7 @@ rabies: ggforce.cran
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource
+qmee_students: unmarked.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
@@ -369,6 +371,8 @@ python3-pip.apt: python-is-python3.apt
 
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
 
+# Bio.pip:
+
 ######################################################################
 
 ## Use a resource directory for debs, bins, etc.
@@ -432,6 +436,9 @@ chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
 Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+## xdg-settings get default-web-browser 
+## xdg-settings set default-web-browser google-chrome.desktop ##
 
 ## dropstuff/rstudio.deb
 
