@@ -102,6 +102,10 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
 utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
 
+## pdfroff in bash asks for groff to be installed, but it can't be
+## groff itself is here (provided by what package?)
+confused: groff.apt
+
 ## fastmouse
 ## xkbset.apt:
 
