@@ -11,6 +11,10 @@ ubu = `lsb_release -cs`
 ## long-term
 ubul = jammy
 
+pro:
+	sudo pro attach C13uAy7aezsNGtHb5hT2vHp3wYgviJ
+	sudo pro disable livepatch
+
 current: upgrade
 -include target.mk
 Ignore = target.mk
@@ -138,7 +142,7 @@ update:
 
 upgrade: update
 	sudo apt-get -y upgrade
-	sudo apt autoremove
+	sudo apt-get autoremove
 
 ## apt-get untested
 dist-upgrade: upgrade
