@@ -298,6 +298,7 @@ Ignore += *.bioconductor
 
 Ignore += *.rgit
 
+## canmod stuff is outdated! There is a universe now. tf?
 oor.rgit: gituser=canmod
 macpan2.rgit: gituser=canmod
 macpan2.rgit: gbranch=@refactorcpp
@@ -305,6 +306,13 @@ macpan2.rgit: gbranch=@refactorcpp
 gforce = FALSE
 %.rgit: | remotes.cran
 	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
+
+## Work on this!
+%.runiverse:
+
+macpan2.runiverse:
+	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("macpan2", repos = repos)' | \
+	sudo $(R) --vanilla && touch $@
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
