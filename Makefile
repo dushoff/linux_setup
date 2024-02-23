@@ -574,7 +574,6 @@ seafile-gui.apt: seafile-cli.apt
 
 seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
 
-
 ######################################################################
 
 ## Sphinx dictation (disaster)
