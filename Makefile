@@ -11,6 +11,10 @@ ubu = `lsb_release -cs`
 ## long-term
 ubul = jammy
 
+pro:
+	sudo pro attach C13uAy7aezsNGtHb5hT2vHp3wYgviJ
+	sudo pro disable livepatch
+
 current: upgrade
 -include target.mk
 Ignore = target.mk
@@ -102,6 +106,10 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
 utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
 
+## pdfroff in bash asks for groff to be installed, but it can't be
+## groff itself is here (provided by what package?)
+confused: groff.apt
+
 ## fastmouse
 ## xkbset.apt:
 
@@ -134,7 +142,7 @@ update:
 
 upgrade: update
 	sudo apt-get -y upgrade
-	sudo apt autoremove
+	sudo apt-get autoremove
 
 ## apt-get untested
 dist-upgrade: upgrade
@@ -215,6 +223,8 @@ Ignore += *.cran
 
 rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 
+dependency_updates: glmmTMB.rsource.rmk
+
 bio1: ape.cran
 
 rubella: kdensity.cran ggpmisc.cran
@@ -232,6 +242,8 @@ rabies: ggforce.cran
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran
+qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource gtools.cran
+qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
 
@@ -289,6 +301,7 @@ Ignore += *.bioconductor
 
 Ignore += *.rgit
 
+## canmod stuff is outdated! There is a universe now. tf?
 oor.rgit: gituser=canmod
 macpan2.rgit: gituser=canmod
 macpan2.rgit: gbranch=@refactorcpp
@@ -297,6 +310,14 @@ gforce = FALSE
 %.rgit: | remotes.cran
 	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
+## Work on this!
+Ignore += *.runiverse
+%.runiverse:
+
+macpan2.runiverse:
+	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("macpan2", repos = repos)' | \
+	sudo $(R) --vanilla && touch $@
+
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
@@ -304,6 +325,8 @@ satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
 epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
+
+fitode.cran:
 
 mp2: oor.rgit macpan2.rgit
 
@@ -365,6 +388,8 @@ python3-pip.apt: python-is-python3.apt
 	sudo pip install $*
 
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
+
+# Bio.pip:
 
 ######################################################################
 
@@ -429,6 +454,9 @@ chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
 Ignore += dropstuff
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+## xdg-settings get default-web-browser 
+## xdg-settings set default-web-browser google-chrome.desktop ##
 
 ## dropstuff/rstudio.deb
 
@@ -548,7 +576,6 @@ Ignore += wget-log
 seafile-gui.apt: seafile-cli.apt
 
 seafile-cli.apt: /etc/apt/sources.list.d/seafile.list
-
 
 ######################################################################
 
