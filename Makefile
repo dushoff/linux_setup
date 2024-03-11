@@ -243,8 +243,7 @@ rabies: ggforce.cran
 
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran
-qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource gtools.cran
+qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran
 qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
