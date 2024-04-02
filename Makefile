@@ -490,6 +490,8 @@ newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt cups-pdf.apt
 
 thishaschanged: audio-recorder.apt 
 
+record: simplescreenrecorder.apt
+
 ######################################################################
 
 # lpr print to file
