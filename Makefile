@@ -173,7 +173,7 @@ rproject.add:
 
 rprog: rproject.add r-base-core.apt r-base-dev.apt
 
-shiny: shiny.cran rhandsontable.cran
+shiny: shiny.cran rhandsontable.cran rsconnect.cran
 
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
