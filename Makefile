@@ -173,7 +173,7 @@ rproject.add:
 
 rprog: rproject.add r-base-core.apt r-base-dev.apt
 
-shiny: shiny.cran rhandsontable.cran
+shiny: shiny.cran rhandsontable.cran rsconnect.cran
 
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
@@ -394,7 +394,13 @@ python3-pip.apt: python-is-python3.apt
 
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
 
-# Bio.pip:
+## None of this is working on siX; see error message from the first one
+# biopython.pip:
+# biopython.python:
+# biopython.apt:
+
+%.python: python-%.apt ;
+%.python3: python3-%.apt ;
 
 ######################################################################
 
