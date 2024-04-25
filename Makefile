@@ -328,6 +328,8 @@ satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
+## epigrowthfit.rsource: 
+## epigrowthfit.cran: not working yet 2024 Apr 25 (Thu)
 epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 
