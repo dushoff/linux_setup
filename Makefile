@@ -326,6 +326,8 @@ satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
+## epigrowthfit.rsource: 
+## epigrowthfit.cran: not working yet 2024 Apr 25 (Thu)
 epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 
@@ -481,6 +483,8 @@ random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gd
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
 
 makefile2graph:
+	cd ~/screens/code && $(MAKE) $@
+	cd ~/screens/code/$@ && $(MAKE)
 	sudo $(CP) ~/screens/code/$@/$@ /usr/bin
 	sudo cp -r ~/screens/code/$@/make2graph /usr/bin
 
