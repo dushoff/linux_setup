@@ -247,12 +247,10 @@ rabies: ggforce.cran
 
 dataviz: huxtable.cran GGally.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran
+qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran
 qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
-
-undergraduate: ape.cran
 
 bolton: varhandle.cran MLmetrics.cran
 
@@ -323,6 +321,8 @@ satpred.rgit: gituser=cygubicko
 satpred.rgit: gforce=TRUE
 satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
+## epigrowthfit.rsource: 
+## epigrowthfit.cran: not working yet 2024 Apr 25 (Thu)
 epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 
