@@ -328,8 +328,6 @@ epigrowthfit.rgit: gforce=TRUE
 
 fitode.cran:
 
-mp2: oor.rgit macpan2.rgit
-
 datadrivencv.rgit: gituser=nstrayer
 
 systemfonts.rgit: gituser=r-lib
