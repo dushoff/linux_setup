@@ -314,11 +314,6 @@ Ignore += *.bioconductor
 
 Ignore += *.rgit
 
-## canmod stuff is outdated! There is a universe now. tf?
-oor.rgit: gituser=canmod
-macpan2.rgit: gituser=canmod
-macpan2.rgit: gbranch=@refactorcpp
-
 gforce = FALSE
 %.rgit: | remotes.cran
 	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
@@ -342,8 +337,6 @@ burnout.rgit epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 
 fitode.cran:
-
-mp2: oor.rgit macpan2.rgit
 
 datadrivencv.rgit: gituser=nstrayer
 
