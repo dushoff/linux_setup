@@ -175,6 +175,16 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 
 shiny: shiny.cran rhandsontable.cran rsconnect.cran
 
+######################################################################
+
+## quarto.ideb: ~/Downloads/quarto.deb
+%.ideb: $(wildcard ~/Downloads/*.deb)
+	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
+
+## Not tested
+%.gdeb: $(wildcard ~/Downloads/*.deb)
+	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
+
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
 rstudio.deb:
@@ -328,7 +338,7 @@ satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
 ## epigrowthfit.rsource: 
 ## epigrowthfit.cran: not working yet 2024 Apr 25 (Thu)
-epigrowthfit.rgit: gituser=davidearn
+burnout.rgit epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 
 fitode.cran:
