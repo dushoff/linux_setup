@@ -11,6 +11,7 @@ ubu = `lsb_release -cs`
 ## long-term
 ubul = jammy
 
+## Some ubuntu requirement thing that I should understand better
 pro:
 	sudo pro attach C13uAy7aezsNGtHb5hT2vHp3wYgviJ
 	sudo pro disable livepatch
