@@ -336,6 +336,7 @@ satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 ## epigrowthfit.cran: not working yet 2024 Apr 25 (Thu)
 burnout.rgit epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
+burnout.rgit: gsl.cran
 
 fitode.cran:
 
