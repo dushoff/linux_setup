@@ -12,11 +12,11 @@ ubu = `lsb_release -cs`
 ubul = jammy
 
 ## Some ubuntu requirement thing that I should understand better
+current: upgrade
 pro:
 	sudo pro attach C13uAy7aezsNGtHb5hT2vHp3wYgviJ
 	sudo pro disable livepatch
 
-current: upgrade
 -include target.mk
 Ignore = target.mk
 
@@ -483,7 +483,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff (when?)
 
-random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt graphviz.apt
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt graphviz.apt xournal.apt
 
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
 
