@@ -11,11 +11,12 @@ ubu = `lsb_release -cs`
 ## long-term
 ubul = jammy
 
+## Some ubuntu requirement thing that I should understand better
+current: upgrade
 pro:
 	sudo pro attach C13uAy7aezsNGtHb5hT2vHp3wYgviJ
 	sudo pro disable livepatch
 
-current: upgrade
 -include target.mk
 Ignore = target.mk
 
@@ -185,6 +186,16 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 
 shiny: shiny.cran rhandsontable.cran rsconnect.cran
 
+######################################################################
+
+## quarto.ideb: ~/Downloads/quarto.deb
+%.ideb: $(wildcard ~/Downloads/*.deb)
+	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
+
+## Not tested
+%.gdeb: $(wildcard ~/Downloads/*.deb)
+	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
+
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
 rstudio.deb:
@@ -349,8 +360,9 @@ satpred.rgit: gbm.cran glmnetpostsurv.rgit pec.cran survivalmodels.cran
 
 ## epigrowthfit.rsource: 
 ## epigrowthfit.cran: not working yet 2024 Apr 25 (Thu)
-epigrowthfit.rgit: gituser=davidearn
+burnout.rgit epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
+burnout.rgit: gsl.cran
 
 fitode.cran:
 
@@ -497,7 +509,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff (when?)
 
-random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt graphviz.apt
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt graphviz.apt xournal.apt
 
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
 
