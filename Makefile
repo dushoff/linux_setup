@@ -485,8 +485,10 @@ acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 ######################################################################
 
 ## manual chrome updates
+## gdebi is a wrapper for dpkg; fancier
 
-chrome.manual: gdebi.apt dropstuff/chrome.deb chrome.debinstall
+## dropstuff/chrome.deb.rmk
+## chrome.debinstall: dropstuff/chrome.deb
 ## rstudio.debinstall:
 
 Ignore += dropstuff
