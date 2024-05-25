@@ -99,6 +99,16 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+## six stuck advice 2024 May 22 (Wed)
+
+## sudo apt clean && sudo apt update && sudo apt upgrade
+
+## sudo dpkg --configure -a && sudo apt-get -f install
+
+
+
+######################################################################
+
 ## Extras 2022 Oct 26 (Wed)
 
 jekyll.gem: bundler.gem ruby-bundler.apt
@@ -183,6 +193,22 @@ rstudio.deb:
 ## apt-get not tested
 pandoc.deb:
 	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
+
+######################################################################
+
+## Trying to patch sources.list?
+
+Sources += $(wildcard *.sources)
+
+## found.sources is what I found on siX when it was working strangely
+## mantic.sources is copied from https://www.veeble.org/kb/sources-list-file-urls-ubuntu/
+
+## mantic.sourcelist:
+%.sourcelist:
+	sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
+	sudo cp $*.sources /etc/apt/sources.list
+
+######################################################################
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
