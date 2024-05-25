@@ -106,8 +106,6 @@ magick: imagemagick-6.q16.apt
 
 ## sudo dpkg --configure -a && sudo apt-get -f install
 
-
-
 ######################################################################
 
 ## Extras 2022 Oct 26 (Wed)
@@ -480,17 +478,15 @@ acrordrdc.snap:
 
 acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
 
-acroread.deb: /home/dushoff/Downloads/adobe.deb acroread_prereqs
-
-Ignore += *.deb
-%.deb:
+Ignore += acroread.install
+acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 	sudo dpkg -i $< > $@
 
 ######################################################################
 
 ## manual chrome updates
 
-chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
+chrome.manual: gdebi.apt dropstuff/chrome.deb chrome.debinstall
 ## rstudio.debinstall:
 
 Ignore += dropstuff
@@ -502,7 +498,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## dropstuff/rstudio.deb
 
-%.debinstall: dropstuff/%.deb
+%.debinstall: dropstuff/%.deb | dropstuff gdebi.apt
 	sudo gdebi $<
 
 ######################################################################
