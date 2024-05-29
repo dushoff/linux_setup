@@ -362,6 +362,11 @@ burnout.rgit epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 burnout.rgit: gsl.cran
 
+## Did not resolve the dependency problem 2024 May 25 (Sat)
+burnout.bb.rgit:
+	echo 'library(remotes); install_github("davidearn/burnout", force=FALSE, repos = c(CRAN="https://cloud.r-project.org"))' \
+	| sudo $(R) --vanilla && touch $@
+
 fitode.cran:
 
 datadrivencv.rgit: gituser=nstrayer
@@ -489,16 +494,16 @@ acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 
 ## dropstuff/chrome.deb.rmk
 ## chrome.debinstall: dropstuff/chrome.deb
+## quarto.debinstall: dropstuff/quarto.deb
 ## rstudio.debinstall:
 
 Ignore += dropstuff
+## Do we really need rules like this? Maybe for chrome but not in genreal
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
-
-## dropstuff/rstudio.deb
 
 %.debinstall: dropstuff/%.deb | dropstuff gdebi.apt
 	sudo gdebi $<
