@@ -100,6 +100,14 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+## six stuck advice 2024 May 22 (Wed)
+
+## sudo apt clean && sudo apt update && sudo apt upgrade
+
+## sudo dpkg --configure -a && sudo apt-get -f install
+
+######################################################################
+
 ## Extras 2022 Oct 26 (Wed)
 
 jekyll.gem: bundler.gem ruby-bundler.apt
@@ -194,6 +202,22 @@ rstudio.deb:
 ## apt-get not tested
 pandoc.deb:
 	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
+
+######################################################################
+
+## Trying to patch sources.list?
+
+Sources += $(wildcard *.sources)
+
+## found.sources is what I found on siX when it was working strangely
+## mantic.sources is copied from https://www.veeble.org/kb/sources-list-file-urls-ubuntu/
+
+## mantic.sourcelist:
+%.sourcelist:
+	sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
+	sudo cp $*.sources /etc/apt/sources.list
+
+######################################################################
 
 ## r2u new hotness 2022 Oct 03 (Mon)
 ## https://github.com/eddelbuettel/r2u
@@ -338,6 +362,11 @@ burnout.rgit epigrowthfit.rgit: gituser=davidearn
 epigrowthfit.rgit: gforce=TRUE
 burnout.rgit: gsl.cran
 
+## Did not resolve the dependency problem 2024 May 25 (Sat)
+burnout.bb.rgit:
+	echo 'library(remotes); install_github("davidearn/burnout", force=FALSE, repos = c(CRAN="https://cloud.r-project.org"))' \
+	| sudo $(R) --vanilla && touch $@
+
 fitode.cran:
 
 datadrivencv.rgit: gituser=nstrayer
@@ -454,29 +483,29 @@ acrordrdc.snap:
 
 acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
 
-acroread.deb: /home/dushoff/Downloads/adobe.deb acroread_prereqs
-
-Ignore += *.deb
-%.deb:
+Ignore += acroread.install
+acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 	sudo dpkg -i $< > $@
 
 ######################################################################
 
 ## manual chrome updates
+## gdebi is a wrapper for dpkg; fancier
 
-chrome.manual: gdebi.apt dropstuff/chrome.deb.rmk chrome.debinstall
+## dropstuff/chrome.deb.rmk
+## chrome.debinstall: dropstuff/chrome.deb
+## quarto.debinstall: dropstuff/quarto.deb
 ## rstudio.debinstall:
 
 Ignore += dropstuff
+## Do we really need rules like this? Maybe for chrome but not in genreal
 dropstuff/chrome.deb: | dropstuff
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
 
-## dropstuff/rstudio.deb
-
-%.debinstall: dropstuff/%.deb
+%.debinstall: dropstuff/%.deb | dropstuff gdebi.apt
 	sudo gdebi $<
 
 ######################################################################
