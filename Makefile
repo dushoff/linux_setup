@@ -261,6 +261,9 @@ Ignore += *.cran
 
 rdefault: bbmle.cran bsts.cran cairo.cran caret.cran cowplot.cran date.cran devtools.cran directlabels.cran effects.cran egg.cran emdbook.cran emmeans.cran epiestim.cran expss.cran factominer.cran ggdark.cran ggpubr.cran ggrepel.cran ggtext.cran ggthemes.cran glmmtmb.cran haven.cran kableextra.cran kdensity.cran latex2exp.cran lmperm.cran logitnorm.cran margins.cran matlib.cran memoise.cran openxlsx.cran performance.cran r2jags.cran remotes.cran rjags.cran rootsolve.cran rstan.cran splitstackshape.cran survivalroc.cran table1.cran tidyverse.cran tikzdevice.cran vgam.cran asymptor.cran rticles.cran
 
+## 24.04 upgrade broke the STS-release computer's tidyverse
+## solved by installing stringi.rsource (then stringr.rsource, less clear this one was necessary)
+
 distributions: invgamma.cran
 
 performance.cran: see.cran
@@ -283,7 +286,7 @@ rabies: ggforce.cran poisNor.cran lcmix.rforge
 
 lcmix.rforge: nnls.cran R.methodsS3.cran
 
-dataviz: huxtable.cran GGally.cran
+dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
