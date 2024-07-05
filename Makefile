@@ -304,6 +304,7 @@ Ignore += *.rsource
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.rsource
 
+Ignore += *.rforge
 %.rforge:
 	 $(rforge_r)
 rforge_r = echo 'install.packages("$*", repos = "$(RFORGE)")' | sudo $(R) --vanilla && touch $@
