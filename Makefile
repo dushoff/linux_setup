@@ -239,6 +239,7 @@ Ignore += ubuntu_version wget-log
 
 R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
+RFORGE ?= http://R-Forge.R-project.org
 
 updateR: 
 	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
@@ -281,7 +282,9 @@ roswell: RTMB.cran
 
 DESeq2.bioconductor: RCurl.cran
 
-rabies: ggforce.cran
+rabies: ggforce.cran poisNor.cran lcmix.rforge
+
+lcmix.rforge: nnls.cran R.methodsS3.cran
 
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
@@ -302,6 +305,11 @@ Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
 rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.rsource
+
+Ignore += *.rforge
+%.rforge:
+	 $(rforge_r)
+rforge_r = echo 'install.packages("$*", repos = "$(RFORGE)")' | sudo $(R) --vanilla && touch $@
 
 ######################################################################
 
