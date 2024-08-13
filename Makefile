@@ -45,7 +45,7 @@ Ignore += dump.txt
 # * fonts (tango dark 22 for V; solarized light 22 for Te)
 
 ## install git, make, screen, gdebi vim-gtk
-## Use gdebi to install chrome (currently the only good way to connect with git).
+## Use gdebi to install chrome (chrome is currently the only good way to make first connection with git).
 
 ## fn-esc to toggle function-key row
 
@@ -504,6 +504,19 @@ acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 
 ## manual chrome updates
 ## gdebi is a wrapper for dpkg; fancier
+
+## New 2024 Aug 13 (Tue)
+## Not super-clear if it was necessary or if the clicking accidentally took care of it
+## Done in office
+
+linux_signing_key.pub:
+	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
+	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
+
+/etc/apt/sources.list.d/google-chrome.list:
+	sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > $@'
+
+google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 
 ## dropstuff/chrome.deb.rmk
 ## chrome.debinstall: dropstuff/chrome.deb
