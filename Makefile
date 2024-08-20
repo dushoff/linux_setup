@@ -191,11 +191,13 @@ shiny: shiny.cran rhandsontable.cran rsconnect.cran
 	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ## Not tested
+Ignore += *.gdeb
 %.gdeb: $(wildcard ~/Downloads/*.deb)
 	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
 
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
+Ignore += *.deb
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
@@ -512,6 +514,7 @@ acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 ## Not super-clear if it was necessary or if the clicking accidentally took care of it
 ## Done in office
 
+Ignore += linux_signing_key.pub
 linux_signing_key.pub:
 	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
 	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
