@@ -45,7 +45,7 @@ Ignore += dump.txt
 # * fonts (tango dark 22 for V; solarized light 22 for Te)
 
 ## install git, make, screen, gdebi vim-gtk
-## Use gdebi to install chrome (chrome is currently the only good way to make first connection with git).
+## Install chrome (to make first connection with git).
 
 ## fn-esc to toggle function-key row
 
