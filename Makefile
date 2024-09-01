@@ -675,6 +675,13 @@ pocketsphinx.install: /home/dushoff/ve_pocketsphinx
 
 ######################################################################
 
+## Following instructions, not super-clear why
+dropbox.config:
+	echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p 
+## and restart Dropbox to fix the problem.
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
