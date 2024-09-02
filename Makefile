@@ -681,6 +681,15 @@ dropbox.config:
 
 ######################################################################
 
+## flatpak 2024 Sep 02 (Mon)
+## I don't even understand snap yet!!
+## https://www.omgubuntu.co.uk/how-to-install-flatpak-on-ubuntu
+
+flatpak: flatpak.apt
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
