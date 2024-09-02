@@ -44,7 +44,8 @@ Ignore += dump.txt
 # * disable F10 (general) and F11 (shortcuts, use backsapce)
 # * fonts (tango dark 22 for V; solarized light 22 for Te)
 
-## install git, make, screen, gdebi vim-gtk
+## Most apt rules won't work after upgrade unless you delete the old targets or something (upgrade craziness 2024 Sep 01 (Sun))
+first: git.apt make.apt screen.apt gdebi.apt vim-gtk3.apt
 ## Install chrome (to make first connection with git).
 
 ## fn-esc to toggle function-key row
@@ -62,6 +63,7 @@ blocal.ubuntu:
 
 Ignore += linux_setup
 
+## RUN THIS IN A SEPARATE TERMINAL
 ## Run this in a separate terminal
 startDropbox: nautilus-dropbox.apt
 	dropbox start -i
@@ -506,9 +508,6 @@ acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 	sudo dpkg -i $< > $@
 
 ######################################################################
-
-## manual chrome updates
-## gdebi is a wrapper for dpkg; fancier
 
 ## New 2024 Aug 13 (Tue)
 ## Not super-clear if it was necessary or if the clicking accidentally took care of it
