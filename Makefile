@@ -44,8 +44,9 @@ Ignore += dump.txt
 # * disable F10 (general) and F11 (shortcuts, use backsapce)
 # * fonts (tango dark 22 for V; solarized light 22 for Te)
 
-## install git, make, screen, gdebi vim-gtk
-## Use gdebi to install chrome (currently the only good way to connect with git).
+## Most apt rules won't work after upgrade unless you delete the old targets or something (upgrade craziness 2024 Sep 01 (Sun))
+first: git.apt make.apt screen.apt gdebi.apt vim-gtk3.apt
+## Install chrome (to make first connection with git).
 
 ## fn-esc to toggle function-key row
 
@@ -62,6 +63,7 @@ blocal.ubuntu:
 
 Ignore += linux_setup
 
+## RUN THIS IN A SEPARATE TERMINAL
 ## Run this in a separate terminal
 startDropbox: nautilus-dropbox.apt
 	dropbox start -i
@@ -191,11 +193,13 @@ shiny: shiny.cran rhandsontable.cran rsconnect.cran
 	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ## Not tested
+Ignore += *.gdeb
 %.gdeb: $(wildcard ~/Downloads/*.deb)
 	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
 
 ## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
+Ignore += *.deb
 rstudio.deb:
 	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
 
@@ -430,7 +434,7 @@ ici3d-pkg.rgit: gforce=TRUE
 
 ## Tex
 
-texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt latex-cjk-all.apt
+texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt latex-cjk-all.apt texlive-font-utils.apt
 
 ######################################################################
 
@@ -505,8 +509,19 @@ acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
 
 ######################################################################
 
-## manual chrome updates
-## gdebi is a wrapper for dpkg; fancier
+## New 2024 Aug 13 (Tue)
+## Not super-clear if it was necessary or if the clicking accidentally took care of it
+## Done in office
+
+Ignore += linux_signing_key.pub
+linux_signing_key.pub:
+	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
+	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
+
+/etc/apt/sources.list.d/google-chrome.list:
+	sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > $@'
+
+google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 
 ## dropstuff/chrome.deb.rmk
 ## chrome.debinstall: dropstuff/chrome.deb
@@ -662,6 +677,22 @@ pocketsphinx.install: /home/dushoff/ve_pocketsphinx
 ## rclone; still scared of snap 2024 Sep 05 (Thu)
 
 ## rclone.apt:
+
+######################################################################
+
+## Following instructions, not super-clear why
+dropbox.config:
+	echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p 
+## and restart Dropbox to fix the problem.
+
+######################################################################
+
+## flatpak 2024 Sep 02 (Mon)
+## I don't even understand snap yet!!
+## https://www.omgubuntu.co.uk/how-to-install-flatpak-on-ubuntu
+
+flatpak: flatpak.apt
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 ######################################################################
 
