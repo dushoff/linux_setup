@@ -659,6 +659,12 @@ pocketsphinx.install: /home/dushoff/ve_pocketsphinx
 
 ######################################################################
 
+## rclone; still scared of snap 2024 Sep 05 (Thu)
+
+## rclone.apt:
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
