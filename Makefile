@@ -682,6 +682,18 @@ pocketsphinx.install: /home/dushoff/ve_pocketsphinx
 seafile.cloud:
 	rclone config
 
+## rclone config create name type [key value]* [flags]
+
+%.rclone: |rclone.apt
+	rclone config create $* $(conf) --all
+	$(touch)
+
+macdrive_root.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff@mcmaster.ca
+
+dropbox.rclone: |rclone.apt
+	rclone config create dropbox dropbox user dushoff
+	$(touch)
+
 ######################################################################
 
 ## Following instructions, not super-clear why
