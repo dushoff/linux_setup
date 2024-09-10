@@ -678,6 +678,10 @@ pocketsphinx.install: /home/dushoff/ve_pocketsphinx
 
 ## rclone.apt:
 
+## What?
+seafile.cloud:
+	rclone config
+
 ######################################################################
 
 ## Following instructions, not super-clear why
