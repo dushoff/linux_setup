@@ -684,6 +684,7 @@ seafile.cloud:
 
 ## rclone config create name type [key value]* [flags]
 
+Ignore += *.rclone
 %.rclone: |rclone.apt
 	rclone config create $* $(conf) --all
 	$(touch)
