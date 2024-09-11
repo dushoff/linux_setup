@@ -678,10 +678,6 @@ pocketsphinx.install: /home/dushoff/ve_pocketsphinx
 
 ## rclone.apt:
 
-## What?
-seafile.cloud:
-	rclone config
-
 ## rclone config create name type [key value]* [flags]
 
 Ignore += *.rclone
