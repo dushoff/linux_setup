@@ -543,7 +543,7 @@ dropstuff/chrome.deb: | dropstuff
 
 ## Randomly adding stuff (when?)
 
-random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt graphviz.apt xournal.apt
+random: pdftk-java.apt docker.apt gcalcli.apt dconf-editor.apt kazam.apt heif-gdk-pixbuf.apt apt-file.apt perl-doc.apt graphviz.apt xournal.apt okular.apt
 
 ## HEIC pictures can be opened after heif… is installed. The first time, you may need to right click the picture and select Other Application/Image Viewer.
 
