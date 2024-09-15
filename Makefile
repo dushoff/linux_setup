@@ -695,6 +695,8 @@ dropbox.rclone: |rclone.apt
 	rclone config create dropbox dropbox user dushoff
 	$(touch)
 
+oneDrive.rclone: conf = onedrive
+
 ######################################################################
 
 ## Following instructions, not super-clear why
