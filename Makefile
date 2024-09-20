@@ -687,6 +687,9 @@ Ignore += *.rclone
 
 macdrive_root.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff@mcmaster.ca
 
+cloudmirror.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff@mcmaster.ca library cloud
+
+
 dropbox.rclone: |rclone.apt
 	rclone config create dropbox dropbox user dushoff
 	$(touch)
