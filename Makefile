@@ -31,6 +31,9 @@ Ignore += dump.txt
 
 ######################################################################
 
+## Do a new install in some sort of temporary directory; you'll be building 
+## screens and then moving it to ~
+
 ## New install 2022 Oct 22 (Sat)
 ## Freshening fiVe
 
@@ -76,7 +79,12 @@ github.user:
 	git config --global user.name "Jonathan Dushoff"
 	git config --global pull.rebase false
 
-ignore.config:
+## gh tool; needs 2FA
+gh.auth: gh.apt
+	gh auth login
+
+## Phony target for makestuff Ignore setup; probably could point here to a real target
+## ignore.config:
 
 ~/screens:
 	ls screens || git clone https://github.com/dushoff/screens
