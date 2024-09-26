@@ -186,6 +186,8 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 
 shiny: shiny.cran rhandsontable.cran rsconnect.cran
 
+amy: forestplot.rsource gt.rsource
+
 ######################################################################
 
 ## quarto.ideb: ~/Downloads/quarto.deb
