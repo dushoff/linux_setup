@@ -185,8 +185,8 @@ release.all:
 Ignore += rproject.add
 rproject.add:
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-	## sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
-	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/"
+	sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(ubu)-cran40/"
+	## sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/"
 	touch $@
 	sudo apt update
 
@@ -699,6 +699,10 @@ macdrive_root.rclone: conf = seafile url https://macdrive.mcmaster.ca user dusho
 
 cloudmirror.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff@mcmaster.ca library cloud
 
+gdrive.rclone: conf = drive user jdushoff
+
+## sudo apt install rclone
+## rclone config create dropbox dropbox user dushoff
 dropbox.rclone: |rclone.apt
 	rclone config create dropbox dropbox user dushoff
 	$(touch)
