@@ -699,7 +699,7 @@ macdrive_root.rclone: conf = seafile url https://macdrive.mcmaster.ca user dusho
 
 cloudmirror.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff@mcmaster.ca library cloud
 
-gdrive.rclone: conf = drive user jdushoff
+gdrive.rclone: conf = drive user jdushoff scope drive client_id 183900942480-u82gn1bsog959agdm43rm9p9d9em9lqq.apps.googleusercontent.com
 
 ## sudo apt install rclone
 ## rclone config create dropbox dropbox user dushoff
