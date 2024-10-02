@@ -122,6 +122,8 @@ magick: imagemagick-6.q16.apt
 
 jekyll.gem: bundler.gem ruby-bundler.apt
 ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
+## There are different bundles and a lot of mess
+## sudo mv /usr/local/bin/bundle /usr/local/bin/bundle-3.0
 
 utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
 
