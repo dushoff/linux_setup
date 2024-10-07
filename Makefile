@@ -6,10 +6,11 @@
 ## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
 ## lsb_release -cs ##
+## Could make this semi-automatic instead by using and reading a file
 ubu = `lsb_release -cs`
+ubul = noble
 
 ## long-term
-ubul = jammy
 
 ## Some ubuntu requirement thing that I should understand better
 current: upgrade
@@ -241,12 +242,12 @@ Sources += $(wildcard *.sources)
 r2u.update: /etc/apt/trusted.gpg.d/cranapt_key.asc /etc/apt/sources.list.d/cranapt.list
 	sudo apt-get update
 
-Ignore += ubuntu_version wget-log
+Ignore += wget-log
 /etc/apt/trusted.gpg.d/cranapt_key.asc: wget.apt
 	sudo wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | sudo tee -a $@
 
 ## This did not work with an intermediate upgrade (non- LTS ubu)
-/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc ubuntu_version
+/etc/apt/sources.list.d/cranapt.list: /etc/apt/trusted.gpg.d/cranapt_key.asc
 	sudo echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt $(ubu) main" | sudo tee -a $@
 
 ######################################################################
