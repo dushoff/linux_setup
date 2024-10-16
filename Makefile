@@ -296,6 +296,7 @@ currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 roswell: RTMB.cran tinyplot.cran
+zhao: DPQ.cran
 
 DESeq2.bioconductor: RCurl.cran
 
@@ -511,13 +512,15 @@ acrordrdc.snap:
 
 ######################################################################
 
-/home/dushoff/Downloads/adobe.deb:
+mirrors += cloud
+
+cloud/adobe.deb:
 	wget -O $@ ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
 
 acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
 
 Ignore += acroread.install
-acroread.install: /home/dushoff/Downloads/adobe.deb acroread_prereqs
+acroread.install: cloud/adobe.deb acroread_prereqs
 	sudo dpkg -i $< > $@
 
 ######################################################################
@@ -737,7 +740,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/00.stamp
+Makefile: makestuff/01.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone $(msrepo)/makestuff
@@ -746,6 +749,7 @@ makestuff/%.stamp:
 -include makestuff/os.mk
 
 -include makestuff/pipeR.mk
+-include makestuff/mirror.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
