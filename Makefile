@@ -229,6 +229,8 @@ Sources += $(wildcard *.sources)
 ## found.sources is what I found on siX when it was working strangely
 ## mantic.sources is copied from https://www.veeble.org/kb/sources-list-file-urls-ubuntu/
 
+Ignore += ubuntu_version
+
 ## mantic.sourcelist:
 %.sourcelist:
 	sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
