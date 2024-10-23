@@ -298,7 +298,7 @@ currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 roswell: RTMB.cran tinyplot.cran
-zhao: DPQ.cran
+zhao: DPQ.cran Rmpfr.cran
 
 DESeq2.bioconductor: RCurl.cran
 
