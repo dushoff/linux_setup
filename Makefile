@@ -295,6 +295,8 @@ rubella: kdensity.cran ggpmisc.cran
 
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
+papst: yaml.cran rmarkdown.cran
+
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 roswell: RTMB.cran tinyplot.cran
@@ -441,7 +443,7 @@ broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit: gituser=bbolker
 
 knitr.rgit: gituser=yihui
 
-rmarkdown.rgit: gituser=rstudio
+## rmarkdown.rgit: gituser=rstudio
 
 ######################################################################
 
