@@ -521,8 +521,11 @@ acrordrdc.snap:
 
 mirrors += cloud
 
-cloud/adobe.deb:
-	wget -O $@ ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
+## 2024 Nov 04 (Mon) with Rowan; expanded this
+## cloud/iqtree.tgz:
+## Manually link to ~/bin
+iqtree:
+	cd ~/bin && ln -s $(CURDIR)/cloud/*/bin/iqtree2 iqtree
 
 acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
 
