@@ -555,14 +555,17 @@ google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-c
 ## rstudio.debinstall:
 
 Ignore += dropstuff
-## Do we really need rules like this? Maybe for chrome but not in genreal
-dropstuff/chrome.deb: | dropstuff
+
+##
+## Using this on xiangshan because the apt thing didn't seem to be working
+## chrome.debinstall: 
+cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
 
-%.debinstall: dropstuff/%.deb | dropstuff gdebi.apt
+%.debinstall: cloud/%.deb | dropstuff gdebi.apt
 	sudo gdebi $<
 
 ######################################################################
