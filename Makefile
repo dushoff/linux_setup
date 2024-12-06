@@ -301,6 +301,7 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 
 roswell: RTMB.cran tinyplot.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit
+bolker: merTools.cran
 ## rim.cran
 
 rim.rgit: gituser=rcst
@@ -470,8 +471,8 @@ python3-pip.apt: python-is-python3.apt
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
 
 ## None of this is working on siX; see error message from the first one
-# biopython.pip:
-# biopython.python:
+# biopython.pip: ## Does not work on xiangshan try next one
+# biopython.python3:
 # biopython.apt:
 
 %.python: python-%.apt ;
