@@ -389,7 +389,7 @@ gforce = FALSE
 Ignore += *.runiverse
 %.runiverse:
 
-macpan2.runiverse:
+macpan2.runiverse: Makefile
 	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("macpan2", repos = repos)' | \
 	sudo $(R) --vanilla && touch $@
 
