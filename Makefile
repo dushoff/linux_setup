@@ -302,6 +302,10 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 roswell: RTMB.cran tinyplot.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit
 bolker: merTools.cran
+hutch: easyPubMed.rgit
+## rim.cran
+
+easyPubMed.rgit: gituser=dami82
 ## rim.cran
 
 rim.rgit: gituser=rcst
