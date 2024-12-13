@@ -394,6 +394,8 @@ gforce = FALSE
 ## Work on this!
 ## Maybe can use .prevfile-style logic to generalize
 
+Ignore += *.universe
+
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 
 %.canmod.universe: 
