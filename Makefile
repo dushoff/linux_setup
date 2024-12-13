@@ -389,13 +389,19 @@ gforce = FALSE
 %.rgit: | remotes.cran
 	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
 
-## Work on this!
-Ignore += *.runiverse
-%.runiverse:
+######################################################################
 
-macpan2.runiverse: Makefile
-	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("macpan2", repos = repos)' | \
+## Work on this!
+## Maybe can use .prevfile-style logic to generalize
+
+iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
+
+%.canmod.universe: 
+	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("$*", repos = repos)' | \
 	sudo $(R) --vanilla && touch $@
+
+######################################################################
+
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
