@@ -759,6 +759,30 @@ flatpak: flatpak.apt
 
 ######################################################################
 
+## Try to move on from textaid (or whatever)
+## python things need a virtual environment
+
+ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip
+
+## This was a dead end for SimpleWebSocketServer
+%.pipx: pipx.apt
+	pipx install $*
+
+Ignore += venv
+venv: python3-full.apt
+	python3 -m venv $@
+
+%.vpip: venv
+	venv/bin/pip install $*
+
+## I might have needed to fiddle my .profile for the second one
+vim-plug:
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ##
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
