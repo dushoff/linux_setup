@@ -779,6 +779,8 @@ vim-plug: curl.apt
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ##
 
+## After all this, you need to PlugInstall, GhostInstall, restart nvim
+
 ######################################################################
 
 ### Makestuff
