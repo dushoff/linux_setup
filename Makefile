@@ -300,7 +300,7 @@ papst: yaml.cran rmarkdown.cran
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 roswell: RTMB.cran tinyplot.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit
+zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran
 bolker: merTools.cran
 hutch: easyPubMed.rgit
 ## rim.cran
