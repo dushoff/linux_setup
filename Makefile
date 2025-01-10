@@ -482,10 +482,8 @@ python3-pip.apt: python-is-python3.apt
 
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
 
-## None of this is working on siX; see error message from the first one
-# biopython.pip: ## Does not work on xiangshan try next one
+# Test elsewhere than six 2025 Jan 06 (Mon)
 # biopython.python3:
-# biopython.apt:
 
 %.python: python-%.apt ;
 %.python3: python3-%.apt ;
@@ -762,7 +760,7 @@ flatpak: flatpak.apt
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
-ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip
+ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
 ## This was a dead end for SimpleWebSocketServer
 %.pipx: pipx.apt
@@ -776,10 +774,12 @@ venv: python3-full.apt
 	venv/bin/pip install $*
 
 ## I might have needed to fiddle my .profile for the second one
-vim-plug:
+vim-plug: curl.apt
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ##
+
+## After all this, you need to PlugInstall, GhostInstall, restart nvim
 
 ######################################################################
 
