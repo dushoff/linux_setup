@@ -757,6 +757,47 @@ flatpak: flatpak.apt
 
 ######################################################################
 
+## The only big problem with following these directions was needing to add more oauth syntax to .pinerc
+
+alpine: alpine.apt
+
+Ignore += alpine.local
+
+######################################################################
+
+aerc: aerc.apt
+
+## https://oren.github.io/articles/text-based-gmail/
+
+## https://www.maths.tcd.ie/~fionn/misc/aerc/
+
+Ignore += auth-source-xoauth2
+auth-source-xoauth2:
+	git clone https://github.com/ccrusius/auth-source-xoauth2.git
+
+## Install emacs first, not via vim!
+## This whole thing choked on go.dev, which seems like another big project
+## Try another time
+## cloud/go.tgz
+auth-source-xoauth2/oauth: auth-source-xoauth2
+	cd $< && $(MAKE)
+
+## Did not work with or without .dance stuff
+## Also does not work with desktop app
+## https://tilde.club/~djhsu/aerc-gmail-oauth2.html
+cloud/oauth2.py:
+	wget -O $@ "https://raw.githubusercontent.com/google/gmail-oauth2-tools/refs/heads/master/python/oauth2.py"
+Ignore += aerc.mk
+-include aerc.mk
+python_auth: user=jdushoff@gmail.com
+python_auth: cloud/oauth2.py
+	python $< --generate_oauth2_token --user=$(user) --client_id=$(client_id) --client_secret=$(client_secret)
+
+## Also did not work 2025 Jan 19 (Sun) (using app password)
+## EDIT ~/.config/aerc/accounts.conf
+
+######################################################################
+
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
