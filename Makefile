@@ -297,7 +297,11 @@ rubella: kdensity.cran ggpmisc.cran
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 papst: yaml.cran rmarkdown.cran
-## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a"
+## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
+
+## McMasterPandemic.rgit.rmk:
+McMasterPandemic.rgit: gituser=mac-theobio
+McMasterPandemic.rgit: gbranch=@0271eddb1a
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
