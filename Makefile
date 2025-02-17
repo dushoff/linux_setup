@@ -303,6 +303,9 @@ papst: yaml.cran rmarkdown.cran
 McMasterPandemic.rgit: gituser=mac-theobio
 McMasterPandemic.rgit: gbranch=@0271eddb1a
 
+macpan2.rgit: gituser=canmod
+## macpan2.rgit.rmk:
+
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 wz: anytime.cran
