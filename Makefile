@@ -130,6 +130,7 @@ utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
 
 ## pdfroff in bash asks for groff to be installed, but it can't be
 ## groff itself is here (provided by what package?)
+## Seems fixed? 2025 Jan 24 (Fri)
 confused: groff.apt
 
 ## fastmouse
@@ -296,11 +297,20 @@ rubella: kdensity.cran ggpmisc.cran
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 papst: yaml.cran rmarkdown.cran
+## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
+
+## McMasterPandemic.rgit.rmk:
+McMasterPandemic.rgit: gituser=mac-theobio
+McMasterPandemic.rgit: gbranch=@0271eddb1a
+
+macpan2.rgit: gituser=canmod
+## macpan2.rgit.rmk:
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
+wz: anytime.cran
 roswell: RTMB.cran tinyplot.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit
+zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran
 bolker: merTools.cran
 hutch: easyPubMed.rgit
 ## rim.cran
@@ -312,7 +322,27 @@ rim.rgit: gituser=rcst
 
 DESeq2.bioconductor: RCurl.cran
 
+######################################################################
+
 rabies: ggforce.cran poisNor.cran lcmix.rforge
+
+######################################################################
+
+## What is up with sf??
+## sudo apt-get install libgdal-dev gdal-bin libproj15 libproj19 libproj-dev
+
+## 2025 Feb 17 (Mon) I needed rsource on Te, but not sure whether that's because of history
+sf.cran: libgdal-dev.apt
+sf.rsource: libgdal-dev.apt
+
+## May be not needed
+## sp.rsource:
+## rgdal does not exist anymore
+## rgdal.cran:
+
+ferguson: openxlsx2.cran raster.cran sf.cran
+
+######################################################################
 
 lcmix.rforge: nnls.cran R.methodsS3.cran
 
@@ -757,6 +787,47 @@ flatpak: flatpak.apt
 
 ######################################################################
 
+## The only big problem with following these directions was needing to add more oauth syntax to .pinerc
+
+alpine: alpine.apt
+
+Ignore += alpine.local
+
+######################################################################
+
+aerc: aerc.apt
+
+## https://oren.github.io/articles/text-based-gmail/
+
+## https://www.maths.tcd.ie/~fionn/misc/aerc/
+
+Ignore += auth-source-xoauth2
+auth-source-xoauth2:
+	git clone https://github.com/ccrusius/auth-source-xoauth2.git
+
+## Install emacs first, not via vim!
+## This whole thing choked on go.dev, which seems like another big project
+## Try another time
+## cloud/go.tgz
+auth-source-xoauth2/oauth: auth-source-xoauth2
+	cd $< && $(MAKE)
+
+## Did not work with or without .dance stuff
+## Also does not work with desktop app
+## https://tilde.club/~djhsu/aerc-gmail-oauth2.html
+cloud/oauth2.py:
+	wget -O $@ "https://raw.githubusercontent.com/google/gmail-oauth2-tools/refs/heads/master/python/oauth2.py"
+Ignore += aerc.mk
+-include aerc.mk
+python_auth: user=jdushoff@gmail.com
+python_auth: cloud/oauth2.py
+	python $< --generate_oauth2_token --user=$(user) --client_id=$(client_id) --client_secret=$(client_secret)
+
+## Also did not work 2025 Jan 19 (Sun) (using app password)
+## EDIT ~/.config/aerc/accounts.conf
+
+######################################################################
+
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
@@ -790,7 +861,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/01.stamp
+Makefile: makestuff/02.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone $(msrepo)/makestuff
