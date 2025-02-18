@@ -130,6 +130,7 @@ utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
 
 ## pdfroff in bash asks for groff to be installed, but it can't be
 ## groff itself is here (provided by what package?)
+## Seems fixed? 2025 Jan 24 (Fri)
 confused: groff.apt
 
 ## fastmouse
@@ -296,9 +297,18 @@ rubella: kdensity.cran ggpmisc.cran
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 papst: yaml.cran rmarkdown.cran
+## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
+
+## McMasterPandemic.rgit.rmk:
+McMasterPandemic.rgit: gituser=mac-theobio
+McMasterPandemic.rgit: gbranch=@0271eddb1a
+
+macpan2.rgit: gituser=canmod
+## macpan2.rgit.rmk:
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
+wz: anytime.cran
 roswell: RTMB.cran tinyplot.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran
 bolker: merTools.cran
@@ -774,6 +784,47 @@ inotify.config:
 
 flatpak: flatpak.apt
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+######################################################################
+
+## The only big problem with following these directions was needing to add more oauth syntax to .pinerc
+
+alpine: alpine.apt
+
+Ignore += alpine.local
+
+######################################################################
+
+aerc: aerc.apt
+
+## https://oren.github.io/articles/text-based-gmail/
+
+## https://www.maths.tcd.ie/~fionn/misc/aerc/
+
+Ignore += auth-source-xoauth2
+auth-source-xoauth2:
+	git clone https://github.com/ccrusius/auth-source-xoauth2.git
+
+## Install emacs first, not via vim!
+## This whole thing choked on go.dev, which seems like another big project
+## Try another time
+## cloud/go.tgz
+auth-source-xoauth2/oauth: auth-source-xoauth2
+	cd $< && $(MAKE)
+
+## Did not work with or without .dance stuff
+## Also does not work with desktop app
+## https://tilde.club/~djhsu/aerc-gmail-oauth2.html
+cloud/oauth2.py:
+	wget -O $@ "https://raw.githubusercontent.com/google/gmail-oauth2-tools/refs/heads/master/python/oauth2.py"
+Ignore += aerc.mk
+-include aerc.mk
+python_auth: user=jdushoff@gmail.com
+python_auth: cloud/oauth2.py
+	python $< --generate_oauth2_token --user=$(user) --client_id=$(client_id) --client_secret=$(client_secret)
+
+## Also did not work 2025 Jan 19 (Sun) (using app password)
+## EDIT ~/.config/aerc/accounts.conf
 
 ######################################################################
 
