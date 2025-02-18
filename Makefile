@@ -201,7 +201,7 @@ amy: forestplot.rsource gt.rsource
 
 ######################################################################
 
-## quarto.ideb: ~/Downloads/quarto.deb
+## quarto.ideb: cloud/quarto.deb
 %.ideb: $(wildcard ~/Downloads/*.deb)
 	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
 
