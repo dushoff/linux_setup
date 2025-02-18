@@ -312,7 +312,27 @@ rim.rgit: gituser=rcst
 
 DESeq2.bioconductor: RCurl.cran
 
+######################################################################
+
 rabies: ggforce.cran poisNor.cran lcmix.rforge
+
+######################################################################
+
+## What is up with sf??
+## sudo apt-get install libgdal-dev gdal-bin libproj15 libproj19 libproj-dev
+
+## 2025 Feb 17 (Mon) I needed rsource on Te, but not sure whether that's because of history
+sf.cran: libgdal-dev.apt
+sf.rsource: libgdal-dev.apt
+
+## May be not needed
+sp.rsource:
+## rgdal does not exist anymore
+rgdal.cran:
+
+ferguson: openxlsx2.cran raster.cran
+
+######################################################################
 
 lcmix.rforge: nnls.cran R.methodsS3.cran
 
