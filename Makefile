@@ -561,6 +561,7 @@ linux_signing_key.pub:
 	sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > $@'
 
 google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
+google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 
 ## dropstuff/chrome.deb.rmk
 ## chrome.debinstall: dropstuff/chrome.deb
