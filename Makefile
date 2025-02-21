@@ -340,7 +340,7 @@ sf.rsource: libgdal-dev.apt
 ## rgdal does not exist anymore
 ## rgdal.cran:
 
-ferguson: openxlsx2.cran raster.cran sf.cran
+ferguson: openxlsx2.cran raster.cran sf.rsource
 
 ######################################################################
 
@@ -356,7 +356,7 @@ chyun: gdata.cran
 
 mmdcl: furniture.cran table1.cran
 
-macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran tmbstan.cran
 
 bolton: varhandle.cran MLmetrics.cran
 
