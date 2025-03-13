@@ -211,7 +211,7 @@ Ignore += *.gdeb
 %.gdeb: $(wildcard ~/Downloads/*.deb)
 	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
 
-## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
+## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
 Ignore += *.deb
 rstudio.deb:
