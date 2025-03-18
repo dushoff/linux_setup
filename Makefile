@@ -211,7 +211,6 @@ Ignore += *.gdeb
 %.gdeb: $(wildcard ~/Downloads/*.deb)
 	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
 
-## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
 Ignore += *.deb
 rstudio.deb:
@@ -591,12 +590,7 @@ linux_signing_key.pub:
 google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 
-## dropstuff/chrome.deb.rmk
-## chrome.debinstall: dropstuff/chrome.deb
-## quarto.debinstall: dropstuff/quarto.deb
-## rstudio.debinstall:
-
-Ignore += dropstuff
+######################################################################
 
 ##
 ## Using this on xiangshan because the apt thing didn't seem to be working
@@ -604,10 +598,13 @@ Ignore += dropstuff
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
+## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
+rstudio.debinstall: cloud/rstudio.deb
+
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
 
-%.debinstall: cloud/%.deb | dropstuff gdebi.apt
+%.debinstall: cloud/%.deb | gdebi.apt
 	sudo gdebi $<
 
 ######################################################################
