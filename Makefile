@@ -312,6 +312,7 @@ roswell: RTMB.cran tinyplot.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran
 bolker: merTools.cran
 hutch: easyPubMed.rgit
+haoyu: mvabund.cran
 ## rim.cran
 
 easyPubMed.rgit: gituser=dami82
