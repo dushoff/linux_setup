@@ -354,6 +354,8 @@ qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStat
 toshi: lamW.cran
 chyun: gdata.cran RVAideMemoire.cran ggfortify.cran
 
+gharouni: fda.cran roahd.cran
+
 mmdcl: furniture.cran table1.cran
 
 macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran tmbstan.cran
