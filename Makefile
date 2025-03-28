@@ -303,6 +303,7 @@ McMasterPandemic.rgit: gituser=mac-theobio
 McMasterPandemic.rgit: gbranch=@0271eddb1a
 
 macpan2.rgit: gituser=canmod
+macpan2.rgit: gbranch=@abs_inoutflow
 ## macpan2.rgit.rmk:
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
@@ -357,7 +358,7 @@ gharouni: fda.cran roahd.cran
 
 mmdcl: furniture.cran table1.cran
 
-macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran tmbstan.cran
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran tmbstan.cran Rgraphviz.bioconductor
 
 bolton: varhandle.cran MLmetrics.cran
 
