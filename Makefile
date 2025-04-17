@@ -427,13 +427,15 @@ gforce = FALSE
 Ignore += *.universe
 
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
+candid: ggraph.cran tidygraph.cran iidda
+
+ggraph.cran: igraph.cran
 
 %.canmod.universe: 
 	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("$*", repos = repos)' | \
 	sudo $(R) --vanilla && touch $@
 
 ######################################################################
-
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
