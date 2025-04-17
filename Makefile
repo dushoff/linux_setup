@@ -211,7 +211,6 @@ Ignore += *.gdeb
 %.gdeb: $(wildcard ~/Downloads/*.deb)
 	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
 
-## rstudio: download a deb from https://posit.co/download/rstudio-desktop/
 ## sudo gdebi ~/Downloads/rst*.deb ##
 Ignore += *.deb
 rstudio.deb:
@@ -304,6 +303,7 @@ McMasterPandemic.rgit: gituser=mac-theobio
 McMasterPandemic.rgit: gbranch=@0271eddb1a
 
 macpan2.rgit: gituser=canmod
+macpan2.rgit: gbranch=@abs_inoutflow
 ## macpan2.rgit.rmk:
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
@@ -311,8 +311,9 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 wz: anytime.cran
 roswell: RTMB.cran tinyplot.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran
-bolker: merTools.cran
+bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
+haoyu: mvabund.cran
 ## rim.cran
 
 easyPubMed.rgit: gituser=dami82
@@ -352,11 +353,13 @@ qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource l
 qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 toshi: lamW.cran
-chyun: gdata.cran
+chyun: gdata.cran RVAideMemoire.cran ggfortify.cran
+
+gharouni: fda.cran roahd.cran
 
 mmdcl: furniture.cran table1.cran
 
-macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran tmbstan.cran
+macpan: pomp.cran Hmisc.cran DEoptim.cran deSolve.cran diagram.cran fastmatrix.cran semver.cran doParallel.cran tmbstan.cran Rgraphviz.bioconductor
 
 bolton: varhandle.cran MLmetrics.cran
 
@@ -593,12 +596,7 @@ linux_signing_key.pub:
 google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
 
-## dropstuff/chrome.deb.rmk
-## chrome.debinstall: dropstuff/chrome.deb
-## quarto.debinstall: dropstuff/quarto.deb
-## rstudio.debinstall:
-
-Ignore += dropstuff
+######################################################################
 
 ##
 ## Using this on xiangshan because the apt thing didn't seem to be working
@@ -606,10 +604,13 @@ Ignore += dropstuff
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
+## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
+rstudio.debinstall: cloud/rstudio.deb
+
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
 
-%.debinstall: cloud/%.deb | dropstuff gdebi.apt
+%.debinstall: cloud/%.deb | gdebi.apt
 	sudo gdebi $<
 
 ######################################################################
