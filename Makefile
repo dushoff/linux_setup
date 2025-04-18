@@ -432,7 +432,7 @@ Ignore += *.universe
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 candid: ggraph.cran tidygraph.cran iidda
 
-3SA: AICcmodavg.cran
+3SA: AICcmodavg.cran colorblindcheck.cran
 
 ggraph.cran: igraph.cran
 
