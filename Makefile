@@ -353,7 +353,7 @@ qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource l
 qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 toshi: lamW.cran
-chyun: gdata.cran RVAideMemoire.cran ggfortify.cran
+chyun: gdata.cran RVAideMemoire.cran ggfortify.cran ordinal.cran
 
 gharouni: fda.cran roahd.cran
 
