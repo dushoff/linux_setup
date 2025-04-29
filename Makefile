@@ -585,7 +585,12 @@ acroread.install: cloud/adobe.deb acroread_prereqs
 
 ## 2025 Apr 29 (Tue) Got rid of some google-chrome and linux_signing_key rules. 
 ## I'm using the below instead of the old apt approach to chrome
-## Less clear on whether I need signing rules.
+## signing key is kind of an orphan
+
+Ignore += linux_signing_key.pub
+linux_signing_key.pub:
+	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
+	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
 
 ## Generally prefer pkginstall (low-level) to debinstall (seems to get confused)
 
@@ -600,10 +605,12 @@ rstudio.debinstall: cloud/rstudio.deb
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
 
+Ignore += *.debinstall
 %.debinstall: cloud/%.deb | gdebi.apt
 	sudo gdebi $<
 	$(touch)
 
+Ignore += *.pkginstall
 %.pkginstall: cloud/%.deb
 	sudo dpkg -i $<
 	$(touch)
