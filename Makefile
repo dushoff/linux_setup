@@ -583,26 +583,19 @@ acroread.install: cloud/adobe.deb acroread_prereqs
 
 ######################################################################
 
-## New 2024 Aug 13 (Tue)
-## Not super-clear if it was necessary or if the clicking accidentally took care of it
-## Done in office
+## 2025 Apr 29 (Tue) Got rid of some google-chrome and linux_signing_key rules. 
+## I'm using the below instead of the old apt approach to chrome
+## signing key is kind of an orphan
 
 Ignore += linux_signing_key.pub
 linux_signing_key.pub:
 	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
 	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
 
-/etc/apt/sources.list.d/google-chrome.list:
-	sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > $@'
+## Generally prefer pkginstall (low-level) to debinstall (seems to get confused)
 
-google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
-google-chrome-stable.apt: linux_signing_key.pub /etc/apt/sources.list.d/google-chrome.list update
-
-######################################################################
-
-##
-## Using this on xiangshan because the apt thing didn't seem to be working
-## chrome.debinstall: 
+## cloud/chrome.deb.rmk: 
+chrome.pkginstall:
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
@@ -612,8 +605,15 @@ rstudio.debinstall: cloud/rstudio.deb
 ## xdg-settings get default-web-browser 
 ## xdg-settings set default-web-browser google-chrome.desktop ##
 
+Ignore += *.debinstall
 %.debinstall: cloud/%.deb | gdebi.apt
 	sudo gdebi $<
+	$(touch)
+
+Ignore += *.pkginstall
+%.pkginstall: cloud/%.deb
+	sudo dpkg -i $<
+	$(touch)
 
 ######################################################################
 
