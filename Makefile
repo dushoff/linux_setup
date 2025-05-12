@@ -8,12 +8,12 @@
 ## lsb_release -cs ##
 ## Could make this semi-automatic instead by using and reading a file
 ubu = `lsb_release -cs`
+## long-term
 ubul = noble
 
-## long-term
+current: upgrade
 
 ## Some ubuntu requirement thing that I should understand better
-current: upgrade
 pro:
 	sudo pro attach C13uAy7aezsNGtHb5hT2vHp3wYgviJ
 	sudo pro disable livepatch
