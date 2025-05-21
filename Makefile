@@ -296,12 +296,14 @@ rubella: kdensity.cran ggpmisc.cran
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 papst: yaml.cran rmarkdown.cran
+mmed: DAAG.cran
 ## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
 
 ## McMasterPandemic.rgit.rmk:
 McMasterPandemic.rgit: gituser=mac-theobio
 McMasterPandemic.rgit: gbranch=@0271eddb1a
 
+## branch stuff only!!
 macpan2.rgit: gituser=canmod
 macpan2.rgit: gbranch=@abs_inoutflow
 ## macpan2.rgit.rmk:
@@ -429,6 +431,7 @@ gforce = FALSE
 
 Ignore += *.universe
 
+macpan2: macpan2.canmod.universe
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 candid: ggraph.cran tidygraph.cran iidda
 
