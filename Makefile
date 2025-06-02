@@ -1,4 +1,3 @@
-## Please install all available updates for your release before upgrading.
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
 
