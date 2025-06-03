@@ -430,6 +430,11 @@ gforce = FALSE
 
 Ignore += *.universe
 
+
+######################################################################
+
+universes: macpan2.canmod.universe iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
+
 macpan2: macpan2.canmod.universe
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 candid: ggraph.cran tidygraph.cran iidda
