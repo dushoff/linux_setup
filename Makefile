@@ -294,6 +294,8 @@ rubella: kdensity.cran ggpmisc.cran
 
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
+glasgow: RPostgres.cran
+
 papst: yaml.cran rmarkdown.cran
 mmed: DAAG.cran epiDisplay.cran
 ## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
