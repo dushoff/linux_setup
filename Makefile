@@ -67,12 +67,12 @@ blocal.ubuntu:
 Ignore += linux_setup
 
 ## RUN THIS IN A SEPARATE TERMINAL
-## Run this in a separate terminal
 startDropbox: nautilus-dropbox.apt
 	dropbox start -i
 ## ls ~/Dropbox
 
-## Get a new github token and put it in dump.txt
+## First get a new github token and put it in dump.txt
+## How??
 ## Configure github
 github.user:
 	git config --global user.email "dushoff@mcmaster.ca"
@@ -450,6 +450,11 @@ ggraph.cran: igraph.cran
 	sudo $(R) --vanilla && touch $@
 
 ######################################################################
+
+tokens: usethis.cran gitcreds.cran
+
+odin: odin2.rgit monty.rgit dust.rgit posterior.cran
+odin2.rgit monty.rgit dust.rgit: gituser=mrc-ide
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
