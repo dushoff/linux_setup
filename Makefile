@@ -509,6 +509,8 @@ knitr.rgit: gituser=yihui
 
 ## rmarkdown.rgit: gituser=rstudio
 
+learning: caret.cran rpart.cran
+
 ######################################################################
 
 ## There is apparently no elegant way to do this
