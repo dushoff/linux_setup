@@ -1,4 +1,3 @@
-## Please install all available updates for your release before upgrading.
 
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
 
@@ -68,12 +67,12 @@ blocal.ubuntu:
 Ignore += linux_setup
 
 ## RUN THIS IN A SEPARATE TERMINAL
-## Run this in a separate terminal
 startDropbox: nautilus-dropbox.apt
 	dropbox start -i
 ## ls ~/Dropbox
 
-## Get a new github token and put it in dump.txt
+## First get a new github token and put it in dump.txt
+## How??
 ## Configure github
 github.user:
 	git config --global user.email "dushoff@mcmaster.ca"
@@ -295,8 +294,10 @@ rubella: kdensity.cran ggpmisc.cran
 
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
+glasgow: RPostgres.cran
+
 papst: yaml.cran rmarkdown.cran
-mmed: DAAG.cran
+mmed: DAAG.cran epiDisplay.cran
 ## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
 
 ## McMasterPandemic.rgit.rmk:
@@ -431,6 +432,11 @@ gforce = FALSE
 
 Ignore += *.universe
 
+
+######################################################################
+
+universes: macpan2.canmod.universe iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
+
 macpan2: macpan2.canmod.universe
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 candid: ggraph.cran tidygraph.cran iidda
@@ -444,6 +450,11 @@ ggraph.cran: igraph.cran
 	sudo $(R) --vanilla && touch $@
 
 ######################################################################
+
+tokens: usethis.cran gitcreds.cran
+
+odin: odin2.rgit monty.rgit dust.rgit posterior.cran
+odin2.rgit monty.rgit dust.rgit: gituser=mrc-ide
 
 glmnetpostsurv.rgit: gituser=cygubicko
 satpred.rgit: gituser=cygubicko
@@ -497,6 +508,8 @@ broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit: gituser=bbolker
 knitr.rgit: gituser=yihui
 
 ## rmarkdown.rgit: gituser=rstudio
+
+learning: caret.cran rpart.cran
 
 ######################################################################
 
