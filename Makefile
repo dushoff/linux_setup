@@ -310,9 +310,9 @@ macpan2.rgit: gbranch=@abs_inoutflow
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
-wz: anytime.cran
+wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran
+zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran xfun.cran
 bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
