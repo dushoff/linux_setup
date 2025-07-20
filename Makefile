@@ -525,6 +525,7 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ######################################################################
 
+## .pip stuff not working at all, apparently!
 ## pandoc [[investigpandoc-citeproc.apt ate]]
 ## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
 pandoc: pandoc.apt python3-pip.apt
@@ -532,6 +533,8 @@ python3-pip.apt: python-is-python3.apt
 
 %.pip: python3-pip.apt
 	sudo pip install $*
+
+## python3-pypinyin.apt:
 
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
 
