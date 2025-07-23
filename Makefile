@@ -613,7 +613,12 @@ linux_signing_key.pub:
 	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
 	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
 
-## Generally prefer pkginstall (low-level) to debinstall (seems to get confused)
+######################################################################
+
+## deb strategy. Save to local cloud/
+## Try .debinstall (tries to be automatic), 
+## then .pkginstall (lower level),
+## then .pkginstall with manual dependencies
 
 ## cloud/chrome.deb.rmk: 
 chrome.pkginstall:
