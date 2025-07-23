@@ -525,7 +525,9 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ######################################################################
 
-## .pip stuff not working at all, apparently!
+## .pip stuff has been invalidated on some machines
+## Use python3-foo.apt instead there.
+## .pip stuff not working at all, apparently! At least on six At least on six
 ## pandoc [[investigpandoc-citeproc.apt ate]]
 ## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
 pandoc: pandoc.apt python3-pip.apt
@@ -617,6 +619,8 @@ linux_signing_key.pub:
 chrome.pkginstall:
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+## webex.debinstall: cloud/webex.deb
 
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 rstudio.debinstall: cloud/rstudio.deb
