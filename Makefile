@@ -302,7 +302,7 @@ mmed: DAAG.cran epiDisplay.cran
 
 ## McMasterPandemic.rgit.rmk:
 McMasterPandemic.rgit: gituser=mac-theobio
-McMasterPandemic.rgit: gbranch=@0271eddb1a
+## McMasterPandemic.rgit: gbranch=@0271eddb1a
 
 ## branch stuff only!!
 macpan2.rgit: gituser=canmod
