@@ -20,6 +20,7 @@ pandoc.deb:
 ## I'm using the below instead of the old apt approach to chrome
 ## signing key is kind of an orphan
 
+## del linux_signing_key.pub ##
 Ignore += linux_signing_key.pub
 linux_signing_key.pub:
 	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
