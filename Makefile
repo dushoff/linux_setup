@@ -276,13 +276,13 @@ currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
 glasgow: RPostgres.cran
 
-papst: yaml.cran rmarkdown.cran
+papst: yaml.cran rmarkdown.cran tidyquant.rsource
 mmed: DAAG.cran epiDisplay.cran
 ## remotes::install_github("mac-theobio/McMasterPandemic@0271eddb1a")
 
 ## McMasterPandemic.rgit.rmk:
 McMasterPandemic.rgit: gituser=mac-theobio
-McMasterPandemic.rgit: gbranch=@0271eddb1a
+## McMasterPandemic.rgit: gbranch=@0271eddb1a
 
 ## branch stuff only!!
 macpan2.rgit: gituser=canmod
@@ -293,7 +293,7 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 
 wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran xfun.cran
+zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran
 bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
@@ -417,7 +417,7 @@ Ignore += *.universe
 
 universes: macpan2.canmod.universe iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 
-macpan2: macpan2.canmod.universe
+macpan2: macpan2.canmod.universe.rmk
 iidda: iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
 candid: ggraph.cran tidygraph.cran iidda
 
@@ -505,6 +505,9 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ######################################################################
 
+## .pip stuff has been invalidated on some machines
+## Use python3-foo.apt instead there.
+## .pip stuff not working at all, apparently! At least on six At least on six
 ## pandoc [[investigpandoc-citeproc.apt ate]]
 ## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
 pandoc: pandoc.apt python3-pip.apt
@@ -512,6 +515,8 @@ python3-pip.apt: python-is-python3.apt
 
 %.pip: python3-pip.apt
 	sudo pip install $*
+
+## python3-pypinyin.apt:
 
 ## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
 
@@ -587,12 +592,19 @@ acroread.install: cloud/adobe.deb acroread_prereqs
 
 Sources += olddeb.mk
 
-## Generally prefer pkginstall (low-level) to debinstall (seems to get confused)
+######################################################################
+
+## deb strategy. Save to local cloud/
+## Try .debinstall (tries to be automatic), 
+## then .pkginstall (lower level),
+## then .pkginstall with manual dependencies
 
 ## cloud/chrome.deb.rmk: 
 chrome.pkginstall:
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+## webex.debinstall: cloud/webex.deb
 
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 rstudio.debinstall: cloud/rstudio.deb
