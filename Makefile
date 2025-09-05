@@ -201,26 +201,6 @@ amy: forestplot.rsource gt.rsource
 
 ######################################################################
 
-## quarto.ideb: cloud/quarto.deb
-%.ideb: $(wildcard ~/Downloads/*.deb)
-	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
-
-## Not tested
-Ignore += *.gdeb
-%.gdeb: $(wildcard ~/Downloads/*.deb)
-	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
-
-## sudo gdebi ~/Downloads/rst*.deb ##
-Ignore += *.deb
-rstudio.deb:
-	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
-
-## apt-get not tested
-pandoc.deb:
-	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
-
-######################################################################
-
 ## Trying to patch sources.list?
 
 Sources += $(wildcard *.sources)
@@ -599,14 +579,13 @@ acroread.install: cloud/adobe.deb acroread_prereqs
 
 ######################################################################
 
-## 2025 Apr 29 (Tue) Got rid of some google-chrome and linux_signing_key rules. 
-## I'm using the below instead of the old apt approach to chrome
-## signing key is kind of an orphan
+## What to do with debs? 2025 Sep 05 (Fri)
+## Under mirror paradigm, should put them in cloud/ with specific names.
+## They can be dependencies, and we can touch?
 
-Ignore += linux_signing_key.pub
-linux_signing_key.pub:
-	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
-	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
+## I have installed debs with: apt, apt-get, dpkg gdebi …
+
+Sources += olddeb.mk
 
 ## Generally prefer pkginstall (low-level) to debinstall (seems to get confused)
 
@@ -618,9 +597,6 @@ cloud/chrome.deb: | cloud
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 rstudio.debinstall: cloud/rstudio.deb
 
-## xdg-settings get default-web-browser 
-## xdg-settings set default-web-browser google-chrome.desktop ##
-
 Ignore += *.debinstall
 %.debinstall: cloud/%.deb | gdebi.apt
 	sudo gdebi $<
@@ -630,6 +606,9 @@ Ignore += *.pkginstall
 %.pkginstall: cloud/%.deb
 	sudo dpkg -i $<
 	$(touch)
+
+pandoc.install: cloud/pandoc.deb pandoc.pkginstall ;
+quarto.install: cloud/quarto.deb quarto.pkginstall ;
 
 ######################################################################
 
