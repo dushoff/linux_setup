@@ -599,8 +599,9 @@ Sources += olddeb.mk
 ## then .pkginstall (lower level),
 ## then .pkginstall with manual dependencies
 
+## Try to install before downloading; maybe you have a new cloud version already
+## chrome.pkginstall:
 ## cloud/chrome.deb.rmk: 
-chrome.pkginstall:
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
