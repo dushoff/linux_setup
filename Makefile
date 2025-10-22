@@ -297,6 +297,7 @@ zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran
 bolker: merTools.cran rbenchmark.cran scam.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
+rowan: LaplacesDemon.cran
 ## rim.cran
 
 easyPubMed.rgit: gituser=dami82
