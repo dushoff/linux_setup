@@ -514,7 +514,7 @@ pandoc: pandoc.apt python3-pip.apt
 python3-pip.apt: python-is-python3.apt 
 
 %.pip: python3-pip.apt
-	sudo pip install $*
+	pip install $*
 
 ## python3-pypinyin.apt:
 
@@ -525,6 +525,11 @@ python3-pip.apt: python-is-python3.apt
 
 %.python: python-%.apt ;
 %.python3: python3-%.apt ;
+
+## These are not managed by debian and I would need a virtual environment.
+## python3-pubmed_pdf_downloader.apt
+## python-pubmed_pdf_downloader.apt
+## python-doi2pdf.apt
 
 ######################################################################
 
