@@ -294,10 +294,9 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran
-bolker: merTools.cran rbenchmark.cran scam.cran
+bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
-rowan: LaplacesDemon.cran
 ## rim.cran
 
 easyPubMed.rgit: gituser=dami82
@@ -576,7 +575,6 @@ mirrors += cloud
 ## Manually link to ~/bin
 iqtree:
 	cd ~/bin && ln -s $(CURDIR)/cloud/*/bin/iqtree2 iqtree
-	
 
 acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
 
