@@ -125,7 +125,7 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 ## There are different bundles and a lot of mess
 ## sudo mv /usr/local/bin/bundle /usr/local/bin/bundle-3.0 ##
 
-utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
+utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt xmldiff.apt
 
 ## pdfroff in bash asks for groff to be installed, but it can't be
 ## groff itself is here (provided by what package?)
