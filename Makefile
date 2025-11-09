@@ -543,8 +543,8 @@ python3-pip.apt: python-is-python3.apt
 # Test elsewhere than six 2025 Jan 06 (Mon)
 # biopython.python3:
 
-%.python: python-%.apt ;
 %.python3: python3-%.apt ;
+%.python: python-%.apt ;
 
 ######################################################################
 
