@@ -125,7 +125,7 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 ## There are different bundles and a lot of mess
 ## sudo mv /usr/local/bin/bundle /usr/local/bin/bundle-3.0 ##
 
-utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt
+utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt xmldiff.apt
 
 ## pdfroff in bash asks for groff to be installed, but it can't be
 ## groff itself is here (provided by what package?)
@@ -198,26 +198,6 @@ rprog: rproject.add r-base-core.apt r-base-dev.apt
 shiny: shiny.cran rhandsontable.cran rsconnect.cran
 
 amy: forestplot.rsource gt.rsource
-
-######################################################################
-
-## quarto.ideb: cloud/quarto.deb
-%.ideb: $(wildcard ~/Downloads/*.deb)
-	ls -t $^ | head -1 | xargs -i sudo apt-get install -y '{}'
-
-## Not tested
-Ignore += *.gdeb
-%.gdeb: $(wildcard ~/Downloads/*.deb)
-	ls -t $^ | head -1 | xargs -i sudo gdebi '{}'
-
-## sudo gdebi ~/Downloads/rst*.deb ##
-Ignore += *.deb
-rstudio.deb:
-	ls -t ~/Downloads/rst*.deb | head -1 | xargs -i sudo apt install -y '{}'
-
-## apt-get not tested
-pandoc.deb:
-	ls -t ~/Downloads/pandoc*.deb | head -1 | xargs -i sudo apt-get install -y '{}'
 
 ######################################################################
 
@@ -527,14 +507,14 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ## .pip stuff has been invalidated on some machines
 ## Use python3-foo.apt instead there.
-## .pip stuff not working at all, apparently! At least on six At least on six
+## .pip stuff not working at all, apparently! At least on six
 ## pandoc [[investigpandoc-citeproc.apt ate]]
 ## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
 pandoc: pandoc.apt python3-pip.apt
 python3-pip.apt: python-is-python3.apt 
 
 %.pip: python3-pip.apt
-	sudo pip install $*
+	pip install $*
 
 ## python3-pypinyin.apt:
 
@@ -545,6 +525,11 @@ python3-pip.apt: python-is-python3.apt
 
 %.python3: python3-%.apt ;
 %.python: python-%.apt ;
+
+## These are not managed by debian and I would need a virtual environment.
+## python3-pubmed_pdf_downloader.apt
+## python-pubmed_pdf_downloader.apt
+## python-doi2pdf.apt
 
 ######################################################################
 
@@ -604,14 +589,13 @@ acroread.install: cloud/adobe.deb acroread_prereqs
 
 ######################################################################
 
-## 2025 Apr 29 (Tue) Got rid of some google-chrome and linux_signing_key rules. 
-## I'm using the below instead of the old apt approach to chrome
-## signing key is kind of an orphan
+## What to do with debs? 2025 Sep 05 (Fri)
+## Under mirror paradigm, should put them in cloud/ with specific names.
+## They can be dependencies, and we can touch?
 
-Ignore += linux_signing_key.pub
-linux_signing_key.pub:
-	wget -q -O $@ https://dl-ssl.google.com/linux/linux_signing_key.pub
-	sudo install -D -o root -g root -m 644 $@ /etc/apt/keyrings/$@
+## I have installed debs with: apt, apt-get, dpkg gdebi …
+
+Sources += olddeb.mk
 
 ######################################################################
 
@@ -620,8 +604,9 @@ linux_signing_key.pub:
 ## then .pkginstall (lower level),
 ## then .pkginstall with manual dependencies
 
+## Try to install before downloading; maybe you have a new cloud version already
+## chrome.pkginstall:
 ## cloud/chrome.deb.rmk: 
-chrome.pkginstall:
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
@@ -629,9 +614,6 @@ cloud/chrome.deb: | cloud
 
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 rstudio.debinstall: cloud/rstudio.deb
-
-## xdg-settings get default-web-browser 
-## xdg-settings set default-web-browser google-chrome.desktop ##
 
 Ignore += *.debinstall
 %.debinstall: cloud/%.deb | gdebi.apt
@@ -642,6 +624,9 @@ Ignore += *.pkginstall
 %.pkginstall: cloud/%.deb
 	sudo dpkg -i $<
 	$(touch)
+
+pandoc.install: cloud/pandoc.deb pandoc.pkginstall ;
+quarto.install: cloud/quarto.deb quarto.pkginstall ;
 
 ######################################################################
 
