@@ -331,6 +331,8 @@ ferguson: openxlsx2.cran raster.cran sf.rsource
 
 lcmix.rforge: nnls.cran R.methodsS3.cran
 
+1M: docx.python3
+
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
