@@ -578,7 +578,7 @@ acrordrdc.snap:
 ######################################################################
 
 Ignore += cloud
-## mirrors += cloud
+mirrors += cloud
 
 ## 2024 Nov 04 (Mon) with Rowan; expanded this
 ## cloud/iqtree.tgz:
