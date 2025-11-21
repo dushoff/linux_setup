@@ -503,6 +503,8 @@ ici3d-pkg.rgit: gforce=TRUE
 
 ## Tex
 
+texnew: texlive-full.apt
+
 texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt latex-cjk-all.apt texlive-font-utils.apt
 
 ######################################################################
@@ -626,6 +628,10 @@ Ignore += *.pkginstall
 %.pkginstall: cloud/%.deb
 	sudo dpkg -i $<
 	$(touch)
+
+## cloud/pandoc.deb.rmk:
+cloud/pandoc.deb: | cloud
+	wget -O $@ https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
 
 pandoc.install: cloud/pandoc.deb pandoc.pkginstall ;
 quarto.install: cloud/quarto.deb quarto.pkginstall ;
