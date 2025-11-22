@@ -609,7 +609,7 @@ Sources += olddeb.mk
 ## then .pkginstall (lower level),
 ## then .pkginstall with manual dependencies
 
-## Try to install before downloading; maybe you have a new cloud version already
+## Sync and install before downloading; maybe you have a new cloud version already
 ## chrome.pkginstall:
 ## cloud/chrome.deb.rmk: 
 cloud/chrome.deb: | cloud
