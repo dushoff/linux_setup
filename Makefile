@@ -520,7 +520,8 @@ python3-pip.apt: python-is-python3.apt
 
 ## python3-pypinyin.apt:
 
-## pandoc-xnos.pip: pandoc Does not work 2023 Jul 18 (Tue); come back to it I guess
+## pandoc-xnos.python3: Not available 2025 Nov 23 (Sun)
+## pandoc-crossref.python3: Not available 2025 Nov 23 (Sun)
 
 # Test elsewhere than six 2025 Jan 06 (Mon)
 # biopython.python3:
