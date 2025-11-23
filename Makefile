@@ -503,6 +503,8 @@ ici3d-pkg.rgit: gforce=TRUE
 
 ## Tex
 
+texnew: texlive-full.apt
+
 texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-humanities.apt texlive-latex-extra.apt texlive-science.apt texlive-publishers.apt texlive-extra-utils.apt texlive-xetex.apt biber.apt texinfo.apt latex-cjk-all.apt texlive-font-utils.apt
 
 ######################################################################
@@ -576,6 +578,7 @@ acrordrdc.snap:
 
 ######################################################################
 
+Ignore += cloud
 mirrors += cloud
 
 ## 2024 Nov 04 (Mon) with Rowan; expanded this
@@ -607,7 +610,7 @@ Sources += olddeb.mk
 ## then .pkginstall (lower level),
 ## then .pkginstall with manual dependencies
 
-## Try to install before downloading; maybe you have a new cloud version already
+## Sync and install before downloading; maybe you have a new cloud version already
 ## chrome.pkginstall:
 ## cloud/chrome.deb.rmk: 
 cloud/chrome.deb: | cloud
@@ -627,6 +630,10 @@ Ignore += *.pkginstall
 %.pkginstall: cloud/%.deb
 	sudo dpkg -i $<
 	$(touch)
+
+## cloud/pandoc.deb.rmk:
+cloud/pandoc.deb: | cloud
+	wget -O $@ https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
 
 pandoc.install: cloud/pandoc.deb pandoc.pkginstall ;
 quarto.install: cloud/quarto.deb quarto.pkginstall ;
