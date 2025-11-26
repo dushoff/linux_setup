@@ -239,7 +239,7 @@ R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
 RFORGE ?= http://R-Forge.R-project.org
 
-updateR: 
+updateR: Rlibcombine
 	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
 
 ## R set up; move everything to a single, world-writable site-library. leave library alone (for core stuff)
