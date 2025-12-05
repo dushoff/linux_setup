@@ -293,7 +293,7 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 
 wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran
+zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran RcppClock.cran
 bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
