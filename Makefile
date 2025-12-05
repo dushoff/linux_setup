@@ -239,13 +239,14 @@ R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
 RFORGE ?= http://R-Forge.R-project.org
 
-updateR: 
+updateR: Rlibcombine
 	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
 
 ## R set up; move everything to a single, world-writable site-library. leave library alone (for core stuff)
 ## the local/ version seems to keep coming back. I guess we keep merging it?
 Rlibcombine:
 	sudo chmod -R a+wrX /usr/lib/R/site-library
+	sudo mkdir -p  /usr/local/lib/R/site-library
 	- sudo chmod -R a+wrX /usr/local/lib/R/site-library
 	- mv /usr/local/lib/R/site-library/* /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
 	ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
@@ -293,7 +294,9 @@ agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here
 
 wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran
+roswell: RTMB.cran tinyplot.cran heap.cran
 zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran RcppClock.cran
+zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran
 bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
@@ -522,8 +525,9 @@ python3-pip.apt: python-is-python3.apt
 
 ## python3-pypinyin.apt:
 
+## pandoc-xnos.pip: Don't use here
 ## pandoc-xnos.python3: Not available 2025 Nov 23 (Sun)
-## pandoc-crossref.python3: Not available 2025 Nov 23 (Sun)
+## pandoc-crossref.python: Not available 2025 Nov 23 (Sun)
 
 # Test elsewhere than six 2025 Jan 06 (Mon)
 # biopython.python3:
