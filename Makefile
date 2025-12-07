@@ -293,10 +293,9 @@ macpan2.rgit: gbranch=@abs_inoutflow
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
 wz: anytime.cran gganimate.cran mapview.cran maptools.cran
-roswell: RTMB.cran tinyplot.cran
 roswell: RTMB.cran tinyplot.cran heap.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran RcppClock.cran
-zhao: DPQ.cran Rmpfr.cran rim.rgit rentrez.cran cbinom.cran xfun.cran
+zhao_resting: DPQ.cran Rmpfr.cran 
+zhao: rim.rgit rentrez.cran cbinom.cran xfun.cran RcppClock.cran
 bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
