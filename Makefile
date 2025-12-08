@@ -795,6 +795,8 @@ cloudmirror.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff
 ## Enter client secret from exons; may sometimes need to validate again with an obtained code??
 gdrive.rclone: conf = drive user jdushoff scope drive client_id 183900942480-u82gn1bsog959agdm43rm9p9d9em9lqq.apps.googleusercontent.com
 
+gphoto.rclone: conf = google\ photos user jdushoff scope drive client_id 183900942480-u82gn1bsog959agdm43rm9p9d9em9lqq.apps.googleusercontent.com
+
 ## sudo apt install rclone
 ## rclone config create dropbox dropbox user dushoff
 dropbox.rclone: |rclone.apt
