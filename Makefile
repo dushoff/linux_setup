@@ -95,6 +95,7 @@ gh.auth: gh.apt
 ## make use_ssh in the Bicko directory if that's still a thing
 
 # xdotool.apt:
+# wmctrl.apt:
 
 ## make main.load from linux_config
 
