@@ -95,6 +95,7 @@ gh.auth: gh.apt
 ## make use_ssh in the Bicko directory if that's still a thing
 
 # xdotool.apt:
+# wmctrl.apt:
 
 ## make main.load from linux_config
 
@@ -336,9 +337,11 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
-qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
+qmee: ratdat.cran
+qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
+
 qmee_students_26: psych.cran
+qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 toshi: lamW.cran
 chyun: gdata.cran RVAideMemoire.cran ggfortify.cran ordinal.cran
@@ -794,6 +797,8 @@ cloudmirror.rclone: conf = seafile url https://macdrive.mcmaster.ca user dushoff
 
 ## Enter client secret from exons; may sometimes need to validate again with an obtained code??
 gdrive.rclone: conf = drive user jdushoff scope drive client_id 183900942480-u82gn1bsog959agdm43rm9p9d9em9lqq.apps.googleusercontent.com
+
+gphoto.rclone: conf = google\ photos user jdushoff scope drive client_id 183900942480-u82gn1bsog959agdm43rm9p9d9em9lqq.apps.googleusercontent.com
 
 ## sudo apt install rclone
 ## rclone config create dropbox dropbox user dushoff
