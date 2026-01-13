@@ -338,8 +338,9 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: ratdat.cran
+qmee_students: lavaan.cran lmerTest.cran
 qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
-qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
+qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 toshi: lamW.cran
 chyun: gdata.cran RVAideMemoire.cran ggfortify.cran ordinal.cran
