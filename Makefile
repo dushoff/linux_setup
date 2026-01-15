@@ -871,9 +871,15 @@ python_auth: cloud/oauth2.py
 
 ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
+## SimpleWebSocketServer
 ## This was a dead end for SimpleWebSocketServer
-%.pipx: pipx.apt
+## 
+## csvkit.pipx: 
+%.pipx: pipx.start
 	pipx install $*
+
+pipx.start: | pipx.apt
+	pipx ensurepath
 
 Ignore += venv
 venv: python3-full.apt
