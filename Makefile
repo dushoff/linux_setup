@@ -869,17 +869,19 @@ python_auth: cloud/oauth2.py
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
+## SimpleWebSocketServer and neovim etc were a disaster, but pipx seems usually fine
 ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
-## SimpleWebSocketServer
-## This was a dead end for SimpleWebSocketServer
-## 
+## grip.pipx:
 ## csvkit.pipx: 
 %.pipx: pipx.start
 	pipx install $*
 
-pipx.start: | pipx.apt
-	pipx ensurepath
+pipx.start: | pipx.apt pipx.path
+
+Ignore += pipx.path
+pipx.path:
+	pipx ensurepath && $(touch)
 
 Ignore += venv
 venv: python3-full.apt
