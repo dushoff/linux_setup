@@ -337,7 +337,7 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: ratdat.cran dotwhisker.rsource
+qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 
 qmee_students_26: psych.cran
