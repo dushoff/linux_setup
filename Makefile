@@ -866,13 +866,23 @@ python_auth: cloud/oauth2.py
 
 ######################################################################
 
+## Rendering
+
+## These both need extra mathjax help somehow
+## grip.pipx: 
+## cmark-gfm.apt:
+
+## markdown-cli-renderer.npm:
+
+######################################################################
+
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
 ## SimpleWebSocketServer and neovim etc were a disaster, but pipx seems usually fine
 ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
-## grip.pipx:
+
 ## csvkit.pipx: 
 %.pipx: pipx.start
 	pipx install $*
