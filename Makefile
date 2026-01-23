@@ -339,7 +339,7 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 1M: docx.python3
 
-dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
+dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
@@ -870,20 +870,32 @@ python_auth: cloud/oauth2.py
 
 ######################################################################
 
+## Rendering
+
+## These both need extra mathjax help somehow
+## grip.pipx: 
+## cmark-gfm.apt:
+
+## markdown-cli-renderer.npm:
+
+######################################################################
+
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
+## SimpleWebSocketServer and neovim etc were a disaster, but pipx seems usually fine
 ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
-## SimpleWebSocketServer
-## This was a dead end for SimpleWebSocketServer
-## 
+
 ## csvkit.pipx: 
 %.pipx: pipx.start
 	pipx install $*
 
-pipx.start: | pipx.apt
-	pipx ensurepath
+pipx.start: | pipx.apt pipx.path
+
+Ignore += pipx.path
+pipx.path:
+	pipx ensurepath && $(touch)
 
 Ignore += venv
 venv: python3-full.apt
