@@ -335,7 +335,7 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 1M: docx.python3
 
-dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
+dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
