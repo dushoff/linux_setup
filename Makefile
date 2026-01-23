@@ -111,6 +111,10 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+pix: vlc.apt
+
+######################################################################
+
 ## six stuck advice 2024 May 22 (Wed)
 
 ## sudo apt clean && sudo apt update && sudo apt upgrade
