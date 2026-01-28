@@ -116,6 +116,19 @@ magick: imagemagick-6.q16.apt
 
 ## sudo dpkg --configure -a && sudo apt-get -f install
 
+dpconf:
+	sudo dpkg --configure -a
+
+firmCheck:
+	sudo fwupdmgr refresh
+	sudo fwupdmgr get-updates
+
+firmUp:
+	sudo fwupdmgr update
+
+firmStat:
+	fwupdmgr get-devices
+
 ######################################################################
 
 ## Extras 2022 Oct 26 (Wed)
