@@ -95,6 +95,7 @@ gh.auth: gh.apt
 ## make use_ssh in the Bicko directory if that's still a thing
 
 # xdotool.apt:
+# wmctrl.apt:
 
 ## make main.load from linux_config
 
@@ -107,6 +108,10 @@ textaid: coffeescript.npm text-aid-too.npm
 ## Change ghostscript none to (read|write) /etc/ImageMagick-6/policy.xml
 magick: imagemagick-6.q16.apt
 	sudo gvim /etc/Im*/policy.xml
+
+######################################################################
+
+pix: vlc.apt feh.apt
 
 ######################################################################
 
@@ -347,10 +352,13 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 1M: docx.python3
 
-dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran
+dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: mlmRev.cran DHARMa.rsource MCMCglmm.rsource coin.cran dotwhisker.rsource lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
-qmee_students: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
+qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
+qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
+
+qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran
+qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
 
 toshi: lamW.cran
 chyun: gdata.cran RVAideMemoire.cran ggfortify.cran ordinal.cran
@@ -875,14 +883,32 @@ python_auth: cloud/oauth2.py
 
 ######################################################################
 
+## Rendering
+
+## These both need extra mathjax help somehow
+## grip.pipx: 
+## cmark-gfm.apt:
+
+## markdown-cli-renderer.npm:
+
+######################################################################
+
 ## Try to move on from textaid (or whatever)
 ## python things need a virtual environment
 
+## SimpleWebSocketServer and neovim etc were a disaster, but pipx seems usually fine
 ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
-## This was a dead end for SimpleWebSocketServer
-%.pipx: pipx.apt
+
+## csvkit.pipx: 
+%.pipx: pipx.start
 	pipx install $*
+
+pipx.start: | pipx.apt pipx.path
+
+Ignore += pipx.path
+pipx.path:
+	pipx ensurepath && $(touch)
 
 Ignore += venv
 venv: python3-full.apt
