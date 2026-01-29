@@ -573,7 +573,7 @@ zathura.apt:
 
 ## Does okular allow us to get around some adobe reader problems?
 
-## okular.apt:
+readers: okular.apt xpdf.apt
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
