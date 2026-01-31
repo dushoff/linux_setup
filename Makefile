@@ -121,6 +121,19 @@ pix: vlc.apt feh.apt
 
 ## sudo dpkg --configure -a && sudo apt-get -f install
 
+dpconf:
+	sudo dpkg --configure -a
+
+firmCheck:
+	sudo fwupdmgr refresh
+	sudo fwupdmgr get-updates
+
+firmUp:
+	sudo fwupdmgr update
+
+firmStat:
+	fwupdmgr get-devices
+
 ######################################################################
 
 ## Extras 2022 Oct 26 (Wed)
@@ -573,7 +586,7 @@ zathura.apt:
 
 ## Does okular allow us to get around some adobe reader problems?
 
-## okular.apt:
+readers: okular.apt xpdf.apt
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
