@@ -121,6 +121,19 @@ pix: vlc.apt feh.apt
 
 ## sudo dpkg --configure -a && sudo apt-get -f install
 
+dpconf:
+	sudo dpkg --configure -a
+
+firmCheck:
+	sudo fwupdmgr refresh
+	sudo fwupdmgr get-updates
+
+firmUp:
+	sudo fwupdmgr update
+
+firmStat:
+	fwupdmgr get-devices
+
 ######################################################################
 
 ## Extras 2022 Oct 26 (Wed)
@@ -344,8 +357,24 @@ varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 
-qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran
+qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran gganimate.cran showtext.cran ggiraph.cran
 qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
+
+######################################################################
+
+## git lfs
+
+Ignore += *.bashinstall
+%.bashinstall: cloud/%
+	sudo bash < $<
+
+cloud/lfs.deb.sh:
+	curl -o $@ https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
+
+gitlfs: lfs.deb.sh.bashinstall git-lfs.apt
+	git lfs install
+
+######################################################################
 
 toshi: lamW.cran
 chyun: gdata.cran RVAideMemoire.cran ggfortify.cran ordinal.cran
@@ -573,7 +602,7 @@ zathura.apt:
 
 ## Does okular allow us to get around some adobe reader problems?
 
-## okular.apt:
+readers: okular.apt xpdf.apt
 
 ## Avoid? 2022 Oct 23 (Sun)
 ## Is this what made the fiVe glitchy?
