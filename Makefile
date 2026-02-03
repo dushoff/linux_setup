@@ -876,6 +876,11 @@ python_auth: cloud/oauth2.py
 ## grip.pipx: 
 ## cmark-gfm.apt:
 
+## Install locally with pyvenv
+## python-pptx
+
+## pptx2md.pipx:
+
 ## markdown-cli-renderer.npm:
 
 ######################################################################
