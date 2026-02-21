@@ -303,6 +303,8 @@ mmed: DAAG.cran epiDisplay.cran
 McMasterPandemic.rgit: gituser=mac-theobio
 ## McMasterPandemic.rgit: gbranch=@0271eddb1a
 
+lme4.rgit: gituser=lme4
+
 ## branch stuff only!!
 macpan2.rgit: gituser=canmod
 macpan2.rgit: gbranch=@abs_inoutflow
@@ -904,6 +906,11 @@ python_auth: cloud/oauth2.py
 ## These both need extra mathjax help somehow
 ## grip.pipx: 
 ## cmark-gfm.apt:
+
+## Install locally with pyvenv
+## python-pptx
+
+## pptx2md.pipx:
 
 ## markdown-cli-renderer.npm:
 
