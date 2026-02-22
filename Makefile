@@ -370,7 +370,9 @@ ggiraph.cran: gdtools.cran
 
 ######################################################################
 
-## git lfs
+## git lfs; make gitlfs on the machine and then do a thing
+## I have a recipe that goes under pullup, but I'm worried when it might not play well with other pullup stuff...
+## pullup: ; git lfs fetch
 
 Ignore += *.bashinstall
 %.bashinstall: cloud/%
