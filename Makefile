@@ -255,6 +255,7 @@ Ignore += wget-log
 
 R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
+RLIB ?= /usr/lib
 RFORGE ?= http://R-Forge.R-project.org
 
 updateR: Rlibcombine
@@ -262,12 +263,15 @@ updateR: Rlibcombine
 
 ## R set up; move everything to a single, world-writable site-library. leave library alone (for core stuff)
 ## the local/ version seems to keep coming back. I guess we keep merging it?
+## This rule is supposed to link things, and overwrite in a planned way?
+## 2026 Feb 21 (Sat)
 Rlibcombine:
 	sudo chmod -R a+wrX /usr/lib/R/site-library
 	sudo mkdir -p  /usr/local/lib/R/site-library
-	- sudo chmod -R a+wrX /usr/local/lib/R/site-library
-	- mv /usr/local/lib/R/site-library/* /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
-	ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
+	sudo chmod -R a+wrX /usr/local/lib/R/site-library
+	sudo rsync -a --ignore-existing /usr/local/lib/R/site-library/* /usr/lib/R/site-library
+	sudo rm -fr /usr/local/lib/R/site-library 
+	sudo ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
 	@echo Combined!
 
 ######################################################################
@@ -359,8 +363,10 @@ varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.rsource MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 
-qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran gganimate.cran showtext.cran ggiraph.cran fromhere.cran
+qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran gganimate.cran showtext.cran ggiraph.cran fromhere.cran ggiraph.cran
 qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
+
+ggiraph.cran: gdtools.cran
 
 ######################################################################
 
