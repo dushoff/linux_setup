@@ -255,6 +255,7 @@ Ignore += wget-log
 
 R ?= /usr/bin/R
 RREPO ?= http://lib.stat.cmu.edu/R/CRAN
+RLIB ?= /usr/lib
 RFORGE ?= http://R-Forge.R-project.org
 
 updateR: Rlibcombine
@@ -262,12 +263,15 @@ updateR: Rlibcombine
 
 ## R set up; move everything to a single, world-writable site-library. leave library alone (for core stuff)
 ## the local/ version seems to keep coming back. I guess we keep merging it?
+## This rule is supposed to link things, and overwrite in a planned way?
+## 2026 Feb 21 (Sat)
 Rlibcombine:
 	sudo chmod -R a+wrX /usr/lib/R/site-library
 	sudo mkdir -p  /usr/local/lib/R/site-library
-	- sudo chmod -R a+wrX /usr/local/lib/R/site-library
-	- mv /usr/local/lib/R/site-library/* /home/dushoff/R/x86_64-pc-linux-gnu-library/4.2/* /usr/lib/R/site-library
-	ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
+	sudo chmod -R a+wrX /usr/local/lib/R/site-library
+	sudo rsync -a --ignore-existing /usr/local/lib/R/site-library/* /usr/lib/R/site-library
+	sudo rm -fr /usr/local/lib/R/site-library 
+	sudo ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
 	@echo Combined!
 
 ######################################################################
@@ -302,6 +306,8 @@ mmed: DAAG.cran epiDisplay.cran
 ## McMasterPandemic.rgit.rmk:
 McMasterPandemic.rgit: gituser=mac-theobio
 ## McMasterPandemic.rgit: gbranch=@0271eddb1a
+
+lme4.rgit: gituser=lme4
 
 ## branch stuff only!!
 macpan2.rgit: gituser=canmod
@@ -357,8 +363,28 @@ varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: ratdat.cran dotwhisker.rsource see.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.cran MCMCglmm.rsource.rmk coin.cran lmPerm.cran equatiomatic.rsource ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 
-qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran
+qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran gganimate.cran showtext.cran ggiraph.cran fromhere.cran ggiraph.cran
 qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
+
+ggiraph.cran: gdtools.cran
+
+######################################################################
+
+## git lfs; make gitlfs on the machine and then do a thing
+## I have a recipe that goes under pullup, but I'm worried when it might not play well with other pullup stuff...
+## pullup: ; git lfs fetch
+
+Ignore += *.bashinstall
+%.bashinstall: cloud/%
+	sudo bash < $<
+
+cloud/lfs.deb.sh:
+	curl -o $@ https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
+
+gitlfs: lfs.deb.sh.bashinstall git-lfs.apt
+	git lfs install
+
+######################################################################
 
 toshi: lamW.cran
 chyun: gdata.cran RVAideMemoire.cran ggfortify.cran ordinal.cran
@@ -888,6 +914,11 @@ python_auth: cloud/oauth2.py
 ## These both need extra mathjax help somehow
 ## grip.pipx: 
 ## cmark-gfm.apt:
+
+## Install locally with pyvenv
+## python-pptx
+
+## pptx2md.pipx:
 
 ## markdown-cli-renderer.npm:
 
