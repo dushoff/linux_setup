@@ -309,6 +309,8 @@ McMasterPandemic.rgit: gituser=mac-theobio
 
 lme4.rgit: gituser=lme4
 
+poser.rgit: gituser=RowanDurrant
+
 ## branch stuff only!!
 macpan2.rgit: gituser=canmod
 macpan2.rgit: gbranch=@abs_inoutflow
