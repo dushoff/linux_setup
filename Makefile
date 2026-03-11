@@ -362,7 +362,7 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource skimr.cran
+qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource gllvm.cran skimr.cran
 qmee24: mlmRev.cran DHARMa.cran MCMCglmm.rsource.rmk coin.cran lmPerm.cran ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 
 statphil: HDInterval.cran
