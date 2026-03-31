@@ -601,6 +601,9 @@ python3-pip.apt: python-is-python3.apt
 ## With screen capture
 ## kazam under random works OK, but only when display magnification is set to 1
 
+## Pulling from Avenue (good luck!)
+## yt-dlp.apt:
+
 ######################################################################
 
 ## pdf PDF viewer
