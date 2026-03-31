@@ -362,7 +362,7 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource gllvm.cran skimr.cran
+qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource gllvm.cran skimr.cran ordinalsim.rgit sure.cran
 qmee24: mlmRev.cran DHARMa.cran MCMCglmm.rsource.rmk coin.cran lmPerm.cran ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
 
 statphil: HDInterval.cran
@@ -538,7 +538,7 @@ ggplotFL.rsource: REPO = http://flr-project.org/R
 ## Work on modularizing
 
 # Bolker packages
-broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit: gituser=bbolker
+broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit ordinalsim.rgit: gituser=bbolker
 
 knitr.rgit: gituser=yihui
 
