@@ -673,10 +673,10 @@ Sources += olddeb.mk
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-## webex.debinstall: cloud/webex.deb
-
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 rstudio.debinstall: cloud/rstudio.deb
+
+## webex.debinstall: cloud/webex.deb
 
 Ignore += *.debinstall
 %.debinstall: cloud/%.deb | gdebi.apt
