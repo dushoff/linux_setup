@@ -23,7 +23,7 @@ Ignore = target.mk
 # -include makestuff/perl.def
 
 vim_session:
-	bash -cl "vmt"
+	bash -ic "vmt"
 
 ######################################################################
 
@@ -701,6 +701,12 @@ makefile2graph:
 	cd ~/screens/code/$@ && $(MAKE)
 	sudo $(CP) ~/screens/code/$@/$@ /usr/bin
 	sudo cp -r ~/screens/code/$@/make2graph /usr/bin
+
+######################################################################
+
+## New compositor something 2026 Apr 05 (Sun)
+
+## sway.apt:
 
 ######################################################################
 
