@@ -309,6 +309,8 @@ McMasterPandemic.rgit: gituser=mac-theobio
 
 lme4.rgit: gituser=lme4
 
+poser.rgit: gituser=RowanDurrant
+
 ## branch stuff only!!
 macpan2.rgit: gituser=canmod
 macpan2.rgit: gbranch=@abs_inoutflow
@@ -360,8 +362,10 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
-qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource skimr.cran
+qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource gllvm.cran skimr.cran ordinalsim.rgit sure.cran
 qmee24: mlmRev.cran DHARMa.cran MCMCglmm.rsource.rmk coin.cran lmPerm.cran ape.cran sjPlot.cran gtools.cran ggbeeswarm.cran blme.cran tidybayes.cran ggrastr.cran ggally.cran
+
+statphil: HDInterval.cran
 
 qmee_students: lavaan.cran lmerTest.cran psych.cran respR.cran irr.cran gganimate.cran showtext.cran ggiraph.cran fromhere.cran ggiraph.cran
 qmee_students_old: unmarked.cran randomForest.cran pacman.cran geomorph.cran EnvStats.cran lsr.cran coefplot.cran qqplotr.cran
@@ -534,7 +538,7 @@ ggplotFL.rsource: REPO = http://flr-project.org/R
 ## Work on modularizing
 
 # Bolker packages
-broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit: gituser=bbolker
+broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit ordinalsim.rgit: gituser=bbolker
 
 knitr.rgit: gituser=yihui
 
@@ -596,6 +600,9 @@ python3-pip.apt: python-is-python3.apt
 
 ## With screen capture
 ## kazam under random works OK, but only when display magnification is set to 1
+
+## Pulling from Avenue (good luck!)
+## yt-dlp.apt:
 
 ######################################################################
 
@@ -666,10 +673,10 @@ Sources += olddeb.mk
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-## webex.debinstall: cloud/webex.deb
-
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
 rstudio.debinstall: cloud/rstudio.deb
+
+## webex.debinstall: cloud/webex.deb
 
 Ignore += *.debinstall
 %.debinstall: cloud/%.deb | gdebi.apt
