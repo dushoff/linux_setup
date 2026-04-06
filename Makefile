@@ -713,7 +713,13 @@ makefile2graph:
 
 ## New compositor something 2026 Apr 05 (Sun)
 
-## sway.apt:
+wayland: sway.apt wl-clipboard.apt clipman.apt wofi.apt
+
+mimes:
+	xdg-mime default imv.desktop image/jpeg image/png image/webp image/gif
+	xdg-mime default org.pwmt.zathura.desktop application/pdf
+	xdg-mime default vim.desktop text/plain
+	xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
 
 ######################################################################
 
