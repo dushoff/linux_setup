@@ -723,6 +723,13 @@ mimes:
 
 ######################################################################
 
+## power problem
+
+powerProb: nvme-cli.apt
+
+
+######################################################################
+
 ## Fonts
 
 ## Interactive: sudo apt install msttcorefonts
