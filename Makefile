@@ -111,6 +111,26 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+## Voice stuff
+
+whisper.cpp: | cmake.apt
+	git clone https://github.com/ggerganov/whisper.cpp
+
+## whisper.cpp.small.en.model: 
+whisper.cpp.%.model: | whisper.cpp
+	cd whisper.cpp && $(MAKE)
+	cd whisper.cpp && bash ./models/download-ggml-model.sh $* 
+
+# install audio tools
+audio: sox.apt 
+
+## ./whisper.cpp/whisper-cli -m ~/whisper.cpp/models/ggml-small.en.bin
+
+dictate: | sox.apt
+	bash < dictate.sh
+
+######################################################################
+
 pix: vlc.apt feh.apt
 
 ######################################################################
