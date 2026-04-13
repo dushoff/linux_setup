@@ -116,6 +116,7 @@ magick: imagemagick-6.q16.apt
 whisper.cpp: | cmake.apt
 	git clone https://github.com/ggerganov/whisper.cpp
 
+Ignore += whisper.cpp/
 ## whisper.cpp.small.en.model: 
 whisper.cpp.%.model: | whisper.cpp
 	cd whisper.cpp && $(MAKE)
@@ -125,9 +126,6 @@ whisper.cpp.%.model: | whisper.cpp
 audio: sox.apt 
 
 ## ./whisper.cpp/whisper-cli -m ~/whisper.cpp/models/ggml-small.en.bin
-
-dictate: | sox.apt
-	bash < dictate.sh
 
 ######################################################################
 
