@@ -733,12 +733,14 @@ makefile2graph:
 
 wayland: sway.apt wl-clipboard.apt clipman.apt wofi.apt zathura.apt
 
+i3: i3.apt
+
 mimes:
 	xdg-mime default imv.desktop image/jpeg image/png image/webp image/gif
 	xdg-mime default vim.desktop text/plain
 	xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
-	xdg-mime default org.gnome.Evince.desktop application/pdf
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
+	xdg-mime default org.gnome.Evince.desktop application/pdf
 
 ######################################################################
 
