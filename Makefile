@@ -733,7 +733,7 @@ makefile2graph:
 
 wayland: sway.apt wl-clipboard.apt clipman.apt wofi.apt zathura.apt
 
-i3: i3.apt rofi.apt
+i3: i3.apt rofi.apt i3.apt alacritty.apt
 
 mimes:
 	xdg-mime default imv.desktop image/jpeg image/png image/webp image/gif
