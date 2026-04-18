@@ -732,6 +732,7 @@ makefile2graph:
 ## New compositor something 2026 Apr 05 (Sun)
 
 i3: i3.apt rofi.apt i3.apt
+i3sound: pavucontrol.apt
 
 i3extra: alacritty.apt zathura.apt
 
