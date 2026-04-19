@@ -734,7 +734,7 @@ makefile2graph:
 i3: i3.apt rofi.apt i3.apt
 i3sound: pavucontrol.apt
 
-i3extra: alacritty.apt zathura.apt
+i3extra: alacritty.apt zathura.apt tmux.apt
 
 mimes:
 	xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/webp image/gif
