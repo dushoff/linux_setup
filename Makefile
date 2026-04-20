@@ -731,7 +731,7 @@ makefile2graph:
 
 ## New compositor something 2026 Apr 05 (Sun)
 
-i3: i3.apt rofi.apt i3.apt
+i3: i3.apt rofi.apt i3.apt thunar.apt
 
 i3extra: alacritty.apt zathura.apt
 
@@ -741,6 +741,7 @@ mimes:
 	xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 	xdg-mime default org.gnome.Evince.desktop application/pdf
+	xdg-mime default thunar.desktop inode/directory
 
 ######################################################################
 
