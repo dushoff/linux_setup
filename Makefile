@@ -733,15 +733,15 @@ makefile2graph:
 
 i3: i3.apt rofi.apt i3.apt thunar.apt
 i3sound: pavucontrol.apt
-i3extra: alacritty.apt zathura.apt tmux.apt
+i3extra: alacritty.apt zathura.apt tmux.apt zathura-pdf-mupdf.apt
 
 mimes:
 	xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/webp image/gif
 	xdg-mime default vim.desktop text/plain
 	xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
 	xdg-mime default thunar.desktop inode/directory
-	xdg-mime default org.gnome.Evince.desktop application/pdf
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
+	xdg-mime default org.gnome.Evince.desktop application/pdf
 
 ######################################################################
 
