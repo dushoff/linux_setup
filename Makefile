@@ -740,8 +740,8 @@ mimes:
 	xdg-mime default vim.desktop text/plain
 	xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
 	xdg-mime default thunar.desktop inode/directory
-	xdg-mime default org.pwmt.zathura.desktop application/pdf
 	xdg-mime default org.gnome.Evince.desktop application/pdf
+	xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 ######################################################################
 
