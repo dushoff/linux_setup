@@ -343,6 +343,8 @@ zhao: rim.rgit rentrez.cran cbinom.cran xfun.cran RcppClock.cran
 bolker: merTools.cran rbenchmark.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
+yuyang: gsl.cran tidyverse.cran ggrastr.cran biscale.cran cowplot.cran future.cran progressr.cran furrr.cran
+
 ## rim.cran
 
 easyPubMed.rgit: gituser=dami82
