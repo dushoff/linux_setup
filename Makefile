@@ -123,7 +123,7 @@ whisper.cpp.%.model: | whisper.cpp
 	cd whisper.cpp && bash ./models/download-ggml-model.sh $* 
 
 # install audio tools
-audio: sox.apt 
+audio: sox.apt pulseaudio-utils.apt
 
 ## ./whisper.cpp/whisper-cli -m ~/whisper.cpp/models/ggml-small.en.bin
 
