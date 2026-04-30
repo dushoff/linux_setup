@@ -737,8 +737,8 @@ makefile2graph:
 i3: i3.apt rofi.apt i3.apt thunar.apt
 i3sound: pavucontrol.apt brightnessctl.apt
 i3extra: alacritty.apt zathura.apt tmux.apt heif-gdk-pixbuf.apt avahi-utils.apt
-brightnessctl.apt: video.group
 
+brightnessctl.apt: video.group
 video.group:
 	sudo usermod -aG video ${USER}
 
