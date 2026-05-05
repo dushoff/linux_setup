@@ -111,7 +111,11 @@ magick: imagemagick-6.q16.apt
 
 ######################################################################
 
+# install audio tools
+audio: sox.apt pulseaudio-utils.apt
+
 ## Voice stuff
+## whisper.cpp.small.en.model: 
 
 whisper.cpp: | cmake.apt
 	git clone https://github.com/ggerganov/whisper.cpp
@@ -121,9 +125,6 @@ Ignore += whisper.cpp/
 whisper.cpp.%.model: | whisper.cpp
 	cd whisper.cpp && $(MAKE)
 	cd whisper.cpp && bash ./models/download-ggml-model.sh $* 
-
-# install audio tools
-audio: sox.apt pulseaudio-utils.apt
 
 ## ./whisper.cpp/whisper-cli -m ~/whisper.cpp/models/ggml-small.en.bin
 
@@ -734,8 +735,12 @@ makefile2graph:
 ## New compositor something 2026 Apr 05 (Sun)
 
 i3: i3.apt rofi.apt i3.apt thunar.apt
-i3sound: pavucontrol.apt
+i3sound: pavucontrol.apt brightnessctl.apt
 i3extra: alacritty.apt zathura.apt tmux.apt heif-gdk-pixbuf.apt avahi-utils.apt
+
+brightnessctl.apt: video.group
+video.group:
+	sudo usermod -aG video ${USER}
 
 mimes:
 	xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/webp image/gif image/heif image/heic
