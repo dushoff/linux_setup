@@ -1,4 +1,3 @@
-
 ## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
 
 ## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
@@ -732,7 +731,7 @@ makefile2graph:
 
 ######################################################################
 
-## New compositor something 2026 Apr 05 (Sun)
+## i3
 
 i3: i3.apt rofi.apt i3.apt thunar.apt
 i3sound: pavucontrol.apt brightnessctl.apt
@@ -741,6 +740,10 @@ i3extra: alacritty.apt zathura.apt tmux.apt heif-gdk-pixbuf.apt avahi-utils.apt
 brightnessctl.apt: video.group
 video.group:
 	sudo usermod -aG video ${USER}
+
+~/.config/alacritty/themes:
+	mkdir -p ~/.config/alacritty/
+	git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
 mimes:
 	xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/webp image/gif image/heif image/heic
