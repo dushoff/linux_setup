@@ -380,6 +380,8 @@ lcmix.rforge: nnls.cran R.methodsS3.cran
 
 1M: docx.python3
 
+azadeh: fuzzyjoin.cran
+
 dataviz: huxtable.cran GGally.cran geomtextpath.cran gridBase.cran geogrid.cran
 varpred: brms.cran rstanarm.cran patchwork.cran
 qmee: tinyplot.cran ratdat.cran dotwhisker.rsource see.cran equatiomatic.rsource gllvm.cran skimr.cran ordinalsim.rgit sure.cran
