@@ -340,7 +340,9 @@ wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran heap.cran
 zhao_resting: DPQ.cran Rmpfr.cran 
 zhao: rim.rgit rentrez.cran cbinom.cran xfun.cran RcppClock.cran
-bolker: merTools.cran rbenchmark.cran optparse.cran sf.cran tmap.rsource.rmk
+bolker: merTools.cran rbenchmark.cran optparse.cran sf.cran tmap.cran
+plague: tinytest.cran tinysnapshot.cran odin.cran
+odin.cran: dde.cran
 hutch: easyPubMed.rgit
 haoyu: mvabund.cran
 yuyang: gsl.cran tidyverse.cran ggrastr.cran biscale.cran cowplot.cran future.cran progressr.cran furrr.cran
