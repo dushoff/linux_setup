@@ -241,6 +241,7 @@ amy: forestplot.rsource gt.rsource
 ## Trying to patch sources.list?
 
 Sources += $(wildcard *.sources)
+Sources += $(wildcard *.md)
 
 ## found.sources is what I found on siX when it was working strangely
 ## mantic.sources is copied from https://www.veeble.org/kb/sources-list-file-urls-ubuntu/
