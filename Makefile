@@ -116,6 +116,7 @@ audio: sox.apt pulseaudio-utils.apt
 ## Voice stuff
 ## whisper.cpp.small.en.model: 
 
+## whisper.md:
 whisper.cpp: | cmake.apt
 	git clone https://github.com/ggerganov/whisper.cpp
 
