@@ -747,17 +747,22 @@ brightnessctl.apt: video.group
 video.group:
 	sudo usermod -aG video ${USER}
 
+## Not necessarily on every computer, see the config directory
 ~/.config/alacritty/themes:
 	mkdir -p ~/.config/alacritty/
 	git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
 mimes:
-	xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/webp image/gif image/heif image/heic
+	xdg-mime default feh.desktop image/jpeg image/png image/webp image/gif image/heif image/heic
+	## xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/webp image/gif image/heif image/heic
 	xdg-mime default vim.desktop text/plain
 	xdg-mime default firefox.desktop x-scheme-handler/http x-scheme-handler/https text/html
 	xdg-mime default thunar.desktop inode/directory
 	xdg-mime default org.pwmt.zathura.desktop application/pdf
 	xdg-mime default org.gnome.Evince.desktop application/pdf
+
+## screen management
+autorandr.apt:
 
 ######################################################################
 
