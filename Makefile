@@ -762,7 +762,7 @@ mimes:
 	xdg-mime default org.gnome.Evince.desktop application/pdf
 
 ## screen management
-autorandr.apt:
+autoxrandr.apt:
 
 ######################################################################
 
