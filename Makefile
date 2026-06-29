@@ -661,8 +661,9 @@ acrordrdc.snap:
 
 ######################################################################
 
+## de-mirrored; it's slow when travelling and nothing that really needs to be kept
 Ignore += cloud
-mirrors += cloud
+## mirrors += cloud
 
 ## 2024 Nov 04 (Mon) with Rowan; expanded this
 ## cloud/iqtree.tgz:
