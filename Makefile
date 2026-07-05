@@ -737,9 +737,11 @@ makefile2graph:
 
 ######################################################################
 
+## dpkg -l | grep xss-lock ##
+
 ## i3
 
-i3: i3.apt rofi.apt i3.apt thunar.apt
+i3: i3.apt rofi.apt thunar.apt
 i3sound: pavucontrol.apt brightnessctl.apt
 i3extra: alacritty.apt zathura.apt tmux.apt heif-gdk-pixbuf.apt avahi-utils.apt
 
