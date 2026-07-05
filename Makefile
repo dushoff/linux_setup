@@ -607,9 +607,6 @@ python3-pip.apt: python-is-python3.apt
 # Test elsewhere than six 2025 Jan 06 (Mon)
 # biopython.python3:
 
-%.python3: python3-%.apt ;
-%.python: python-%.apt ;
-
 ## These are not managed by debian and I would need a virtual environment.
 ## python3-pubmed_pdf_downloader.apt
 ## python-pubmed_pdf_downloader.apt
@@ -748,6 +745,8 @@ i3extra: alacritty.apt zathura.apt tmux.apt heif-gdk-pixbuf.apt avahi-utils.apt
 brightnessctl.apt: video.group
 video.group:
 	sudo usermod -aG video ${USER}
+
+i3ipc.python3:
 
 ## Not necessarily on every computer, see the config directory
 ~/.config/alacritty/themes:
@@ -995,18 +994,25 @@ python_auth: cloud/oauth2.py
 
 ######################################################################
 
-## Try to move on from textaid (or whatever)
-## python things need a virtual environment
+## Install package things with .python3:
+## Non-package things maybe try pipx?
 
 ## SimpleWebSocketServer and neovim etc were a disaster, but pipx seems usually fine
 ghost: SimpleWebSocketServer.vpip neovim.vpip vim-plug python-slugify.vpip neovim.apt
 
+######################################################################
+
+## Current python stuff?
+
+%.python3: python3-%.apt ;
+%.python: python-%.apt ;
 
 ## csvkit.pipx: 
 %.pipx: pipx.start
 	pipx install $*
 
 pipx.start: | pipx.apt pipx.path
+	$(touch)
 
 Ignore += pipx.path
 pipx.path:
@@ -1018,6 +1024,8 @@ venv: python3-full.apt
 
 %.vpip: venv
 	venv/bin/pip install $*
+
+######################################################################
 
 ## I might have needed to fiddle my .profile for the second one
 vim-plug: curl.apt
