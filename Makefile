@@ -713,7 +713,7 @@ Ignore += *.pkginstall
 
 ## cloud/pandoc.deb.rmk:
 cloud/pandoc.deb: | cloud
-	wget -O $@ https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
+	wget -O $@ https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-1-amd64.deb
 
 pandoc.install: cloud/pandoc.deb pandoc.pkginstall ;
 quarto.install: cloud/quarto.deb quarto.pkginstall ;
