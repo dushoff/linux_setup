@@ -658,6 +658,7 @@ acrordrdc.snap:
 ######################################################################
 
 ## de-mirrored; it's slow when travelling and nothing that really needs to be kept
+## If you need cloud back, change the current cloud to cache or something
 Ignore += cloud
 ## mirrors += cloud
 
@@ -691,8 +692,8 @@ Sources += olddeb.mk
 ## then .pkginstall with manual dependencies
 
 ## Sync and install before downloading; maybe you have a new cloud version already; not obvious this is actually better, though, just downloading from elsewhere 🙂
-## chrome.pkginstall:
 ## cloud/chrome.deb.rmk: 
+## chrome.pkginstall:
 cloud/chrome.deb: | cloud
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
