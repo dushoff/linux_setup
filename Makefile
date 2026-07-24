@@ -768,6 +768,20 @@ autoxrandr.apt:
 
 ######################################################################
 
+## feh.ldesk: feh.desktop
+
+deskapps = ~/.local/share/applications/
+$(deskapps):
+	$(mkdir)
+
+Sources += $(wildcard *.desktop)
+Ignore += *.ldesk
+$(deskapps)/%.desktop: %.desktop | $(deskapps)
+	$(copy)
+
+%.ldesk: $(deskapps)/%.desktop
+	update-desktop-database $(deskapps)
+
 ## power problem
 
 powerProb: nvme-cli.apt

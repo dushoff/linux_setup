@@ -1,0 +1,14 @@
+# ~/.local/share/applications/feh.desktop
+## Revision controlled in linux_setup repo
+[Desktop Entry]
+Type=Application
+Name=feh
+GenericName=Image Viewer
+Comment=Fast and light image viewer
+Exec=feh -F --auto-zoom --start-at %U
+TryExec=feh
+Icon=feh
+Terminal=false
+Categories=Graphics;Viewer;Photography;
+MimeType=image/png;image/jpeg;image/gif;image/bmp;image/tiff;image/webp;image/svg+xml;inode/directory;
+Keywords=image;photo;viewer;picture;
