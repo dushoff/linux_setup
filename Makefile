@@ -3,11 +3,8 @@
 ## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
 ## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
-## lsb_release -cs ##
-## Could make this semi-automatic instead by using and reading a file
 ubu = `lsb_release -cs`
-## long-term
-ubul = noble
+ubuLong = noble
 
 current: upgrade
 
@@ -887,7 +884,7 @@ chromecast: chrome-gnome-shell.apt nodejs.apt npm.apt ffmpeg.apt
 ## This tee command seems bizarre JD 2023 Sep 03 (Sun)
 ## sudo rm /etc/apt/sources.list.d/seafile.list /usr/share/keyrings/seafile-keyring.asc ##
 /etc/apt/sources.list.d/seafile.list: /usr/share/keyrings/seafile-keyring.asc
-	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubul)/ stable main" | sudo tee $@ > /dev/null
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(ubuLong)/ stable main" | sudo tee $@ > /dev/null
 	$(MAKE) update || (sudo $(RM) $@ && false)
 
 Ignore += wget-log
