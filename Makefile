@@ -768,14 +768,15 @@ autoxrandr.apt:
 
 ######################################################################
 
-## feh.ldesk: feh.desktop
+## feh.ldesk: feh.desktop ~/.local/share/applications/feh.desktop
 
-deskapps = ~/.local/share/applications/
+deskapps = ~/.local/share/applications
 $(deskapps):
 	$(mkdir)
 
 Sources += $(wildcard *.desktop)
 Ignore += *.ldesk
+.PRECIOUS: $(deskapps)/%.desktop
 $(deskapps)/%.desktop: %.desktop | $(deskapps)
 	$(copy)
 
