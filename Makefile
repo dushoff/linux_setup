@@ -199,6 +199,9 @@ upgrade: update
 	sudo apt-get -y upgrade
 	sudo apt-get autoremove
 
+upgrade_fix:
+	sudo apt install --fix-missing
+
 ## apt-get untested
 dist-upgrade: upgrade
 	sudo apt-get dist-upgrade
