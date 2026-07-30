@@ -60,8 +60,6 @@ tcsh: tcsh.apt
 blocal.ubuntu:
 	cd ~ && ln -fs .blocal.ubuntu ~/.blocal
 
-Ignore += linux_setup
-
 ## RUN THIS IN A SEPARATE TERMINAL
 startDropbox: nautilus-dropbox.apt
 	dropbox start -i
@@ -787,6 +785,15 @@ $(deskapps)/%.desktop: %.desktop | $(deskapps)
 
 powerProb: nvme-cli.apt
 
+######################################################################
+
+## Claude code
+
+
+## claudeInstall.sh.bashinstall:
+
+## del cloud/claudeInstall.sh ##
+curl -fsSL https://claude.ai/install.sh | bash
 
 ######################################################################
 
