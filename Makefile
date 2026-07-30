@@ -793,7 +793,7 @@ powerProb: nvme-cli.apt
 ## claudeInstall.sh.bashinstall:
 
 ## del cloud/claudeInstall.sh ##
-curl -fsSL https://claude.ai/install.sh | bash
+## curl -fsSL https://claude.ai/install.sh | bash
 
 ######################################################################
 
