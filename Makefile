@@ -490,7 +490,6 @@ gforce = FALSE
 
 Ignore += *.universe
 
-
 ######################################################################
 
 universes: macpan2.canmod.universe iidda.canmod.universe iidda.api.canmod.universe iidda.analysis.canmod.universe
@@ -788,7 +787,6 @@ powerProb: nvme-cli.apt
 ######################################################################
 
 ## Claude code
-
 
 ## claudeInstall.sh.bashinstall:
 
