@@ -792,9 +792,6 @@ powerProb: nvme-cli.apt
 
 ## del cloud/claudeInstall.sh ##
 ## curl -fsSL https://claude.ai/install.sh | bash ##
-  Version: 2.1.226
-  Location: ~/.local/bin/claude
-  Next: Run claude --help to get started
 
 ######################################################################
 
