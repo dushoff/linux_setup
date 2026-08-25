@@ -310,7 +310,7 @@ dependency_updates: glmmTMB.rsource.rmk
 
 bio1: ape.cran
 
-rubella: kdensity.cran ggpmisc.cran
+rubella: kdensity.cran ggpmisc.cran flextable.cran
 
 currentPack: EpiEstim.cran ordinal.cran furrr.cran bayesplot.cran
 
