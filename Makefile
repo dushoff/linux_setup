@@ -402,10 +402,10 @@ ggiraph.cran: gdtools.cran
 ## pullup: ; git lfs fetch
 
 Ignore += *.bashinstall
-%.bashinstall: cloud/%
+%.bashinstall: cache/%
 	sudo bash < $<
 
-cloud/lfs.deb.sh:
+cache/lfs.deb.sh:
 	curl -o $@ https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
 
 gitlfs: lfs.deb.sh.bashinstall git-lfs.apt
@@ -654,27 +654,28 @@ acrordrdc.snap:
 
 ######################################################################
 
+## Changing cloud to cache 2026 Aug 27 (Thu)
 ## de-mirrored; it's slow when travelling and nothing that really needs to be kept
 ## If you need cloud back, change the current cloud to cache or something
-Ignore += cloud
+Ignore += cache
 ## mirrors += cloud
 
 ## 2024 Nov 04 (Mon) with Rowan; expanded this
-## cloud/iqtree.tgz:
+## cache/iqtree.tgz:
 ## Manually link to ~/bin
 iqtree:
-	cd ~/bin && ln -s $(CURDIR)/cloud/*/bin/iqtree2 iqtree
+	cd ~/bin && ln -s $(CURDIR)/cache/*/bin/iqtree2 iqtree
 
 acroread_prereqs: libxml2.i386 libcanberra-gtk-module.i386 gtk2-engines-murrine.i386 libatk-adaptor.i386 libgdk-pixbuf-xlib-2.0-0.i386 
 
 Ignore += acroread.install
-acroread.install: cloud/adobe.deb acroread_prereqs
+acroread.install: cache/adobe.deb acroread_prereqs
 	sudo dpkg -i $< > $@
 
 ######################################################################
 
 ## What to do with debs? 2025 Sep 05 (Fri)
-## Under mirror paradigm, should put them in cloud/ with specific names.
+## Under mirror paradigm, should put them in cache/ with specific names.
 ## They can be dependencies, and we can touch?
 
 ## I have installed debs with: apt, apt-get, dpkg gdebi …
@@ -683,38 +684,40 @@ Sources += olddeb.mk
 
 ######################################################################
 
-## deb strategy. Save to local cloud/
+## deb strategy. Save to local cache/
 ## Try .debinstall (tries to be automatic), 
 ## then .pkginstall (lower level),
 ## then .pkginstall with manual dependencies
 
 ## Sync and install before downloading; maybe you have a new cloud version already; not obvious this is actually better, though, just downloading from elsewhere 🙂
-## cloud/chrome.deb.rmk: 
+## cache/chrome.deb.rmk: 
 ## chrome.pkginstall:
-cloud/chrome.deb: | cloud
+cache/chrome.deb: | cache
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 ## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
-rstudio.debinstall: cloud/rstudio.deb
+rstudio.debinstall: cache/rstudio.deb
 
-## webex.debinstall: cloud/webex.deb
+## webex.debinstall: cache/webex.deb
 
 Ignore += *.debinstall
-%.debinstall: cloud/%.deb | gdebi.apt
+%.debinstall: cache/%.deb | gdebi.apt
 	sudo gdebi $<
 	$(touch)
 
+## zoom.debinstall: cache/zoom.deb
+
 Ignore += *.pkginstall
-%.pkginstall: cloud/%.deb
+%.pkginstall: cache/%.deb
 	sudo dpkg -i $<
 	$(touch)
 
-## cloud/pandoc.deb.rmk:
-cloud/pandoc.deb: | cloud
+## cache/pandoc.deb.rmk:
+cache/pandoc.deb: | cache
 	wget -O $@ https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-1-amd64.deb
 
-pandoc.install: cloud/pandoc.deb pandoc.pkginstall ;
-quarto.install: cloud/quarto.deb quarto.pkginstall ;
+pandoc.install: cache/pandoc.deb pandoc.pkginstall ;
+quarto.install: cache/quarto.deb quarto.pkginstall ;
 
 ######################################################################
 
@@ -790,7 +793,7 @@ powerProb: nvme-cli.apt
 
 ## claudeInstall.sh.bashinstall:
 
-## del cloud/claudeInstall.sh ##
+## del cache/claudeInstall.sh ##
 ## curl -fsSL https://claude.ai/install.sh | bash ##
 
 ######################################################################
@@ -980,19 +983,19 @@ auth-source-xoauth2:
 ## Install emacs first, not via vim!
 ## This whole thing choked on go.dev, which seems like another big project
 ## Try another time
-## cloud/go.tgz
+## cache/go.tgz
 auth-source-xoauth2/oauth: auth-source-xoauth2
 	cd $< && $(MAKE)
 
 ## Did not work with or without .dance stuff
 ## Also does not work with desktop app
 ## https://tilde.club/~djhsu/aerc-gmail-oauth2.html
-cloud/oauth2.py:
+cache/oauth2.py:
 	wget -O $@ "https://raw.githubusercontent.com/google/gmail-oauth2-tools/refs/heads/master/python/oauth2.py"
 Ignore += aerc.mk
 -include aerc.mk
 python_auth: user=jdushoff@gmail.com
-python_auth: cloud/oauth2.py
+python_auth: cache/oauth2.py
 	python $< --generate_oauth2_token --user=$(user) --client_id=$(client_id) --client_secret=$(client_secret)
 
 ## Also did not work 2025 Jan 19 (Sun) (using app password)
