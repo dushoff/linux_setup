@@ -657,7 +657,7 @@ acrordrdc.snap:
 ## Changing cloud to cache 2026 Aug 27 (Thu)
 ## de-mirrored; it's slow when travelling and nothing that really needs to be kept
 ## If you need cloud back, change the current cloud to cache or something
-Ignore += cache
+Ignore += cache cloud
 ## mirrors += cloud
 
 ## 2024 Nov 04 (Mon) with Rowan; expanded this
