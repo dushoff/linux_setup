@@ -790,11 +790,8 @@ powerProb: nvme-cli.apt
 ######################################################################
 
 ## Claude code
-
-## claudeInstall.sh.bashinstall:
-
-## del cache/claudeInstall.sh ##
 ## curl -fsSL https://claude.ai/install.sh | bash ##
+## Chose light/friendly mode. Use /theme to mess around
 
 ######################################################################
 
