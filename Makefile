@@ -695,7 +695,7 @@ Sources += olddeb.mk
 cache/chrome.deb: | cache
 	wget -O $@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-## rstudio: Manually download a deb from https://posit.co/download/rstudio-desktop/
+## rstudio: Manually download a deb from https://docs.posit.co/ide/user/#direct-downloads-open-source
 rstudio.debinstall: cache/rstudio.deb
 
 ## webex.debinstall: cache/webex.deb
