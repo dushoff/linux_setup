@@ -395,6 +395,8 @@ qmee_students_old: unmarked.cran randomForest.cran pacman.cran EnvStats.cran lsr
 
 ggiraph.cran: gdtools.cran
 
+us: janitor.cran
+
 ######################################################################
 
 ## git lfs; make gitlfs on the machine and then do a thing
