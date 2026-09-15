@@ -566,7 +566,6 @@ broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit ordinalsim.rgit: gituser=bb
 
 knitr.rgit: gituser=yihui
 
-## rmarkdown.rgit: gituser=rstudio
 
 learning: caret.cran rpart.cran
 
