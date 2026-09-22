@@ -158,6 +158,8 @@ ruby-bundler.apt: build-essential.apt ruby.apt ruby-dev.apt
 
 utils: latexdiff.apt rename.apt pdfgrep.apt pdftk.apt inkscape.apt xmldiff.apt
 
+photo: libimage-exiftool-perl.apt
+
 ## pdfroff in bash asks for groff to be installed, but it can't be
 ## groff itself is here (provided by what package?)
 ## Seems fixed? 2025 Jan 24 (Fri)
