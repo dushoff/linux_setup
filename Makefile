@@ -1,7 +1,3 @@
-## Checking for a new Ubuntu release || Please install all available updates for your release before upgrading.
-
-## Failed to fetch http://security.ubuntu.com/ubuntu/dists/focal-security/main/dep11/icons-64x64.tar  
-## sudo rm -fr /var/lib/apt/lists/partial/ ##
 
 ubu = `lsb_release -cs`
 ubuLong = noble
@@ -184,10 +180,8 @@ weird_packages:
 
 ######################################################################
 
-## Upgrade 2022 Jun 05 (Sun)
-## https://itsfoss.com/upgrade-ubuntu-version/
-
-## Trying again late July
+## Upgrade 
+## up26.md
 
 release:
 	lsb_release -a
@@ -204,12 +198,10 @@ upgrade_fix:
 
 ## apt-get untested
 dist-upgrade: upgrade
-	sudo apt-get dist-upgrade
+	sudo apt full-upgrade
+	sudo apt autoremove
 
-manage: update-manager.apt update-manager-core.apt
-	sudo update-manager -d
-
-release-upgrade: dist-upgrade manage
+release-upgrade: dist-upgrade
 	sudo do-release-upgrade
 
 release.all:
