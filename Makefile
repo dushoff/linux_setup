@@ -712,6 +712,8 @@ cache/pandoc.deb: | cache
 	wget -O $@ https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-1-amd64.deb
 
 pandoc.install: cache/pandoc.deb pandoc.pkginstall ;
+
+## https://quarto.org/docs/get-started/
 quarto.install: cache/quarto.deb quarto.pkginstall ;
 
 ######################################################################
