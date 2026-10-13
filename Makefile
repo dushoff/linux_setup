@@ -213,6 +213,7 @@ release.all:
 
 ## Confused advice from claude
 
+Sources += rpkg.complain.txt
 ## rpkg.complain.txt
 
 # 1. Record what you have (manually installed r-cran/r-bioc packages)
