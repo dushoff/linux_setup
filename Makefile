@@ -211,16 +211,21 @@ release.all:
 
 ######################################################################
 
+## Confused advice from claude
+
+## rpkg.complain.txt
+
 # 1. Record what you have (manually installed r-cran/r-bioc packages)
 ## apt-mark showmanual | grep -E '^r-(cran|bioc)-' > ~/r-pkgs.txt ##
 
+## DETOUR?
 # Check which ones actually come from CRAN/r2u rather than Ubuntu
 ## apt list --installed 2>/dev/null | grep -E '^r-cran-'
 ## apt policy r-cran-<somepackage>    # look at the origin of the installed version
 ## ubuntu-support-status --show-unsupported
 
 # 2. Remove them (and r-base if it's the CRAN build)
-## sudo apt remove $(cat ~/r-pkgs.txt)
+## sudo apt remove $(cat rpkg.complain.txt)
 
 # 3. Upgrade
 ## sudo do-release-upgrade
