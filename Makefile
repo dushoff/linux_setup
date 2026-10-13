@@ -211,6 +211,27 @@ release.all:
 
 ######################################################################
 
+# 1. Record what you have (manually installed r-cran/r-bioc packages)
+## apt-mark showmanual | grep -E '^r-(cran|bioc)-' > ~/r-pkgs.txt ##
+
+# Check which ones actually come from CRAN/r2u rather than Ubuntu
+## apt list --installed 2>/dev/null | grep -E '^r-cran-'
+## apt policy r-cran-<somepackage>    # look at the origin of the installed version
+## ubuntu-support-status --show-unsupported
+
+# 2. Remove them (and r-base if it's the CRAN build)
+## sudo apt remove $(cat ~/r-pkgs.txt)
+
+# 3. Upgrade
+## sudo do-release-upgrade
+
+# 4. After the upgrade, update the CRAN line in /etc/apt/sources.list.d/
+#    to the new codename (the CRAN repo can lag a bit after a release),
+#    then reinstall
+## sudo apt install $(cat ~/r-pkgs.txt)
+
+######################################################################
+
 ## Rutter ppa etc. seems superseded.
 ## https://cloud.r-project.org/bin/linux/ubuntu/#install-r
 Ignore += rproject.add
