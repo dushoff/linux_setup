@@ -23,6 +23,30 @@ Ignore += dump.txt
 
 ######################################################################
 
+## 2026 upgrade
+
+## Stuff the upgrade to resolute (26.04) dropped; apt directly because old .apt stamps are still lying around
+upgrade26:
+	sudo apt-get install -y xinput imagemagick
+
+## Re-enable CRAN and r2u (disabled by the upgrade) on the new codename, then get R back
+## CRAN key fetched fresh because the old one was apt-key'd into legacy trusted.gpg
+Ignore += cran26.update
+cran26.update:
+	wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc > /dev/null
+	sudo sed -i -e 's/^Suites: noble/Suites: $(shell lsb_release -cs)/' -e 's/^Enabled: no/Enabled: yes/' \
+		/etc/apt/sources.list.d/archive_uri-https_cloud_r-project_org_bin_linux_ubuntu-noble.sources \
+		/etc/apt/sources.list.d/cranapt.sources
+	sudo apt-get update && touch $@
+
+R26: cran26.update
+	sudo apt-get install -y r-base-core r-base-dev
+
+## Then reinstall R packages: delete stale *.cran stamps and make rdefault
+## rm -f *.cran && make rdefault
+
+######################################################################
+
 ## Do a new install in some sort of temporary directory; you'll be building 
 ## screens and then moving it to ~
 
