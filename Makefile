@@ -44,8 +44,25 @@ cran26.update:
 R26: cran26.update
 	sudo apt-get install -y r-base-core r-base-dev
 
-## Then reinstall R packages: delete stale *.cran stamps and make rdefault
+## r2u needs a pin, or apt mixes in Ubuntu's own r-cran-* builds (higher version strings, built for the previous R) and refuses
+/etc/apt/preferences.d/99cranapt:
+	printf 'Package: *\nPin: release o=CRAN-Apt Project\nPin: release l=CRAN-Apt Packages\nPin-Priority: 700\n' | sudo tee $@
+
+## Top-level r-cran packages removed before the 26 upgrade (2026 Oct 12), recovered from /var/log/apt/history.log
+## Gone from r2u: broomextra ggdark ggmosaic ggstream
+Sources += r26.pkgs
+R26pkgs: r26.pkgs /etc/apt/preferences.d/99cranapt
+	sudo apt-get install -y $(addprefix r-cran-,$(shell cat r26.pkgs))
+
+## Then: make Rlibsplit, log out and in, make updateR Rbioc Rgithub
 ## rm -f *.cran && make rdefault
+
+## `make R26pkgs`, then delete the stale `boot codetools foreign mgcv rpart` folders from `/usr/lib/R/site-library`, then `make updateR Rbioc Rgithub`. macpan2 (from r-universe) and your own local packages (shellpipes, varpred and so on) you'll still reinstall by hand.
+
+R26clean.fiVe: 
+	cd /usr/lib/R/site-library && sudo rm -fr boot codetools foreign mgcv rpart
+
+R26other:
 
 ######################################################################
 
@@ -318,25 +335,42 @@ Ignore += wget-log
 ## r updates and paths
 
 R ?= /usr/bin/R
-RREPO ?= http://lib.stat.cmu.edu/R/CRAN
+RREPO ?= https://cloud.r-project.org
 RLIB ?= /usr/lib
 RFORGE ?= http://R-Forge.R-project.org
 
-updateR: Rlibcombine
-	 echo 'update.packages(repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
+## Two site libraries (the Debian design): apt (r2u) owns RAPT, R installs into RLOCAL (group staff)
+## R searches RLOCAL first, so these rules only ever update RLOCAL
+RAPT = /usr/lib/R/site-library
+RLOCAL = /usr/local/lib/R/site-library
 
-## R set up; move everything to a single, world-writable site-library. leave library alone (for core stuff)
-## the local/ version seems to keep coming back. I guess we keep merging it?
-## This rule is supposed to link things, and overwrite in a planned way?
-## 2026 Feb 21 (Sat)
-Rlibcombine:
-	sudo chmod -R a+wrX /usr/lib/R/site-library
-	sudo mkdir -p  /usr/local/lib/R/site-library
-	sudo chmod -R a+wrX /usr/local/lib/R/site-library
-	sudo rsync -a --ignore-existing /usr/local/lib/R/site-library/* /usr/lib/R/site-library
-	sudo rm -fr /usr/local/lib/R/site-library 
-	sudo ln -s /usr/lib/R/site-library /usr/local/lib/R/site-library
-	@echo Combined!
+updateR:
+	 echo 'update.packages(lib.loc = "$(RLOCAL)", repos = "$(RREPO)", ask=FALSE, checkBuilt=TRUE)' | $(R) --vanilla
+
+Rbioc:
+	echo 'BiocManager::install(ask=FALSE, update=TRUE, lib="$(RLOCAL)")' | $(R) --vanilla
+
+## Reinstall whatever is installed from github, using the repo info remotes stored at install time
+Rgithub: | remotes.cran
+	echo 'ip <- installed.packages(fields=c("RemoteType", "RemoteUsername", "RemoteRepo")); g <- ip[ip[,"RemoteType"] %in% "github",,drop=FALSE]; remotes::install_github(paste0(g[,"RemoteUsername"], "/", g[,"RemoteRepo"]), upgrade="never", force=TRUE, lib="$(RLOCAL)")' | $(R) --vanilla
+
+## Undo the old Rlibcombine merge (2026 Oct 17): RLOCAL had been a symlink to RAPT, and RAPT world-writable
+## Packages in RAPT that no r-cran-/r-bioc- package owns move to RLOCAL; safe to rerun
+## Log out and back in after the first run (staff membership)
+Rlibsplit:
+	if [ -L $(RLOCAL) ]; then sudo rm $(RLOCAL); fi
+	sudo mkdir -p $(RLOCAL)
+	dpkg-query -W -f '$${Package} $${Status}\n' 'r-cran-*' 'r-bioc-*' 2>/dev/null | grep 'ok installed' | cut -d' ' -f1 | sed 's/^r-[a-z]*-//' > apt.rpkgs
+	for d in $(RAPT)/*; do \
+		p=`basename $$d | tr '[:upper:]' '[:lower:]'`; \
+		grep -qx "$$p" apt.rpkgs || sudo mv -T $$d $(RLOCAL)/`basename $$d`; \
+	done
+	sudo chmod -R go-w $(RAPT)
+	sudo chown -R root:staff $(RLOCAL)
+	sudo chmod -R g+wX $(RLOCAL)
+	sudo find $(RLOCAL) -type d -exec chmod g+s {} +
+	sudo adduser $(USER) staff
+Ignore += apt.rpkgs
 
 ######################################################################
 
@@ -478,12 +512,12 @@ bolton: varhandle.cran MLmetrics.cran
 Ignore += *.rsource
 %.rsource:
 	 $(rsource_r)
-rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | sudo $(R) --vanilla && touch $*.rsource
+rsource_r = echo 'install.packages("$*", repos = "$(RREPO)")' | $(R) --vanilla && touch $*.rsource
 
 Ignore += *.rforge
 %.rforge:
 	 $(rforge_r)
-rforge_r = echo 'install.packages("$*", repos = "$(RFORGE)")' | sudo $(R) --vanilla && touch $@
+rforge_r = echo 'install.packages("$*", repos = "$(RFORGE)")' | $(R) --vanilla && touch $@
 
 ######################################################################
 
@@ -530,7 +564,7 @@ Ignore += *.rgit
 
 gforce = FALSE
 %.rgit: | remotes.cran
-	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | sudo $(R) --vanilla && touch $@
+	echo 'library(remotes); install_github("$(gituser)/$*$(gbranch)", force=$(gforce))' | $(R) --vanilla && touch $@
 
 ######################################################################
 
@@ -553,7 +587,7 @@ ggraph.cran: igraph.cran
 
 %.canmod.universe: 
 	echo 'repos = c("https://canmod.r-universe.dev", "https://cloud.r-project.org"); install.packages("$*", repos = repos)' | \
-	sudo $(R) --vanilla && touch $@
+	$(R) --vanilla && touch $@
 
 ######################################################################
 
@@ -576,7 +610,7 @@ burnout.rgit: gsl.cran
 ## Did not resolve the dependency problem 2024 May 25 (Sat)
 burnout.bb.rgit:
 	echo 'library(remotes); install_github("davidearn/burnout", force=FALSE, repos = c(CRAN="https://cloud.r-project.org"))' \
-	| sudo $(R) --vanilla && touch $@
+	| $(R) --vanilla && touch $@
 
 fitode.cran:
 
