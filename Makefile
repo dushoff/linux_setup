@@ -54,8 +54,10 @@ Sources += r26.pkgs
 R26pkgs: r26.pkgs /etc/apt/preferences.d/99cranapt
 	sudo apt-get install -y $(addprefix r-cran-,$(shell cat r26.pkgs))
 
-## Then: make Rlibsplit, log out and in, make updateR Rbioc Rgithub
-## rm -f *.cran && make rdefault
+## Then: make Rlibsplit, log out and in,
+R26follow: updateR Rbioc Rgithub
+	$(RM) *.cran
+## make rdefault
 
 ## `make R26pkgs`, then delete the stale `boot codetools foreign mgcv rpart` folders from `/usr/lib/R/site-library`, then `make updateR Rbioc Rgithub`. macpan2 (from r-universe) and your own local packages (shellpipes, varpred and so on) you'll still reinstall by hand.
 
