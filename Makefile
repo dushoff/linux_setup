@@ -30,6 +30,7 @@ upgrade26:
 	sudo apt-get install -y xinput imagemagick
 
 audio26: libsox-fmt-pulse.apt
+utils26: evince.apt
 
 ## Re-enable CRAN and r2u (disabled by the upgrade) on the new codename, then get R back
 ## CRAN key fetched fresh because the old one was apt-key'd into legacy trusted.gpg
@@ -716,6 +717,8 @@ python3-pip.apt: python-is-python3.apt
 gv.apt:
 
 ## This looks similar to evince
+## The new default is Papers 2026 Oct 18 (Sun)
+## Stick with evince for now
 zathura.apt:
 
 ######################################################################
