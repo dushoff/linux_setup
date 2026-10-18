@@ -29,6 +29,8 @@ Ignore += dump.txt
 upgrade26:
 	sudo apt-get install -y xinput imagemagick
 
+audio26: libsox-fmt-pulse.apt
+
 ## Re-enable CRAN and r2u (disabled by the upgrade) on the new codename, then get R back
 ## CRAN key fetched fresh because the old one was apt-key'd into legacy trusted.gpg
 Ignore += cran26.update
