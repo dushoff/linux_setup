@@ -892,7 +892,7 @@ powerProb: nvme-cli.apt
 
 ## Things added since 2022 Oct 05 (Wed)
 
-newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt cups-pdf.apt
+newapt: gnome-screenshot.apt libjs-mathjax.apt maxima.apt maxima-doc.apt cups-pdf.apt
 
 ## https://askubuntu.com/questions/1403994/how-to-change-the-default-screenshot-folder-in-gnome-42
 
