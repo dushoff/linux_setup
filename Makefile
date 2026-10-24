@@ -159,8 +159,13 @@ whisper.cpp: | cmake.apt
 Ignore += whisper.cpp/
 ## whisper.cpp.small.en.model: 
 whisper.cpp.%.model: | whisper.cpp
-	cd whisper.cpp && $(MAKE)
-	cd whisper.cpp && bash ./models/download-ggml-model.sh $* 
+	cd $| && $(MAKE)
+	cd $| && bash ./models/download-ggml-model.sh $* 
+	$(touch)
+
+whisper.clean: | whisper.cpp
+	cd $| && git clean -fdx && git pull
+	- $(RM) whisper*.model
 
 ## ./whisper.cpp/whisper-cli -m ~/whisper.cpp/models/ggml-small.en.bin
 
