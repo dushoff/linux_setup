@@ -425,6 +425,8 @@ macpan2.rgit: gbranch=@abs_inoutflow
 
 agronah: truncnorm.cran BiocManager.cran truncdist.cran DESeq2.bioconductor here.cran metR.cran sn.cran
 
+mixing: socialmixr.cran
+
 wz: anytime.cran gganimate.cran mapview.cran maptools.cran
 roswell: RTMB.cran tinyplot.cran heap.cran
 zhao_resting: DPQ.cran Rmpfr.cran 
