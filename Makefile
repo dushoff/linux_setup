@@ -65,7 +65,7 @@ R26follow: updateR Rbioc Rgithub
 R26clean.fiVe: 
 	cd /usr/lib/R/site-library && sudo rm -fr boot codetools foreign mgcv rpart
 
-R26other:
+R26other: codetools.cran
 
 ######################################################################
 
