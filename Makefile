@@ -1,4 +1,3 @@
-
 ubu = `lsb_release -cs`
 ubuLong = noble
 
