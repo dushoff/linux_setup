@@ -657,7 +657,6 @@ broom.mixed.rgit bbmle.rgit bio3ss3.rgit fitsir.rgit ordinalsim.rgit: gituser=bb
 
 knitr.rgit: gituser=yihui
 
-
 learning: caret.cran rpart.cran
 
 ######################################################################
