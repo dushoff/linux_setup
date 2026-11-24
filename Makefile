@@ -675,12 +675,16 @@ texall: texlive.apt texlive-bibtex-extra.apt texlive-fonts-extra.apt texlive-hum
 
 ######################################################################
 
+## Using debinstall for pandoc for now because of polyfill problem
+## pandoc.debinstall: cache/pandoc.deb
+pandoc.debinstall: | python3-pip.apt
+pandoc: pandoc.apt python3-pip.apt
+
 ## .pip stuff has been invalidated on some machines
 ## Use python3-foo.apt instead there.
 ## .pip stuff not working at all, apparently! At least on six
 ## pandoc [[investigpandoc-citeproc.apt ate]]
 ## 2023 Jul 18 (Tue) pandoc-citeproc.apt is defunct; probably notes somewhere about what tc call
-pandoc: pandoc.apt python3-pip.apt
 python3-pip.apt: python-is-python3.apt 
 
 %.pip: python3-pip.apt
